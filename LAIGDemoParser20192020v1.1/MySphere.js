@@ -18,26 +18,25 @@ class MySphere extends CGFobject {
 
         var ang = 0;
         var alphaAng = 2*Math.PI/this.slices;
-
-      
-        for(var j = 0; j < this.stacks; j++){
+        var difRadius = 0 -this.radius;
+        var stackRadius = difRadius/this.stacks;
+        var base = this.radius;
+        var ang1 = (Math.PI/2)/this.stacks;
+        
+        
+        for(var beta= -Math.PI/2 + ang1; beta<Math.PI/2; beta+=ang1){
+            for(var ang = 0; ang < 2*Math.PI; ang+= )
+        }
+        
+        
+        for(var j = 0; j < this.stacks*2; j++){
 
             for(var i = 0; i < this.slices; i++){
-
-                var sa = Math.sin(ang) * this.radius;
-                var saa = Math.sin(ang+alphaAng) * this.radius;
-                var ca = Math.cos(ang) * this.radius;
-                var caa = Math.cos(ang+alphaAng) * this.radius;
-
                 // vertices of the face of the prism
-                this.vertices.push(ca, sa, (this.height/this.stacks)*(j+1));
-                this.vertices.push(ca, sa, j*(this.height/this.stacks));
-                this.vertices.push(caa, saa, (this.height/this.stacks)*(j+1));
-                this.vertices.push(caa, saa, j*(this.height/this.stacks));
-                /*this.vertices.push(ca, sa, tempHeight + stackHeight);
-                this.vertices.push(ca, sa, tempHeight);
-                this.vertices.push(caa, saa, tempHeight + stackHeight);
-                this.vertices.push(caa, saa, tempHeight);*/
+               this.vertices.push(this.radius*Math.cos(beta+ang1)*Math.cos(ang), this.radius*Math.cos(beta+ang1)*Math.sin(ang),this.radius*Math.sin(beta + ang1));
+                this.vertices.push(this.radius*Math.cos(beta)*Math.cos(ang), this.radius*Math.cos(beta)*Math.sin(ang),this.radius*Math.sin(beta));
+                this.vertices.push(this.radius*Math.cos(beta+ang1)*Math.cos(ang+alphaAng), this.radius*Math.cos(beta+ang1)*Math.sin(ang+alphaAng),this.radius*Math.sin(beta+ang1));
+                this.vertices.push(this.radius*Math.cos(beta)*Math.cos(ang+alphaAng), this.radius*Math.cos(beta)*Math.sin(ang+alphaAng),this.radius*Math.sin(beta));
 
                 // normals of the face of the cylinder
                 this.normals.push(Math.cos(ang), 0, Math.sin(ang));
@@ -46,10 +45,7 @@ class MySphere extends CGFobject {
                 this.normals.push(Math.cos(ang + alphaAng), 0, Math.sin(ang + alphaAng));
 
                 // indices of the face of the cylinder
-                /*this.indices.push(4*i+j*this.stacks, (4*i)+j*this.stacks+1 , (4*i)+j*this.stacks+2);
-                this.indices.push((4*i)+j*this.stacks + 1, (4*i)+j*this.stacks+3, (4*i)+j*this.stacks+2);
-                this.indices.push((4*i)+j*this.stacks + 2, (4*i)+j*this.stacks+1, 4*i+j*this.stacks);
-                this.indices.push((4*i)+j*this.stacks + 2, (4*i)+j*this.stacks+3, (4*i+j*this.stacks+1));*/
+              
                 this.indices.push(4 * i + (4* (j*this.slices)), (4 * i + 1) + (4* (j*this.slices)), (4 * i + 2) + (4* (j*this.slices)));
                 this.indices.push((4 * i + 1) + (4* (j*this.slices)), (4 * i + 3) + (4* (j*this.slices)), (4 * i + 2) + (4* (j*this.slices)));
                 this.indices.push((4 * i + 2) + (4* (j*this.slices)), (4 * i + 1) + (4* (j*this.slices)), 4 * i + (4* (j*this.slices)));
@@ -64,8 +60,12 @@ class MySphere extends CGFobject {
 
 
                 ang+=alphaAng;
+               // (beta+ang1) >= Math.PI ? beta+= ang1 : beta = 0;
+                
             }
+            //base+=stackRadius;
             ang = 0;
+            beta = 0;
     }
 
 
