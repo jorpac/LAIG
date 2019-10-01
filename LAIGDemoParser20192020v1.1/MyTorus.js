@@ -1,13 +1,14 @@
 /**
- * MySphere
+ * MyTorus
  * @constructor
  */
-class MySphere extends CGFobject {
-    constructor(scene, id, radius, slices, stacks) {
+class MyTorus extends CGFobject {
+    constructor(scene, id, outradius, inradius, slices, loops) {
         super(scene);
-        this.radius = radius;
+        this.outradius = outradius;
+        this.inradius = inradius;
         this.slices = slices;
-        this.stacks = stacks;
+        this.loops = loops;
         this.initBuffers();
     }
     initBuffers() {
