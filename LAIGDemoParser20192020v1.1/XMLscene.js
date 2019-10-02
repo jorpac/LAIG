@@ -132,7 +132,8 @@ class XMLscene extends CGFscene {
             this.setDefaultAppearance();
 
             // Displays the scene (MySceneGraph function).
-            this.graph.displayScene();
+            var tr = mat4.create();
+            this.graph.displayScene("demoRoot", tr);
         }
 
         this.popMatrix();
