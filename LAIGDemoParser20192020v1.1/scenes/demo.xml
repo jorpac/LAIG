@@ -1,5 +1,5 @@
 <lxs>
-    <scene root="demoRoot" axis_length="5"/>
+    <scene root="root" axis_length="5"/>
 
     <views default="defaultCamera">
         <perspective id="defaultCamera" near="0.1" far="500" angle="45">
@@ -45,34 +45,38 @@
     </transformations>
 
     <primitives>
-        <primitive id="demoRectangle">
+        <primitive id="rectangle">
             <rectangle x1="-0.5" y1="-1" x2="0.5" y2="1" />
         </primitive>
-        <primitive id="newCylinder">
+        <primitive id="cylinder">
             <cylinder base="0.5" top="0.5" height="2" slices="50" stacks="50"/>
         </primitive>
         <primitive id = "sphere">
-            <sphere radius="1" slices = "40" stacks="3"/>
+            <sphere radius="1" slices = "40" stacks="40"/>
         </primitive>
         <primitive id = "triangle">
             <triangle x1="0" y1="0" z1="0" x2="1" y2="0" z2="2" x3="1" y3="0" z3="1"/>
         </primitive>
+        <primitive id = "torus">
+            <torus outradius="5" inradius="0.5" slices="100" loops="3"/>
+        </primitive>
     </primitives>
 
     <components>
-        <component id="demoRoot">
+        <component id="root">
             <transformation>
-                <!--<translate x="0" y="0" z="1" />
-                <scale x="2" y="1" z="1" />-->
+                <!-- <translate x="0" y="0" z="1" />
+                <scale x="1.5" y="1" z="1" /> -->
             </transformation>
             <materials>
                 <material id="demoMaterial" />
             </materials>
             <texture id="demoTexture"/>
             <children>
-                <componentref id="treetop"/>
+                <!-- <componentref id="treetop"/>
                 <componentref id="treetrunk"/>
-                <componentref id="retanguloTeste"/>
+                <componentref id="retanguloTeste"/> -->
+                <primitiveref id="torus" />
                 <!--<primitiveref id="demoRectangle" />
                 <primitiveref id="newCylinder"/>
                 <primitiveref id = "sphere"/>
@@ -91,7 +95,7 @@
             </materials>
             <texture id="demoTexture"/>
             <children>
-                <primitiveref id = "newCylinder" />
+                <primitiveref id = "cylinder" />
             </children>
         </component>
  
@@ -119,7 +123,7 @@
             </materials>
             <texture id="demoTexture"/>
             <children>
-                <primitiveref id = "demoRectangle" />
+                <primitiveref id = "rectangle" />
             </children>
         </component>
 

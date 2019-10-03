@@ -19,23 +19,23 @@ class MyTorus extends CGFobject {
 
         var alphaInc = 2 * Math.PI / this.slices;
         var nver = 0;
-        var betaInc = (Math.PI / 2) / this.stacks;
+        var betaInc = 2 * Math.PI / this.loops;
 
         for (var alpha = 0; alpha <= 2 * Math.PI; alpha += alphaInc) {
-            for (var beta = -Math.PI / 2; beta <= Math.PI / 2; beta += betaInc) {
-                this.vertices.push(this.radius * Math.cos(beta) * Math.cos(alpha), this.radius * Math.cos(beta) * Math.sin(alpha), this.radius * Math.sin(beta));
-                this.normals.push(Math.cos(alpha + alphaInc), 0, Math.sin(alpha + alphaInc));
+            for (var beta = 0; beta <= 2* Math.PI; beta += betaInc) {
+                this.vertices.push((this.outradius + this.inradius * Math.cos(alpha)) * Math.cos(beta), (this.outradius + this.inradius * Math.cos(alpha)) * Math.sin(beta), this.inradius * Math.sin(alpha));
+                this.normals.push(Math.cos(alpha) * Math.cos(beta), Math.cos(alpha) * Math.sin(beta), Math.sin(alpha));
                 nver++;
             }
         }
 
-        for (var i = 0; i < nver - (2 * this.stacks + 1); i++) {
-            if ((i + 1) % (2 * this.stacks + 1) != 0) {
-                this.indices.push(i, i + 2 * this.stacks + 1, i + 2 * this.stacks + 2);
-                this.indices.push(i + 2 * this.stacks + 2, i + 1, i);
+        for (var i = 0; i < nver - (2 * this.loops + 1); i++) {
+            if ((i + 1) % (2 * this.loops + 1) != 0) {
+                this.indices.push(i, i + 2 * this.loops + 1, i + 2 * this.loops + 2);
+                this.indices.push(i + 2 * this.loops + 2, i + 1, i);
 
-                this.indices.push(i, i + 2 * this.stacks + 2, i + 2 * this.stacks + 1);
-                this.indices.push(i + 1, i + 2 * this.stacks + 2, i);
+                this.indices.push(i, i + 2 * this.loops + 2, i + 2 * this.loops + 1);
+                this.indices.push(i + 1, i + 2 * this.loops + 2, i);
             }
         }
 

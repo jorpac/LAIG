@@ -23,7 +23,7 @@ class MySphere extends CGFobject {
         for (var alpha = 0; alpha <= 2 * Math.PI; alpha += alphaInc) {
             for (var beta = -Math.PI / 2; beta <= Math.PI / 2; beta += betaInc) {
                 this.vertices.push(this.radius * Math.cos(beta) * Math.cos(alpha), this.radius * Math.cos(beta) * Math.sin(alpha), this.radius * Math.sin(beta));
-                this.normals.push(Math.cos(alpha + alphaInc), 0, Math.sin(alpha + alphaInc));
+                this.normals.push(Math.cos(beta) * Math.cos(alpha), Math.cos(beta) * Math.sin(alpha), Math.sin(beta));
                 nver++;
             }
         }

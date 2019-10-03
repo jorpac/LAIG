@@ -134,7 +134,7 @@ class XMLscene extends CGFscene {
             // Displays the scene (MySceneGraph function).
             //this.loadIdentity();
             //this.pushMatrix();
-            this.graph.displayScene("demoRoot", this.transfMatrix);
+            this.graph.displayScene("root", this.transfMatrix);
             //this.popMatrix();        
         }
 

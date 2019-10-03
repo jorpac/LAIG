@@ -676,7 +676,7 @@ class MySceneGraph {
                 var slices = this.reader.getFloat(grandChildren[0], 'slices');
                 if (!(slices != null && !isNaN(slices)))
                     return "unable to parse base of the primitive coordinates for ID = " + primitiveId;
-                //base
+                //stacks
                 var stacks = this.reader.getFloat(grandChildren[0], 'stacks');
                 if (!(stacks != null && !isNaN(stacks)))
                     return "unable to parse base of the primitive coordinates for ID = " + primitiveId;
@@ -685,8 +685,29 @@ class MySceneGraph {
 
                 this.primitives[primitiveId] = sphere;
 
-            } else {
-                console.warn("To do: Parse other primitives.");
+            } else if (primitiveType == 'torus') {
+                //outradius
+                var outradius = this.reader.getFloat(grandChildren[0], 'outradius');
+                if (!(outradius != null && !isNaN(outradius)))
+                    return "unable to parse base of the primitive coordinates for ID = " + primitiveId;
+                
+                //inradius
+                var inradius = this.reader.getFloat(grandChildren[0], 'inradius');
+                if (!(inradius != null && !isNaN(inradius)))
+                    return "unable to parse base of the primitive coordinates for ID = " + primitiveId;
+                //slices
+                var slices = this.reader.getFloat(grandChildren[0], 'slices');
+                if (!(slices != null && !isNaN(slices)))
+                    return "unable to parse base of the primitive coordinates for ID = " + primitiveId;
+                //loops
+                var loops = this.reader.getFloat(grandChildren[0], 'loops');
+                if (!(loops != null && !isNaN(loops)))
+                    return "unable to parse base of the primitive coordinates for ID = " + primitiveId;
+
+                var torus = new MyTorus(this.scene, primitiveId, outradius, inradius, slices, loops);
+
+                this.primitives[primitiveId] = torus;
+
             }
 
         }
@@ -960,8 +981,8 @@ class MySceneGraph {
                 var transformationMatrix = this.components[this.components.indexOf(id)+1]
 
                 for(var i=0; i<children.length; i++){
-                    this.scene.multMatrix(transformationMatrix)
                     this.scene.pushMatrix();
+                    this.scene.multMatrix(transformationMatrix);
                     this.displayScene(this.reader.getString(children[i], 'id'), this.scene.transfMatrix);
                     this.scene.popMatrix();
                 }
