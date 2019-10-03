@@ -143,14 +143,11 @@ class MySceneGraph {
             if (index != TEXTURES_INDEX)
                 this.onXMLMinorError("tag <textures> out of order");
 
-            console.log(this.scene.matrixStack);
 
             //Parse textures block
             if ((error = this.parseTextures(nodes[index])) != null)
                 return error;
         }
-
-        console.log(this.scene.matrixStack);
 
         // <materials>
         if ((index = nodeNames.indexOf("materials")) == -1)
@@ -164,8 +161,6 @@ class MySceneGraph {
                 return error;
         }
 
-        console.log(this.scene.matrixStack);
-
         // <transformations>
         if ((index = nodeNames.indexOf("transformations")) == -1)
             return "tag <transformations> missing";
@@ -178,8 +173,6 @@ class MySceneGraph {
                 return error;
         }
 
-        console.log(this.scene.matrixStack);
-
         // <primitives>
         if ((index = nodeNames.indexOf("primitives")) == -1)
             return "tag <primitives> missing";
@@ -191,8 +184,6 @@ class MySceneGraph {
             if ((error = this.parsePrimitives(nodes[index])) != null)
                 return error;
         }
-
-        console.log(this.scene.matrixStack);
 
         // <components>
         if ((index = nodeNames.indexOf("components")) == -1)
@@ -521,10 +512,13 @@ class MySceneGraph {
                         switch (axis) {
                             case 'x':
                                 vec = [1, 0, 0];
+                                break;
                             case 'y':
                                 vec = [0, 1, 0];
+                                break;
                             case 'z':
                                 vec = [0, 0, 1];
+                                break;
                         }
                         var ang = DEGREE_TO_RAD * this.reader.getFloat(grandChildren[j], 'angle');
                         transfMatrix = mat4.rotate(transfMatrix, transfMatrix, ang, vec);
@@ -738,8 +732,6 @@ class MySceneGraph {
             if (this.components[componentID] != null)
                 return "ID must be unique for each component (conflict: ID = " + componentID + ")";
 
-            this.nodes.push(componentID);
-
             grandChildren = children[i].children;
             
             nodeNames = [];
@@ -775,6 +767,9 @@ class MySceneGraph {
                     transformationID = this.transformations[this.reader.getString(grandgrandChildren[k], 'id')];
                     if (transformationID == null)
                         return "no ID defined for transformationID";
+
+                    transfMatrix = transformationID;
+
                 }
                 else {
                     switch (grandgrandChildren[k].nodeName) {
@@ -816,7 +811,6 @@ class MySceneGraph {
             for (var k = 0; k < grandgrandChildren.length; k++) {
                 if (grandgrandChildren[k].nodeName == 'primitiveref') {
                     primitiveInd = this.primitives[this.reader.getString(grandgrandChildren[k], 'id')];
-                    this.nodes.push(primitiveInd);
                     if (primitiveInd == null)
                         return "no ID defined for primitiveID";
                     //this.primitives[primitiveInd]
@@ -973,9 +967,6 @@ class MySceneGraph {
                 }
 
             }
-
-            console.log(transformationMatrix);
-        //this.primitives['sphere'].display();
 
     }
 }
