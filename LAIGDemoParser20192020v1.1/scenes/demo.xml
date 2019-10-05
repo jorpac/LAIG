@@ -55,10 +55,10 @@
             <sphere radius="1" slices = "40" stacks="40"/>
         </primitive>
         <primitive id = "triangle">
-            <triangle x1="0" y1="0" z1="0" x2="1" y2="0" z2="2" x3="1" y3="0" z3="1"/>
+            <triangle x1="-1" y1="0" z1="0" x2="1" y2="0" z2="0" x3="0" y3="1.415" z3="0"/>
         </primitive>
         <primitive id = "torus">
-            <torus outradius="5" inradius="0.5" slices="100" loops="3"/>
+            <torus outradius="2" inradius="1" slices="300" loops="300"/>
         </primitive>
     </primitives>
 
@@ -73,10 +73,11 @@
             </materials>
             <texture id="demoTexture"/>
             <children>
-                <!-- <componentref id="treetop"/>
-                <componentref id="treetrunk"/>
-                <componentref id="retanguloTeste"/> -->
-                <primitiveref id="torus" />
+                <componentref id="tree"/>
+                <componentref id="background"/>
+                <componentref id="sculp"/>
+                <!-- <componentref id="retanguloTeste"/>  -->
+                <!-- <primitiveref id="torus" /> -->
                 <!--<primitiveref id="demoRectangle" />
                 <primitiveref id="newCylinder"/>
                 <primitiveref id = "sphere"/>
@@ -86,9 +87,8 @@
 
         <component id="treetrunk">
             <transformation>
-                <!--<rotate axis="x" angle="-90" />
-                <scale x = "0.5" y = "0.5" z = "0.5" />-->
-                <transformationref id="demoTransform"/>
+                <rotate axis="x" angle="-90" />
+                <scale x = "0.2" y = "0.2" z = "0.5" />
             </transformation>
              <materials>
                 <material id="demoMaterial" />
@@ -101,8 +101,9 @@
  
         <component id = "treetop">
             <transformation>
-                <scale x = "0.5" y = "0.5" z = "0.5" />
-                <translate x = "0" y = "2.5" z = "0" />
+                <translate x = "0" y = "1" z = "0" />
+                <rotate axis="x" angle="-90" /> 
+                <scale x = "0.4" y = "0.4" z = "0.5" />
             </transformation>
              <materials>
                 <material id="demoMaterial" />
@@ -113,10 +114,82 @@
             </children>
         </component>
 
-        <component id = "retanguloTeste">
+        <component id = "tree">
             <transformation>
-                <scale x = "2" y = "2" z = "2" />
-                <translate x = "2" y = "1" z = "0" />
+                <translate x = "0" y = "0" z = "2" />
+            </transformation>
+             <materials>
+                <material id="demoMaterial" />
+            </materials>
+            <texture id="demoTexture"/>
+            <children>
+                <componentref id="treetop"/>
+                <componentref id="treetrunk"/>
+            </children>
+        </component>
+
+        <component id = "back_floor">
+            <transformation>
+                <scale x = "40" y = "10" z = "20" />
+                <rotate axis="x" angle="-90"/>
+            </transformation>
+             <materials>
+                <material id="demoMaterial" />
+            </materials>
+            <texture id="demoTexture"/>
+            <children>
+                <primitiveref id = "rectangle" />
+            </children>
+        </component>
+        
+        <component id = "l_wall">
+            <transformation>
+                <translate x="0" y="1" z = "-1"/>
+                <scale x = "2" y = "1" z = "1" />
+                <rotate axis="y" angle="180"/>
+            </transformation>
+             <materials>
+                <material id="demoMaterial" />
+            </materials>
+            <texture id="demoTexture"/>
+            <children>
+                <primitiveref id = "rectangle" />
+            </children>
+        </component>
+        <component id = "r_wall">
+            <transformation>
+                <translate x="0" y="1" z = "1"/>
+                <scale x = "2" y = "1" z = "1" />
+            </transformation>
+             <materials>
+                <material id="demoMaterial" />
+            </materials>
+            <texture id="demoTexture"/>
+            <children>
+                <primitiveref id = "rectangle" />
+            </children>
+        </component>
+        <component id = "f_wall">
+            <transformation>
+                <rotate axis="y" angle="90"/>
+                <translate x="0" y="1" z = "-1"/>
+                <scale x = "2" y = "1" z = "1" />
+                <rotate axis="y" angle="180"/>
+            </transformation>
+             <materials>
+                <material id="demoMaterial" />
+            </materials>
+            <texture id="demoTexture"/>
+            <children>
+                <primitiveref id = "rectangle" />
+            </children>
+        </component>
+        <component id = "b_wall">
+            <transformation>
+                <rotate axis="y" angle="-90"/>
+                <translate x="0" y="1" z = "-1"/>
+                <scale x = "2" y = "1" z = "1" />
+                <rotate axis="y" angle="180"/>
             </transformation>
              <materials>
                 <material id="demoMaterial" />
@@ -127,5 +200,207 @@
             </children>
         </component>
 
+        <component id = "b_roof">
+            <transformation>
+               <translate x="0" y="2" z = "1"/>
+                <rotate axis="x" angle="-45"/>
+            </transformation>
+            <materials>
+                <material id="demoMaterial" />
+            </materials>
+            <texture id="demoTexture"/>
+            <children>
+                <primitiveref id = "triangle" />
+            </children>
+        </component>
+        
+        <component id = "l_roof">
+            <transformation>
+                <translate x="0" y="2" z = "-1"/>
+                <rotate axis="y" angle="180"/>
+                <rotate axis="x" angle="-45"/>
+            </transformation>
+             <materials>
+                <material id="demoMaterial" />
+            </materials>
+            <texture id="demoTexture"/>
+            <children>
+                <primitiveref id = "triangle" />
+            </children>
+        </component>
+        <component id = "r_roof">
+            <transformation>
+                <translate x="1" y="2" z = "0"/>
+                <rotate axis="y" angle="90"/>
+                <rotate axis="x" angle="-45"/>
+            </transformation>
+             <materials>
+                <material id="demoMaterial" />
+            </materials>
+            <texture id="demoTexture"/>
+            <children>
+                <primitiveref id = "triangle" />
+            </children>
+        </component>
+         <component id = "f_roof">
+            <transformation>
+                <translate x="-1" y="2" z = "0"/>
+                <rotate axis="y" angle="-90"/>
+                <rotate axis="x" angle="-45"/>
+            </transformation>
+             <materials>
+                <material id="demoMaterial" />
+            </materials>
+            <texture id="demoTexture"/>
+            <children>
+                <primitiveref id = "triangle" />
+            </children>
+        </component>
+        <component id = "enfeite">
+            <transformation>
+                <translate x="-1" y="2" z = "0"/>
+                <rotate axis="y" angle="-90"/>
+                <scale x = "0.1" y = "0.1" z = "0.1" />
+            </transformation>
+             <materials>
+                <material id="demoMaterial" />
+            </materials>
+            <texture id="demoTexture"/>
+            <children>
+                <primitiveref id = "torus" />
+            </children>
+        </component>
+
+
+        <!-- <component id = "l_wall">
+            <transformation>
+                <translate x="0" y="15" z = "-20"/>
+                <scale x = "40" y = "15" z = "20" />
+            </transformation>
+             <materials>
+                <material id="demoMaterial" />
+            </materials>
+            <texture id="demoTexture"/>
+            <children>
+                <primitiveref id = "rectangle" />
+            </children>
+        </component>
+        <component id = "r_wall">
+            <transformation>
+                <translate x="0" y="15" z = "20"/>
+                <scale x = "40" y = "15" z = "20" />
+            </transformation>
+             <materials>
+                <material id="demoMaterial" />
+            </materials>
+            <texture id="demoTexture"/>
+            <children>
+                <primitiveref id = "rectangle" />
+            </children>
+        </component>
+        <component id = "f_wall">
+            <transformation>
+                <rotate axis="y" angle="90"/>
+                <translate x="0" y="15" z = "-20"/>
+                <scale x = "40" y = "15" z = "20" />
+            </transformation>
+             <materials>
+                <material id="demoMaterial" />
+            </materials>
+            <texture id="demoTexture"/>
+            <children>
+                <primitiveref id = "rectangle" />
+            </children>
+        </component>
+        <component id = "b_wall">
+            <transformation>
+                <rotate axis="y" angle="-90"/>
+                <translate x="0" y="15" z = "-20"/>
+                <scale x = "40" y = "15" z = "20" />
+            </transformation>
+             <materials>
+                <material id="demoMaterial" />
+            </materials>
+            <texture id="demoTexture"/>
+            <children>
+                <primitiveref id = "rectangle" />
+            </children>
+        </component> -->
+        <component id = "background">
+            <transformation>
+            </transformation>
+             <materials>
+                <material id="demoMaterial" />
+            </materials>
+            <texture id="demoTexture"/>
+            <children>
+                <componentref id = "back_floor" />
+                <componentref id = "l_wall" />
+                <componentref id = "r_wall" />
+                <componentref id = "f_wall" />
+                <componentref id = "b_wall" />
+                <componentref id = "b_roof" />
+                <componentref id = "l_roof" />
+                <componentref id = "r_roof" />
+                <componentref id = "f_roof" />
+                <componentref id = "enfeite" />
+            </children>
+        </component>
+
+
+        <component id = "sculp_0">
+            <transformation>
+                <scale x = "0.4" y = "0.4" z = "0.4" />
+                <translate x="2" y="1" z = "2"/>
+            </transformation>
+             <materials>
+                <material id="demoMaterial" />
+            </materials>
+            <texture id="demoTexture"/>
+            <children>
+                <primitiveref id = "sphere" />
+            </children>
+        </component>
+        
+        <component id = "sculp_1">
+            <transformation>
+                <scale x = "0.3" y = "0.3" z = "0.3" />
+                <translate x="2.72" y="3.5" z = "2.72"/>
+            </transformation>
+             <materials>
+                <material id="demoMaterial" />
+            </materials>
+            <texture id="demoTexture"/>
+            <children>
+                <primitiveref id = "sphere" />
+            </children>
+        </component>
+        <component id = "sculp_2">
+            <transformation>
+                <scale x = "0.2" y = "0.2" z = "0.2" />
+                <translate x="4" y="7.5" z = "4"/>
+            </transformation>
+             <materials>
+                <material id="demoMaterial" />
+            </materials>
+            <texture id="demoTexture"/>
+            <children>
+                <primitiveref id = "sphere" />
+            </children>
+        </component>
+         <component id = "sculp">
+            <transformation>
+             <translate x="2" y="0" z = "2"/>
+            </transformation>
+             <materials>
+                <material id="demoMaterial" />
+            </materials>
+            <texture id="demoTexture"/>
+            <children>
+                <componentref id = "sculp_0" />
+                <componentref id = "sculp_1" />
+                <componentref id = "sculp_2" />
+            </children>
+        </component>
     </components>
 </lxs>
