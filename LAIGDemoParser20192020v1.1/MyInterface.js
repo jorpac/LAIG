@@ -23,6 +23,8 @@ class MyInterface extends CGFinterface {
         // add a group of controls (and open/expand by defult)
         this.gui.add(this.scene, 'scaleFactor', 0.1, 5).name('Scale Factor');
 
+        //this.gui.add(this.scene, 'cameraList')
+
         this.gui.add(this.scene, 'displayAxis').name('Display Axis');
         this.initKeys();
 

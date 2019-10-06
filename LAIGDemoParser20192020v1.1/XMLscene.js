@@ -37,6 +37,7 @@ class XMLscene extends CGFscene {
         this.scaleFactor = 1.0;
         this.displayAxis = false;
 
+
     }
 
     /**
@@ -138,11 +139,16 @@ class XMLscene extends CGFscene {
                 0.0, this.scaleFactor, 0.0, 0.0,
                 0.0, 0.0, this.scaleFactor, 0.0,
                 0.0, 0.0, 0.0, 1.0];
+
+            //for(var i=0; i<this.scene.listCameras.length/2;i+=2){
+
+            //} 
+
             this.multMatrix(sca);
             // Displays the scene (MySceneGraph function).
             //this.loadIdentity();
             //this.pushMatrix();
-            this.graph.displayScene("root", this.transfMatrix);
+            this.graph.displayScene(this.graph.rootName, this.transfMatrix, );
             //this.popMatrix();        
         }
 
