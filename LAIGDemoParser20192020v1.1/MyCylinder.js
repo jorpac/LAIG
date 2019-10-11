@@ -23,7 +23,10 @@ class MyCylinder extends CGFobject {
 
         var difRadius = this.top -this.base;
         var stackRadius = difRadius/this.stacks;
-        //var tmpRadius = this.base;
+        
+        
+        var v_tex = 1/this.slices;
+        var v_tmp = 1;
         for(var j = 0; j < this.stacks; j++){
 
             for(var i = 0; i < this.slices; i++){
@@ -57,15 +60,16 @@ class MyCylinder extends CGFobject {
                 this.indices.push((4 * i + 2) + (4* (j*this.slices)), (4 * i + 3) + (4* (j*this.slices)), (4 * i + 1) + (4* (j*this.slices)));
 
                 // text cords of the face of the cylinder
-                this.texCoords.push(i*1.0/this.slices, 0);
-                this.texCoords.push(i*1.0/this.slices, 1);
-                this.texCoords.push(i*1.0/this.slices + 1.0/this.slices, 0);
-                this.texCoords.push(i*1.0/this.slices + 1.0/this.slices, 1);
+                this.texCoords.push(i*1.0/this.slices, v_tmp - v_tex);
+                this.texCoords.push(i*1.0/this.slices, v_tmp);
+                this.texCoords.push(i*1.0/this.slices + 1.0/this.slices, v_tmp - v_tex);
+                this.texCoords.push(i*1.0/this.slices + 1.0/this.slices, v_tmp);
 
 
 
                 ang+=alphaAng;
             }
+            v_tmp -= v_tex;
             this.base+=stackRadius;
             ang = 0;
     }

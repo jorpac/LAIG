@@ -20,14 +20,21 @@ class MyTorus extends CGFobject {
         var alphaInc = 2 * Math.PI / this.slices;
         var nver = 0;
         var betaInc = 2 * Math.PI / this.loops;
-
-      
-            for (var beta = 0; beta <= 2* Math.PI+betaInc; beta += betaInc) {
-                for (var alpha = 0; alpha <= 2 * Math.PI + alphaInc; alpha += alphaInc) {
+        var utex = 1 / this.loops;
+        var v_tex = 1 / this.slices;
+        var u_tmp = 0;
+        var v_tmp;
+        
+        for (var beta = 0; beta <= 2* Math.PI+betaInc; beta += betaInc) {
+            v_tmp = 1;
+            for (var alpha = 0; alpha <= 2 * Math.PI + alphaInc; alpha += alphaInc) {
                 this.vertices.push((this.outradius + this.inradius * Math.cos(alpha)) * Math.cos(beta), (this.outradius + this.inradius * Math.cos(alpha)) * Math.sin(beta), this.inradius * Math.sin(alpha));
                 this.normals.push(Math.cos(alpha) * Math.cos(beta), Math.cos(alpha) * Math.sin(beta), Math.sin(alpha));
+                this.texCoords.push(utex+u_tmp, v_tmp - v_tex);
                 nver++;
+                v_tmp-=v_tex;
             }
+            u_tmp += utex;
         }
        
         for (var i = 0; i < nver - (this.slices + 1) ; i++) {
