@@ -49,6 +49,7 @@
         <texture id="demoTexture" file="scenes/images/dark_glass.jpg" />
         <texture id="treeTrunkImg" file="scenes/images/trunk-image.jpg" />
         <texture id="treeTopText" file="scenes/images/leaves.jpg" />
+        <texture id="snowTex" file="scenes/images/snow.jpg" />
         <texture id="roofTopText" file="scenes/images/metalTex.jpg" />
         <texture id="floorText" file="scenes/images/grass.png" />
         <texture id="houseWall" file="scenes/images/woodenWallTex.png" />
@@ -602,7 +603,7 @@
              <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="demoTexture"/>
+            <texture id="snowTex"/>
             <children>
                 <primitiveref id = "sphere" />
             </children>
@@ -615,7 +616,7 @@
              <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="demoTexture"/>
+            <texture id="snowTex"/>
             <children>
                 <primitiveref id = "sphere" />
             </children>
@@ -628,7 +629,7 @@
              <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="demoTexture"/>
+            <texture id="snowTex"/>
             <children>
                 <primitiveref id = "sphere" />
             </children>
@@ -640,7 +641,7 @@
              <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="demoTexture"/>
+            <texture id="none"/>
             <children>
                 <componentref id = "sculp_0" />
                 <componentref id = "sculp_1" />
