@@ -143,6 +143,7 @@
 
         <component id="stadiummm">
             <transformation>
+                    <scale x="1.4" y="1" z="1" />
             </transformation>
             <materials>
                 <material id="demoMaterial" />
@@ -497,7 +498,8 @@
 
         <component id = "house">
             <transformation>
-                <scale x="2" y="1.5" z="1.7" />
+                <scale x="1.5" y="1.5" z="1.5" />
+                <translate x="0" y="4" z = "0"/>
             </transformation>
              <materials>
                 <material id="demoMaterial" />
@@ -653,7 +655,7 @@
         
         <component id = "farol_top">
             <transformation>
-             <translate x="-8" y="2" z = "2"/>
+             <translate x="0" y="6" z = "0"/>
              <!-- <scale x="0.1" y="0.1" z="0.1"/> -->
             <rotate axis="x" angle="-90"/>
             </transformation>
@@ -668,7 +670,8 @@
 
         <component id = "farol_trunk">
             <transformation>
-            <translate x="-8" y="0" z = "2"/>
+            <!-- <translate x="-8" y="0" z = "2"/> -->
+            <scale x= "1" y="3" z="1"/>
             <rotate axis="x" angle="-90"/>
             </transformation>
              <materials>
@@ -682,7 +685,7 @@
 
           <component id = "farol">
             <transformation>
-                <translate x="-8" y="0" z = "2"/>
+                <!-- <translate x="-8" y="0" z = "2"/> -->
             </transformation>
              <materials>
                 <material id="demoMaterial" />
@@ -1006,7 +1009,7 @@
         </component>
         <component id = "car">
               <transformation>
-                <translate x="33" y="0" z = "5"/>
+                <translate x="43" y="0" z = "5"/>
                 <rotate axis="y" angle="-15"/>
             </transformation>
              <materials>
@@ -1038,7 +1041,7 @@
         </component>
           <component id = "car2">
               <transformation>
-                <translate x="20" y="0" z = "20"/>
+                <translate x="30" y="0" z = "20"/>
                 <rotate axis="y" angle="-50"/>
             </transformation>
              <materials>
@@ -1069,7 +1072,7 @@
         </component>
           <component id = "car3">
               <transformation>
-                <translate x="22" y="0" z = "20"/>
+                <translate x="32" y="0" z = "20"/>
                 <rotate axis="y" angle="-50"/>
             </transformation>
              <materials>
@@ -1100,7 +1103,7 @@
         </component>
           <component id = "car4">
               <transformation>
-                <translate x="25" y="0" z = "15"/>
+                <translate x="35" y="0" z = "15"/>
                 <rotate axis="y" angle="-40"/>
             </transformation>
              <materials>
@@ -1131,7 +1134,7 @@
         </component>
         <component id = "car5">
               <transformation>
-                <translate x="30" y="0" z = "10"/>
+                <translate x="40" y="0" z = "10"/>
                 <rotate axis="y" angle="-30"/>
             </transformation>
              <materials>
@@ -1162,7 +1165,7 @@
         </component>
            <component id = "car6">
               <transformation>
-                <translate x="32" y="0" z = "0"/>
+                <translate x="42" y="0" z = "0"/>
             </transformation>
              <materials>
                 <material id="demoMaterial" />
@@ -1193,7 +1196,7 @@
 
         <component id = "car7">
               <transformation>
-                <translate x="30" y="0" z = "-10"/>
+                <translate x="40" y="0" z = "-10"/>
             </transformation>
              <materials>
                 <material id="demoMaterial" />
