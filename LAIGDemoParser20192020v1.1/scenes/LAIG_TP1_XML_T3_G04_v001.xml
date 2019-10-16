@@ -59,9 +59,11 @@
         <texture id="car_roof" file="scenes/images/roof_car.jpg" />
         <texture id="car_roof1" file="scenes/images/roof1_car.jpg" />
         <texture id="back_window" file="scenes/images/back_window.jpg" />
+        <texture id="truck_side" file="scenes/images/side_truck.jpg" />
+        <texture id="truck_top" file="scenes/images/top_truck.jpg" />
         <texture id="asphalt" file="scenes/images/asphalt.jpg" />
         <texture id="beton" file="scenes/images/beton.jpg" />
-        <texture id="bancada" file="scenes/images/crowd.jpg" />
+        <texture id="bancada" file="scenes/images/aaa.jpg" />
     </textures>
 
     <materials>
@@ -103,8 +105,15 @@
             <cylinder base="17" top="0" height="0" slices="50" stacks="50"/>
         </primitive>
         
+         <primitive id="under_cylinder">
+            <torus outer="30" inner="5" slices="100" loops="100"/>
+        </primitive>
+        
          <primitive id="stadium">
-            <cylinder base="25" top="30" height="10" slices="50" stacks="50"/>
+            <cylinder base="25" top="35" height="10" slices="50" stacks="50"/>
+        </primitive>
+         <primitive id="stadium_support">
+            <cylinder base="35" top="35" height="10.2" slices="50" stacks="50"/>
         </primitive>
         <primitive id = "sphere">
             <sphere radius="1" slices = "40" stacks="40"/>
@@ -138,6 +147,7 @@
                 <componentref id = "farol"/>
                 <componentref id = "stand"/>
                 <componentref id = "stadiummm"/>
+                <componentref id = "truck_1"/>
             </children>
         </component>
 
@@ -152,9 +162,39 @@
             <children>
                 <componentref id = "stadiumm"/>    
                 <componentref id="pista"/>
+                <componentref id = "stadiumm_support"/>   
+                <componentref id = "stadiut"/>   
         </children>
         </component>
         
+         <component id="stadiumm_support">
+            <transformation>
+                <scale x="1.3" y="1" z="1" />
+                <rotate axis="x" angle="-90"/>
+            </transformation>
+            <materials>
+                <material id="demoMaterial" />
+            </materials>
+            <texture id="roofTopText"/>
+            <children>
+                <primitiveref id = "stadium_support"/>
+            </children>
+            </component>
+
+            <component id="stadiut">
+            <transformation>
+                <scale x="1.3" y="0" z="1" />
+                <rotate axis="x" angle="-90"/>
+            </transformation>
+            <materials>
+                <material id="demoMaterial" />
+            </materials>
+            <texture id="floorText"/>
+            <children>
+                <primitiveref id = "under_cylinder"/>
+            </children>
+            </component>
+
             <component id="stadiumm">
             <transformation>
                 <scale x="1.3" y="1" z="1" />
@@ -166,7 +206,7 @@
             <texture id="bancada"/>
             <children>
                 <primitiveref id = "stadium"/>
-                <componentref id = "stadium_floor"/>    
+                <componentref id = "stadium_floor"/> 
             </children>
 
         </component>
@@ -181,6 +221,9 @@
                 <primitiveref id = "floor_cylinder"/>
             </children>
         </component>
+        
+
+
          <component id="stadium_out_floor">
             <transformation>
             </transformation>
@@ -1242,5 +1285,256 @@
                 <componentref id = "car7" />
             </children>
         </component>
+
+        <component id = "back_truck_side_l">
+              <transformation>
+                <rotate axis="y" angle="90"/>
+                <scale x="5" y="0.5" z="1"/>
+                <translate x="1" y="1" z="0"/>
+            </transformation>
+             <materials>
+                <material id="demoMaterial" />
+            </materials>
+            <texture id="truck_side"/>
+            <children>
+                <primitiveref id= "rectangle" />
+            </children>
+        </component>
+
+         <component id = "back_truck_side_r">
+              <transformation>
+                <rotate axis="y" angle="90"/>
+                <scale x="5" y="0.5" z="1"/>
+                <translate x="1" y="1" z="1"/>
+            </transformation>
+             <materials>
+                <material id="demoMaterial" />
+            </materials>
+            <texture id="truck_side"/>
+            <children>
+                <primitiveref id= "rectangle" />
+            </children>
+        </component>
+         
+         <component id = "back_truck_back">
+              <transformation>
+                <scale x="1" y="0.5" z="1"/>
+                <translate x="0.5" y="1" z="-2.5"/>
+            </transformation>
+             <materials>
+                <material id="demoMaterial" />
+            </materials>
+            <texture id="truck_top"/>
+            <children>
+                <primitiveref id= "rectangle" />
+            </children>
+        </component>
+        
+        <component id = "back_truck_front">
+              <transformation>
+                <scale x="1" y="0.5" z="1"/>
+                <translate x="0.5" y="1" z="-7.5"/>
+            </transformation>
+             <materials>
+                <material id="demoMaterial" />
+            </materials>
+            <texture id="truck_top"/>
+            <children>
+                <primitiveref id= "rectangle" />
+            </children>
+        </component>
+        
+          <component id = "back_truck_top">
+              <transformation>
+                <rotate axis="z" angle="90"/>
+                <rotate axis="y" angle="90"/>
+                <scale x="5" y="0.5" z="1"/>
+                <translate x="1" y="-1" z="1"/>
+            </transformation>
+             <materials>
+                <material id="demoMaterial" />
+            </materials>
+            <texture id="truck_top"/>
+            <children>
+                <primitiveref id= "rectangle" />
+            </children>
+        </component>
+
+        <component id = "front_truck_back">
+              <transformation>
+                <scale x="1" y="0.5" z="1"/>
+                <translate x="0.5" y="1" z="-7.8"/>
+            </transformation>
+             <materials>
+                <material id="demoMaterial" />
+            </materials>
+            <texture id="truck_top"/>
+            <children>
+                <primitiveref id= "rectangle" />
+            </children>
+        </component>
+
+        <component id = "front_truck_front">
+            <transformation>    
+                <translate x="0.5" y="0.6" z="-8.5"/>
+                <scale x="0.5" y="0.5" z="0.6"/>
+                <!-- <rotate axis="z" angle="60"/> -->
+            </transformation>
+             <materials>
+                <material id="demoMaterial" />
+            </materials>
+            <texture id="truck_top"/>
+            <children>
+                <primitiveref id= "sphere" />
+            </children>
+        </component>
+
+        <component id = "front_truck_side_r">
+              <transformation>
+                <rotate axis="y" angle="90"/>
+                <scale x="0.6" y="0.5" z="1"/>
+                <translate x="13.5" y="1" z="1"/>
+            </transformation>
+             <materials>
+                <material id="demoMaterial" />
+            </materials>
+            <texture id="truck_side"/>
+            <children>
+                <primitiveref id= "rectangle" />
+            </children>
+        </component>
+        
+        <component id = "front_truck_side_l">
+              <transformation>
+                <rotate axis="y" angle="90"/>
+                <scale x="0.6" y="0.5" z="1"/>
+                <translate x="13.5" y="1" z="0"/>
+            </transformation>
+             <materials>
+                <material id="demoMaterial" />
+            </materials>
+            <texture id="truck_side"/>
+            <children>
+                <primitiveref id= "rectangle" />
+            </children>
+        </component>
+
+        <component id = "front_truck_top">
+              <transformation>
+                <rotate axis="z" angle="90"/>
+                <rotate axis="y" angle="90"/>
+                <scale x="0.6" y="0.5" z="1"/>
+                <translate x="13.5" y="-1" z="1"/>
+            </transformation>
+             <materials>
+                <material id="demoMaterial" />
+            </materials>
+            <texture id="truck_top"/>
+            <children>
+                <primitiveref id= "rectangle" />
+            </children>
+        </component>
+
+        <component id = "front_truck_side_br">
+              <transformation>
+                <rotate axis="y" angle="90"/>
+                <scale x="1.15" y="0.15" z="1"/>
+                <translate x="7.8" y="1" z="1"/>
+            </transformation>
+             <materials>
+                <material id="demoMaterial" />
+            </materials>
+            <texture id="truck_side"/>
+            <children>
+                <primitiveref id= "rectangle" />
+            </children>
+        </component>
+        
+        <component id = "front_truck_side_bl">
+              <transformation>
+                <rotate axis="y" angle="90"/>
+                <scale x="1.15" y="0.15" z="1"/>
+                <translate x="7.8" y="1" z="0"/>
+            </transformation>
+             <materials>
+                <material id="demoMaterial" />
+            </materials>
+            <texture id="truck_side"/>
+            <children>
+                <primitiveref id= "rectangle" />
+            </children>
+        </component>
+
+        <component id = "front_truck_bottom">
+             <transformation>
+                <scale x="1" y="0.15" z="1"/>
+                <translate x="0.5" y="1" z="-9.55"/>
+            </transformation>
+             <materials>
+                <material id="demoMaterial" />
+            </materials>
+            <texture id="truck_top"/>
+            <children>
+                <primitiveref id= "rectangle" />
+            </children>
+        </component>
+
+          <component id = "front_truck_semi_bottom">
+             <transformation>
+                <rotate axis="x" angle="50"/>
+                <rotate axis="z" angle="90"/>
+                <scale x="0.6" y="0.5" z="1"/>
+                <translate x="-11.39" y="-1" z="-6.38"/>
+            </transformation>
+             <materials>
+                <material id="demoMaterial" />
+            </materials>
+            <texture id="truck_top"/>
+            <children>
+                <primitiveref id= "rectangle" />
+            </children>
+        </component>
+
+        <component id = "front_truck_triangle">
+              <transformation>
+                <translate x="-12" y="0.6" z = "0.4"/>
+                <rotate axis="y" angle="-90"/>
+                <rotate axis="z" angle="90"/>
+                <scale x = "0.4" y = "0.4" z = "0.5" />
+            </transformation>
+             <materials>
+                <material id="demoMaterial" />
+            </materials>
+            <texture id="demoTexture"/>
+            <children>
+                <primitiveref id = "rectriangle" />
+            </children>
+        </component>
+        
+        <component id = "truck_1">
+              <transformation>
+            </transformation>
+             <materials>
+                <material id="demoMaterial" />
+            </materials>
+            <texture id="none"/>
+            <children>
+                <componentref id = "back_truck_side_l"/>
+                <componentref id = "back_truck_back"/>
+                <componentref id = "back_truck_front"/>
+                <componentref id = "back_truck_side_r"/>
+                <componentref id = "back_truck_top"/>
+                <componentref id = "front_truck_front"/>
+                <componentref id = "front_truck_back"/>
+                <componentref id = "front_truck_side_r"/>
+                <componentref id = "front_truck_side_l"/>
+                <componentref id = "front_truck_top"/>
+                <componentref id = "front_truck_side_br"/>
+                <componentref id = "front_truck_side_bl"/>
+                <componentref id = "front_truck_bottom"/>
+                <componentref id = "front_truck_semi_bottom"/>
+             </children>
+        </component>
+
     </components>
 </lxs>
