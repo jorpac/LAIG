@@ -1028,7 +1028,7 @@ class MySceneGraph {
             }else{    
                 texture = this.components[this.components.indexOf(id)+3];
             }
-
+            // TODO:   material.setTextureWrap('REPEAT', 'CLAMP_TO_EDGE');
             for(var i=0; i<children.length; i++){
                 this.scene.pushMatrix();
                 this.scene.multMatrix(transformationMatrix);
