@@ -25,7 +25,7 @@ class MyCylinder extends CGFobject {
         var stackRadius = difRadius/this.stacks;
         
         
-        var v_tex = 1/this.slices;
+        var v_tex = 1/this.stacks   ;
         var v_tmp = 1;
         for(var j = 0; j < this.stacks; j++){
 

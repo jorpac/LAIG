@@ -799,42 +799,20 @@ class MySceneGraph {
                 }else if(textureInd=="none"){
                     texture="none";
                 }else{
-                    texture = new CGFtexture(this.scene,this.textures[textureInd])
-                    //texture.bind();
+                    texture= new CGFappearance(this.scene)
+                    texture.loadTexture(this.textures[textureInd]);
                 }
             }
 
-            var componentMaterials =[];
             grandgrandChildren = grandChildren[materialsIndex].children;
             for(j = 0; j<grandgrandChildren.length; j++){
                matID = this.reader.getString(grandgrandChildren[j], 'id');
                 if(matID == null && matID!="inherit"){
                     return "no ID defined for material ID";
-                }else{
-                    var material;
-                    if(matID=="inherit"){
-                     material="inherit";
-                    }else{
-                        material= new CGFappearance(this.scene);
-
-                        var materialsChildren = this.materials[matID];
-                        material.setEmission(this.reader.getFloat(materialsChildren[0], "r"), this.reader.getFloat(materialsChildren[0], "g"),
-                                            this.reader.getFloat(materialsChildren[0], "b"), this.reader.getFloat(materialsChildren[0], "a"));
-                        material.setAmbient(this.reader.getFloat(materialsChildren[1], "r"), this.reader.getFloat(materialsChildren[1], "g"),
-                                            this.reader.getFloat(materialsChildren[1], "b"), this.reader.getFloat(materialsChildren[1], "a"));
-                        material.setDiffuse(this.reader.getFloat(materialsChildren[2], "r"), this.reader.getFloat(materialsChildren[2], "g"),
-                                            this.reader.getFloat(materialsChildren[2], "b"), this.reader.getFloat(materialsChildren[2], "a"));
-                        material.setSpecular(this.reader.getFloat(materialsChildren[3], "r"), this.reader.getFloat(materialsChildren[3], "g"),
-                                            this.reader.getFloat(materialsChildren[3], "b"), this.reader.getFloat(materialsChildren[3], "a"));
-                    
-                        componentMaterials[matID]= material;
-                    }
                 }
             }
 
             var firstMaterial=0;
-
-            
             grandgrandChildren = grandChildren[transformationIndex].children;
             for (var k = 0; k < grandgrandChildren.length; k++) {
                 if (grandgrandChildren[k].nodeName == 'transformationref') {
@@ -900,8 +878,8 @@ class MySceneGraph {
 
             this.components.push(componentID, transfMatrix, componentMaterials, firstMaterial, texture, grandgrandChildren);
         }
+
     }
-    
 
 
     /**
@@ -1030,21 +1008,20 @@ class MySceneGraph {
     /**
      * Displays the scene, processing each node, starting in the root node.
      */
-    displayScene(id, transf, mats, text) {
+    displayScene(id, transf, text) {
         //To do: Create display loop for transversing the scene graph
 
         //To test the parsing/creation of the primitives, call the display function directly
         
         // this.primitives['triangle'].display();
-        var texture;
+        var texture = new CGFappearance(this.scene);
+        var textureLink;
         var materials=[];
         var transformationMatrix;
-        var children;
-        var activeMaterial = new CGFappearance(this.scene);
-        var actMat;
-        var counter=0;
+        var children;   
 
         if(this.primitives[id] != null){
+            text.apply();
 
             this.primitives[id].display();
 
@@ -1090,7 +1067,7 @@ class MySceneGraph {
             for(var i=0; i<children.length; i++){
                 this.scene.pushMatrix();
                 this.scene.multMatrix(transformationMatrix);
-                this.displayScene(this.reader.getString(children[i], 'id'), this.scene.transfMatrix, materials, texture);
+                this.displayScene(this.reader.getString(children[i], 'id'), this.scene.transfMatrix, texture);
                 this.scene.popMatrix();
             }
 
