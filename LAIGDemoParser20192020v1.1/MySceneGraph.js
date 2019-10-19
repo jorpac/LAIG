@@ -24,6 +24,7 @@ class MySceneGraph {
         // Establish bidirectional references between scene and graph.
         this.scene = scene;
         scene.graph = this;
+        this.materialIncrement=false;
 
         this.nodes = [];
 
@@ -235,7 +236,7 @@ class MySceneGraph {
         
         var children = viewsNode.children;
         this.listCameras=[];
-        var counter =0;
+        this.scene.selectedView = this.reader.getString(viewsNode, "default");
 
         for(var i=0; i<children.length; i++){
             if(children[i].tagName=="perspective"){
@@ -249,15 +250,10 @@ class MySceneGraph {
                             this.reader.getFloat(grandchildren[1], "y"),
                             this.reader.getFloat(grandchildren[1], "z")];                
 
-                this.listCameras[counter]=this.reader.getString(children[i], "id");
-
-                counter++;
-
-                this.listCameras[counter]=new CGFcamera(this.reader.getString(children[i], "angle"), 
+                this.listCameras[this.reader.getString(children[i], "id")]=new CGFcamera(this.reader.getString(children[i], "angle"), 
                                                 this.reader.getString(children[i], "near"), 
                                                 this.reader.getString(children[i], "far"), 
                                                 from, to);
-                counter++;
             }
         }
 
@@ -475,7 +471,6 @@ class MySceneGraph {
 
             //Continue here
             grandChildren = children[i].children;
-
 
             this.materials[materialID] = grandChildren; 
             
@@ -837,6 +832,8 @@ class MySceneGraph {
                 }
             }
 
+            var firstMaterial=0;
+
             
             grandgrandChildren = grandChildren[transformationIndex].children;
             for (var k = 0; k < grandgrandChildren.length; k++) {
@@ -901,7 +898,7 @@ class MySceneGraph {
                 }
             }
 
-            this.components.push(componentID, transfMatrix, componentMaterials, texture, grandgrandChildren);
+            this.components.push(componentID, transfMatrix, componentMaterials, firstMaterial, texture, grandgrandChildren);
         }
     }
     
@@ -1018,6 +1015,18 @@ class MySceneGraph {
         console.log("   " + message);
     }
 
+    checkMaterialsSize(materials, material){
+        var c=0;
+        for(var m in materials){
+            c++;
+        }
+        return material<c-1;
+    }
+
+    getViews(){
+        return this.listCameras;
+    }
+
     /**
      * Displays the scene, processing each node, starting in the root node.
      */
@@ -1042,27 +1051,36 @@ class MySceneGraph {
         }else{
 
             transformationMatrix = this.components[this.components.indexOf(id)+1];
-            children = this.components[this.components.indexOf(id)+4];
+            children = this.components[this.components.indexOf(id)+5];
 
             if(this.components[this.components.indexOf(id)+2]=="inherit"){
-                materials.push(mats);
+                materials=mats;
             }else{    
-                materials.push(this.components[this.components.indexOf(id)+2]);
+                materials=this.components[this.components.indexOf(id)+2];
             }
 
-            if(this.components[this.components.indexOf(id)+3]=="inherit"){
+            if(this.components[this.components.indexOf(id)+4]=="inherit"){
                 texture=text;
-            }else if(this.components[this.components.indexOf(id)+3]=="none"){
+            }else if(this.components[this.components.indexOf(id)+4]=="none"){
             }else{ 
-                texture = this.components[this.components.indexOf(id)+3];
+                texture = this.components[this.components.indexOf(id)+4];
             }
 
-            var c=0, matIDs=materials[counter];
-            for(var mat in matIDs){
-                if(c==counter){
-                    activeMaterial = matIDs[mat];
+            if(this.materialIncrement==true){
+                if(this.checkMaterialsSize(materials, this.components[this.components.indexOf(id)+3])){
+                    this.components[this.components.indexOf(id)+3]++;
+                }else{
+                    this.components[this.components.indexOf(id)+3]=0;
+                } 
+            }
+
+            var c=0;
+            for(var mat in materials){
+                if(c==this.components[this.components.indexOf(id)+3]){
+                    activeMaterial = materials[mat];
                     break;
                 }
+                c++;
             }
 
             activeMaterial.setTexture(texture);

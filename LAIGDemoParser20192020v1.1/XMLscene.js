@@ -36,6 +36,7 @@ class XMLscene extends CGFscene {
         this.setUpdatePeriod(100);
         this.scaleFactor = 1.0;
         this.displayAxis = false;
+        this.selectedView;
 
 
     }
@@ -103,7 +104,67 @@ class XMLscene extends CGFscene {
 
         this.initLights();
 
+        this.updateViews();
+
+        this.addLights();
+
         this.sceneInited = true;
+    }
+
+    updateViews(){
+        this.views =[];
+        for(var v in this.graph.listCameras){
+            this.views.push(v);
+        }
+        this.interface.addViews(this.views);
+    }
+
+    addLights(){
+        this.interface.addLights();
+    }
+
+    getViewsIDs(){
+        var cameraIDs=[];
+        for(var cam in this.views){
+            cameraIDs.push(this.views[cam]);
+        }
+        return cameraIDs;
+    }
+
+    getCamera(cameraID){
+        var views = this.graph.getViews();        
+        return views[cameraID];
+    }
+
+    setCamera(camera){
+        this.selectedView = camera;
+    }
+
+    /*onSelectedViewChanged(){
+        this.interface.setActiveCamera(this.graph.listCameras[this.selectedView]);
+        this.camera =this.graph.listCameras[this.selectedView];
+        this.applyViewMatrix();
+        this.update();
+    }*/
+
+    checkKeys() {
+        var text="Keys pressed: ";
+        var keysPressed=false;
+
+        // Check for key codes e.g. in https://keycode.info/
+        if (this.gui.isKeyPressed("KeyM")) {
+            text+=" M ";
+            keysPressed=true;
+            this.graph.materialIncrement=true;
+        }
+
+        if (keysPressed)
+            console.log(text);
+    }
+
+    update(t){
+        this.checkKeys();
+        this.display();
     }
 
     /**
@@ -127,9 +188,14 @@ class XMLscene extends CGFscene {
         if(this.displayAxis)
             this.axis.display();
 
-        for (var i = 0; i < this.lights.length; i++) {
-            this.lights[i].setVisible(true);
-            this.lights[i].enable();
+        if(this.graph.materialIncrement==false){
+            for (var i = 0; i < this.lights.length; i++) {
+                this.lights[i].setVisible(true);
+                if(this.lights[i]){
+                    //this.lights[i].enable();
+                    this.lights[i].update();
+                }  
+            }
         }
 
         if (this.sceneInited) {
@@ -148,7 +214,8 @@ class XMLscene extends CGFscene {
             // Displays the scene (MySceneGraph function).
             //this.loadIdentity();
             //this.pushMatrix();
-            this.graph.displayScene(this.graph.rootName, this.transfMatrix, );
+            this.graph.displayScene(this.graph.rootName, this.transfMatrix);
+            this.graph.materialIncrement=false;
             //this.popMatrix();        
         }
 
