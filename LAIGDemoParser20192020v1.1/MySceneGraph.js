@@ -239,6 +239,10 @@ class MySceneGraph {
         this.defaultView = this.reader.getString(viewsNode, "default");
 
         for(var i=0; i<children.length; i++){
+            if(children[i].nodeName != "perspective" && children[i].nodeName != "ortho"){
+                this.onXMLError("unknown tag <" + children[i].nodeName + ">");
+                continue;
+            }
             if(children[i].tagName=="perspective"){
                 var grandchildren = children[i].children;
 
@@ -250,10 +254,37 @@ class MySceneGraph {
                             this.reader.getFloat(grandchildren[1], "y"),
                             this.reader.getFloat(grandchildren[1], "z")];                
 
-                this.listCameras[this.reader.getString(children[i], "id")]=new CGFcamera(this.reader.getString(children[i], "angle"), 
-                                                this.reader.getString(children[i], "near"), 
-                                                this.reader.getString(children[i], "far"), 
+                            
+                this.listCameras[this.reader.getString(children[i], "id")]=new CGFcamera(this.reader.getFloat(children[i], "angle"), 
+                                                this.reader.getFloat(children[i], "near"), 
+                                                this.reader.getFloat(children[i], "far"), 
                                                 from, to);
+            }
+
+             if(children[i].tagName=="ortho"){
+                var grandchildren = children[i].children;
+
+                var from = [this.reader.getFloat(grandchildren[0], "x"), 
+                            this.reader.getFloat(grandchildren[0], "y"),
+                            this.reader.getFloat(grandchildren[0], "z")];
+
+                var to = [this.reader.getFloat(grandchildren[1], "x"), 
+                            this.reader.getFloat(grandchildren[1], "y"),
+                            this.reader.getFloat(grandchildren[1], "z")];                
+                
+                var up = [this.reader.getFloat(grandchildren[2], "x"), 
+                            this.reader.getFloat(grandchildren[2], "y"),
+                            this.reader.getFloat(grandchildren[2], "z")];                
+                            
+                this.listCameras[this.reader.getString(children[i], "id")]=new CGFcameraOrtho(                                                 
+                                                this.reader.getFloat(children[i], "left"), 
+                                                this.reader.getFloat(children[i], "right"), 
+                                                this.reader.getFloat(children[i], "bottom"),  
+                                                this.reader.getFloat(children[i], "top"), 
+                                                this.reader.getFloat(children[i], "near"), 
+                                                this.reader.getFloat(children[i], "far"),
+
+                                                from, to, up);
             }
         }
 
