@@ -52,6 +52,16 @@ class MySphere extends CGFobject {
         this.initGLBuffers();
     }
 
+    /**
+	 * @method updateTexCoords
+	 * Updates the list of texture coordinates of the rectangle
+	 * @param {Array} coords - Array of texture coordinates
+	 */
+	updateTexCoords(coords) {
+		this.texCoords = [...coords];
+		this.updateTexCoordsGLBuffers();
+    }
+    
     /*
     updateBuffers(complexity){
         this.slices = 4 + Math.round(16 * complexity); //complexity varies 0-1, so slices varies 3-12

@@ -230,6 +230,7 @@
             <children>
                 <componentref id = "stadiumm"/>    
                 <componentref id="pista"/>
+                <componentref id = "stadium_out_floor"/>   
                 <componentref id = "stadiumm_support"/>   
                 <componentref id = "stadiut"/>   
         </children>
@@ -243,7 +244,7 @@
             <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="roofTopText"/>
+            <texture id="roofTopText" length_s="1" length_t="1"/>
             <children>
                 <primitiveref id = "stadium_support"/>
             </children>
@@ -257,7 +258,7 @@
             <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="floorText"/>
+            <texture id="floorText" length_s ="1" length_t = "1"/>
             <children>
                 <primitiveref id = "under_cylinder"/>
             </children>
@@ -271,7 +272,7 @@
             <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="bancada"/>
+            <texture id="bancada" length_s ="1" length_t = "1"/>
             <children>
                 <primitiveref id = "stadium"/>
                 <componentref id = "stadium_floor"/> 
@@ -284,7 +285,7 @@
             <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="floorText"/>
+            <texture id="floorText" length_s ="1" length_t = "1"/>
             <children>
                 <primitiveref id = "floor_cylinder"/>
             </children>
@@ -294,11 +295,13 @@
 
          <component id="stadium_out_floor">
             <transformation>
+             <scale x="1.3" y="0" z="1" />
+                <rotate axis="x" angle="-90"/>
             </transformation>
             <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="beton"/>
+            <texture id="beton" length_s ="0.2" length_t = "0.5"/>
             <children> 
                 <primitiveref id = "out_floor"/>    
             </children>
@@ -311,9 +314,9 @@
             <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="asphalt"/>
+            <texture id="asphalt" length_s ="1" length_t = "1"/>
             <children>
-                <componentref id = "stadium_out_floor"/>    
+                <!-- <componentref id = "stadium_out_floor"/>     -->
                 <primitiveref id = "track"/>
             </children>
         </component>
@@ -326,7 +329,7 @@
              <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="treeTrunkImg"/>
+            <texture id="treeTrunkImg" length_s ="1" length_t = "1"/>
             <children>
                 <primitiveref id = "cylinder" />
             </children>
@@ -341,7 +344,7 @@
              <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="treeTopText"/>
+            <texture id="treeTopText" length_s ="1" length_t = "1"/>
             <children>
                 <primitiveref id = "sphere" />
             </children>
@@ -369,7 +372,7 @@
              <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="demoTexture"/>
+            <texture id="demoTexture" length_s ="1" length_t = "1"/>
             <children>
                 <componentref id="treetop"/>
                 <componentref id="treetrunk"/>
@@ -383,7 +386,7 @@
              <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="demoTexture"/>
+            <texture id="demoTexture" length_s ="1" length_t = "1"/>
             <children>
                 <componentref id="treetop"/>
                 <componentref id="treetrunk"/>
@@ -397,7 +400,7 @@
              <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="demoTexture"/>
+            <texture id="demoTexture" length_s ="1" length_t = "1"/>
             <children>
                 <componentref id="treetop"/>
                 <componentref id="treetrunk"/>
@@ -410,7 +413,7 @@
              <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="demoTexture"/>
+            <texture id="demoTexture" length_s ="1" length_t = "1"/>
             <children>
                 <componentref id="treetop"/>
                 <componentref id="treetrunk"/>
@@ -423,7 +426,7 @@
              <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="demoTexture"/>
+            <texture id="demoTexture" length_s ="1" length_t = "1"/>
             <children>
                 <componentref id="treetop"/>
                 <componentref id="treetrunk"/>
@@ -436,7 +439,7 @@
              <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="demoTexture"/>
+            <texture id="demoTexture" length_s ="1" length_t = "1"/>
             <children>
                 <componentref id="treetop"/>
                 <componentref id="treetrunk"/>
@@ -451,7 +454,7 @@
              <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="demoTexture"/>
+            <texture id="demoTexture" length_s ="1" length_t = "1"/>
             <children>
                 <componentref id="treetop"/>
                 <componentref id="treetrunk"/>
@@ -486,7 +489,7 @@
              <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="floorText"/>
+            <texture id="floorText" length_s ="1" length_t = "1"/>
             <children>
                 <primitiveref id = "rectangle" />
             </children>
@@ -505,7 +508,7 @@
                 <material id="demoMaterial" />
                 <material id="material1"/>
             </materials>
-            <texture id="houseWall"/>
+            <texture id="houseWall" length_s ="1" length_t = "1"/>
             <children>
                 <primitiveref id = "rectangle" />
             </children>
@@ -519,7 +522,7 @@
                 <material id="demoMaterial" />
                 <material id="material1" />
             </materials>
-            <texture id="houseWall"/>
+            <texture id="houseWall" length_s ="1" length_t = "1"/>
             <children>
                 <primitiveref id = "rectangle" />
             </children>
@@ -534,7 +537,7 @@
              <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="houseWall"/>
+            <texture id="houseWall" length_s ="1" length_t = "1"/>
             <children>
                 <primitiveref id = "rectangle" />
             </children>
@@ -549,7 +552,7 @@
              <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="houseWall"/>
+            <texture id="houseWall" length_s ="1" length_t = "1"/>
             <children>
                 <primitiveref id = "rectangle" />
             </children>
@@ -565,7 +568,7 @@
              <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="houseWall"/>
+            <texture id="houseWall" length_s ="1" length_t = "1"/>
             <children>
                 <primitiveref id = "rectangle" />
             </children>
@@ -579,7 +582,7 @@
             <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="roofTopText"/>
+            <texture id="roofTopText" length_s ="1" length_t = "1"/>
             <children>
                 <primitiveref id = "triangle" />
             </children>
@@ -594,7 +597,7 @@
              <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="roofTopText"/>
+            <texture id="roofTopText" length_s ="1" length_t = "1"/>
             <children>
                 <primitiveref id = "triangle" />
             </children>
@@ -608,7 +611,7 @@
              <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="roofTopText"/>
+            <texture id="roofTopText" length_s ="1" length_t = "1"/>
             <children>
                 <primitiveref id = "triangle" />
             </children>
@@ -622,7 +625,7 @@
              <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="roofTopText"/>
+            <texture id="roofTopText" length_s ="1" length_t = "1"/>
             <children>
                 <primitiveref id = "triangle" />
             </children>
@@ -636,7 +639,7 @@
              <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="demoTexture"/>
+            <texture id="demoTexture" length_s ="1" length_t = "1"/>
             <children>
                 <primitiveref id = "torus" />
             </children>
@@ -700,7 +703,7 @@
              <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="demoTexture"/>
+            <texture id="demoTexture" length_s ="1" length_t = "1"/>
             <children>
                 <primitiveref id = "rectangle"/>
             </children>
@@ -715,7 +718,7 @@
              <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="demoTexture"/>
+            <texture id="demoTexture" length_s ="1" length_t = "1"/>
             <children>
                 <primitiveref id = "rectangle"/>
             </children>
@@ -730,7 +733,7 @@
              <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="demoTexture"/>
+            <texture id="demoTexture" length_s ="1" length_t = "1"/>
             <children>
                 <primitiveref id = "rectangle"/>
             </children>
@@ -745,7 +748,7 @@
              <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="demoTexture"/>
+            <texture id="demoTexture" length_s ="1" length_t = "1"/>
             <children>
                 <primitiveref id = "rectangle"/>
             </children>
@@ -759,7 +762,7 @@
              <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="demoTexture"/>
+            <texture id="demoTexture" length_s ="1" length_t = "1"/>
             <children>
                 <primitiveref id = "rectangle"/>
             </children>
@@ -771,7 +774,7 @@
              <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="demoTexture"/>
+            <texture id="demoTexture" length_s ="1" length_t = "1"/>
             <children>
                <componentref id = "balcony_floor"/>
                <componentref id = "balcony_side_l"/>
@@ -797,7 +800,7 @@
                 <material id="demoMaterial" />
                 <material id="material1" />
             </materials>
-            <texture id="snowTex"/>
+            <texture id="snowTex" length_s ="1" length_t = "1"/>
             <children>
                 <primitiveref id = "torus" />
             </children>
@@ -812,7 +815,7 @@
                 <material id="demoMaterial" />
                 <material id="material1" />
             </materials>
-            <texture id="snowTex"/>
+            <texture id="snowTex" length_s ="1" length_t = "1"/>
             <children>
                 <primitiveref id = "torus" />
             </children>
@@ -828,7 +831,7 @@
                 <material id="demoMaterial" />
                 <material id="material1" />
             </materials>
-            <texture id="snowTex"/>
+            <texture id="snowTex" length_s ="1" length_t = "1"/>
             <children>
                 <primitiveref id = "torus" />
             </children>
@@ -843,7 +846,7 @@
                 <material id="demoMaterial" />
                 <material id="material1" />
             </materials>
-            <texture id="snowTex"/>
+            <texture id="snowTex" length_s ="1" length_t = "1"/>
             <children>
                 <primitiveref id = "torus" />
             </children>
@@ -858,7 +861,7 @@
                 <material id="demoMaterial" />
                 <material id="material1" />
             </materials>
-            <texture id="snowTex"/>
+            <texture id="snowTex" length_s ="1" length_t = "1"/>
             <children>
                 <primitiveref id = "torus" />
             </children>
@@ -873,7 +876,7 @@
                 <material id="demoMaterial" />
                 <material id="material1" />
             </materials>
-            <texture id="snowTex"/>
+            <texture id="snowTex" length_s ="1" length_t = "1"/>
             <children>
                 <primitiveref id = "torus" />
             </children>
@@ -889,7 +892,7 @@
                 <material id="demoMaterial" />
                 <material id="material1" />
             </materials>
-            <texture id="snowTex"/>
+            <texture id="snowTex" length_s ="1" length_t = "1"/>
             <children>
                 <primitiveref id = "torus" />
             </children>
@@ -905,7 +908,7 @@
                 <material id="demoMaterial" />
                 <material id="material1" />
             </materials>
-            <texture id="snowTex"/>
+            <texture id="snowTex" length_s ="1" length_t = "1"/>
             <children>
                 <primitiveref id = "torus" />
             </children>
@@ -921,7 +924,7 @@
                 <material id="demoMaterial" />
                 <material id="material1" />
             </materials>
-            <texture id="snowTex"/>
+            <texture id="snowTex" length_s ="1" length_t = "1"/>
             <children>
                 <primitiveref id = "torus" />
             </children>
@@ -937,7 +940,7 @@
                 <material id="demoMaterial" />
                 <material id="material1" />
             </materials>
-            <texture id="snowTex"/>
+            <texture id="snowTex" length_s ="1" length_t = "1"/>
             <children>
                 <primitiveref id = "torus" />
             </children>
@@ -952,7 +955,7 @@
                 <material id="demoMaterial" />
                 <material id="material1" />
             </materials>
-            <texture id="snowTex"/>
+            <texture id="snowTex" length_s ="1" length_t = "1"/>
             <children>
                 <primitiveref id = "sphere" />
             </children>
@@ -967,7 +970,7 @@
                 <material id="demoMaterial" />
                 <material id="material1" />
             </materials>
-            <texture id="snowTex"/>
+            <texture id="snowTex" length_s ="1" length_t = "1"/>
             <children>
                 <primitiveref id = "sphere" />
             </children>
@@ -985,7 +988,7 @@
                 <material id="demoMaterial" />
                 <material id="material1" />
             </materials>
-            <texture id="snowTex"/>
+            <texture id="snowTex" length_s ="1" length_t = "1"/>
             <children>
                 <primitiveref id = "torus" />
             </children>
@@ -1001,7 +1004,7 @@
                 <material id="demoMaterial" />
                 <material id="material1" />
             </materials>
-            <texture id="snowTex"/>
+            <texture id="snowTex" length_s ="1" length_t = "1"/>
             <children>
                 <primitiveref id = "torus" />
             </children>
@@ -1017,7 +1020,7 @@
                 <material id="demoMaterial" />
                 <material id="material1" />
             </materials>
-            <texture id="snowTex"/>
+            <texture id="snowTex" length_s ="1" length_t = "1"/>
             <children>
                 <primitiveref id = "torus" />
             </children>
@@ -1034,7 +1037,7 @@
                 <material id="demoMaterial" />
                 <material id="material1" />
             </materials>
-            <texture id="snowTex"/>
+            <texture id="snowTex" length_s ="1" length_t = "1"/>
             <children>
                 <primitiveref id = "torus" />
             </children>
@@ -1049,7 +1052,7 @@
                 <material id="demoMaterial" />
                 <material id="material1" />
             </materials>
-            <texture id="snowTex"/>
+            <texture id="snowTex" length_s ="1" length_t = "1"/>
             <children>
                 <primitiveref id = "sphere" />
             </children>
@@ -1137,7 +1140,7 @@
                 <material id="demoMaterial" />
                 <material id="material1" />
             </materials>
-            <texture id="snowTex"/>
+            <texture id="snowTex" length_s ="1" length_t = "1"/>
             <children>
                  <componentref id = "body_0" />
                  <componentref id = "body_1" />
@@ -1176,7 +1179,7 @@
              <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="demoTexture"/>
+            <texture id="demoTexture" length_s ="1" length_t = "1"/>
             <children>
                 <primitiveref id = "torus"/>
             </children>
@@ -1191,7 +1194,7 @@
              <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="demoTexture"/>
+            <texture id="demoTexture" length_s ="1" length_t = "1"/>
             <children>
                 <primitiveref id = "cylinder"/>
             </children>
@@ -1204,7 +1207,7 @@
              <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="demoTexture"/>
+            <texture id="demoTexture" length_s ="1" length_t = "1"/>
             <children>
                 <componentref id="farol_top" />
                 <componentref id = "farol_trunk"/>
@@ -1226,7 +1229,7 @@
              <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="demoTexture"/>
+            <texture id="demoTexture" length_s ="1" length_t = "1"/>
             <children>
                 <primitiveref id = "torus" />
             </children>
@@ -1241,7 +1244,7 @@
              <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="demoTexture"/>
+            <texture id="demoTexture" length_s ="1" length_t = "1"/>
             <children>
                 <primitiveref id = "torus" />
             </children>
@@ -1256,7 +1259,7 @@
              <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="demoTexture"/>
+            <texture id="demoTexture" length_s ="1" length_t = "1"/>
             <children>
                 <primitiveref id = "torus" />
             </children>
@@ -1271,7 +1274,7 @@
              <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="demoTexture"/>
+            <texture id="demoTexture" length_s ="1" length_t = "1"/>
             <children>
                 <primitiveref id = "torus" />
             </children>
@@ -1286,7 +1289,7 @@
              <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="car_side"/>
+            <texture id="car_side" length_s ="1" length_t = "1"/>
             <children>
                 <primitiveref id = "rectangle" />
             </children>
@@ -1301,7 +1304,7 @@
              <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="car_side"/>
+            <texture id="car_side" length_s ="1" length_t = "1"/>
             <children>
                 <primitiveref id = "rectangle" />
             </children>
@@ -1315,7 +1318,7 @@
              <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="demoTexture"/>
+            <texture id="demoTexture" length_s ="1" length_t = "1"/>
             <children>
                 <primitiveref id = "rectangle" />
             </children>
@@ -1329,7 +1332,7 @@
              <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="car_roof"/>
+            <texture id="car_roof" length_s ="1" length_t = "1"/>
             <children>
                 <primitiveref id = "rectangle" />
             </children>
@@ -1343,7 +1346,7 @@
              <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="car_front"/>
+            <texture id="car_front" length_s ="1" length_t = "1"/>
             <children>
                 <primitiveref id = "rectangle" />
             </children>
@@ -1357,7 +1360,7 @@
              <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="car_back"/>
+            <texture id="car_back" length_s ="1" length_t = "1"/>
             <children>
                 <primitiveref id = "rectangle" />
             </children>
@@ -1372,7 +1375,7 @@
              <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="demoTexture"/>
+            <texture id="demoTexture" length_s ="1" length_t = "1"/>
             <children>
                 <primitiveref id = "rectangle" />
             </children>
@@ -1387,7 +1390,7 @@
              <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="demoTexture"/>
+            <texture id="demoTexture" length_s ="1" length_t = "1"/>
             <children>
                 <primitiveref id = "rectriangle" />
             </children>
@@ -1402,7 +1405,7 @@
              <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="demoTexture"/>
+            <texture id="demoTexture" length_s ="1" length_t = "1"/>
             <children>
                 <primitiveref id = "rectriangle" />
             </children>
@@ -1417,7 +1420,7 @@
              <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="demoTexture"/>
+            <texture id="demoTexture" length_s ="1" length_t = "1"/>
             <children>
                 <primitiveref id = "rectangle" />
             </children>
@@ -1432,7 +1435,7 @@
              <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="demoTexture"/>
+            <texture id="demoTexture" length_s ="1" length_t = "1"/>
             <children>
                 <primitiveref id = "rectangle" />
             </children>
@@ -1448,7 +1451,7 @@
              <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="back_window"/>
+            <texture id="back_window" length_s ="1" length_t = "1"/>
             <children>
                 <primitiveref id = "rectangle" />
             </children>
@@ -1463,7 +1466,7 @@
              <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="back_window"/>
+            <texture id="back_window" length_s ="1" length_t = "1"/>
             <children>
                 <primitiveref id = "rectangle" />
             </children>
@@ -1502,7 +1505,7 @@
              <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="houseWall"/>
+            <texture id="houseWall" length_s ="1" length_t = "1"/>
             <children>
                 <componentref id = "driverSeat_back"/>
                 <componentref id = "driverSeat_seat"/>
@@ -1515,7 +1518,7 @@
              <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="houseWall"/>
+            <texture id="houseWall" length_s ="1" length_t = "1"/>
             <children>
                 <componentref id = "driverSeat_back"/>
                 <componentref id = "driverSeat_seat"/>
@@ -1529,7 +1532,7 @@
              <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="demoTexture"/>
+            <texture id="demoTexture" length_s ="1" length_t = "1"/>
             <children>
                 <componentref id = "wheel_1" />
                 <componentref id = "wheel_2" />
@@ -1561,7 +1564,7 @@
              <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="demoTexture"/>
+            <texture id="demoTexture" length_s ="1" length_t = "1"/>
             <children>
                 <componentref id = "wheel_1" />
                 <componentref id = "wheel_2" />
@@ -1592,7 +1595,7 @@
              <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="demoTexture"/>
+            <texture id="demoTexture" length_s ="1" length_t = "1"/>
             <children>
                 <componentref id = "wheel_1" />
                 <componentref id = "wheel_2" />
@@ -1623,7 +1626,7 @@
              <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="demoTexture"/>
+            <texture id="demoTexture" length_s ="1" length_t = "1"/>
             <children>
                 <componentref id = "wheel_1" />
                 <componentref id = "wheel_2" />
@@ -1654,7 +1657,7 @@
              <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="demoTexture"/>
+            <texture id="demoTexture" length_s ="1" length_t = "1"/>
             <children>
                 <componentref id = "wheel_1" />
                 <componentref id = "wheel_2" />
@@ -1684,7 +1687,7 @@
              <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="demoTexture"/>
+            <texture id="demoTexture" length_s ="1" length_t = "1"/>
             <children>
                 <componentref id = "wheel_1" />
                 <componentref id = "wheel_2" />
@@ -1715,7 +1718,7 @@
              <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="demoTexture"/>
+            <texture id="demoTexture" length_s ="1" length_t = "1"/>
             <children>
                 <componentref id = "wheel_1" />
                 <componentref id = "wheel_2" />
@@ -1745,7 +1748,7 @@
              <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="demoTexture"/>
+            <texture id="demoTexture" length_s ="1" length_t = "1"/>
             <children>
                 <componentref id = "car" />
                 <componentref id = "car2" />
@@ -1796,7 +1799,7 @@
              <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="truck_top"/>
+            <texture id="truck_top" length_s ="1" length_t = "1"/>
             <children>
                 <primitiveref id= "rectangle" />
             </children>
@@ -1810,7 +1813,7 @@
              <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="truck_top"/>
+            <texture id="truck_top" length_s ="1" length_t = "1"/>
             <children>
                 <primitiveref id= "rectangle" />
             </children>
@@ -1826,7 +1829,7 @@
              <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="truck_top"/>
+            <texture id="truck_top" length_s ="1" length_t = "1"/>
             <children>
                 <primitiveref id= "rectangle" />
             </children>
@@ -1843,7 +1846,7 @@
              <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="truck_top"/>
+            <texture id="truck_top" length_s ="1" length_t = "1"/>
             <children>
                 <primitiveref id= "triangle" />
             </children>
@@ -1860,7 +1863,7 @@
              <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="truck_top"/>
+            <texture id="truck_top" length_s ="1" length_t = "1"/>
             <children>
                 <primitiveref id="cylinder"/>
                 <primitiveref id="torus"/>
@@ -1875,7 +1878,7 @@
              <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="truck_top"/>
+            <texture id="truck_top" length_s ="1" length_t = "1"/>
             <children>
                 <primitiveref id="cylinder"/>
             </children>
@@ -1889,7 +1892,7 @@
              <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="truck_top"/>
+            <texture id="truck_top" length_s ="1" length_t = "1"/>
             <children>
                 <primitiveref id= "rectangle" />
             </children>
@@ -1905,7 +1908,7 @@
              <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="demoTexture"/>
+            <texture id="demoTexture" length_s ="1" length_t = "1"/>
             <children>
                 <primitiveref id= "sphere" />
             </children>
@@ -1951,7 +1954,7 @@
              <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="truck_top"/>
+            <texture id="truck_top" length_s ="1" length_t = "1"/>
             <children>
                 <primitiveref id= "rectangle" />
             </children>
@@ -1968,7 +1971,7 @@
              <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="truck_top"/>
+            <texture id="truck_top" length_s ="1" length_t = "1"/>
             <children>
                 <primitiveref id= "rectangle" />
             </children>
@@ -2013,7 +2016,7 @@
              <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="truck_front_front"/>
+            <texture id="truck_front_front" length_s ="1" length_t = "1"/>
             <children>
                 <primitiveref id= "rectangle" />
             </children>
@@ -2029,7 +2032,7 @@
              <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="truck_top"/>
+            <texture id="truck_top" length_s ="1" length_t = "1"/>
             <children>
                 <primitiveref id= "rectangle" />
             </children>
@@ -2045,7 +2048,7 @@
              <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="truck_top"/>
+            <texture id="truck_top" length_s ="1" length_t = "1"/>
             <children>
                 <primitiveref id = "rectriangle2" />
             </children>
@@ -2061,7 +2064,7 @@
              <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="truck_top"/>
+            <texture id="truck_top" length_s ="1" length_t = "1"/>
             <children>
                 <primitiveref id = "rectriangle2" />
             </children>
@@ -2205,7 +2208,7 @@
              <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="truck_side"/>
+            <texture id="truck_side" length_s ="1" length_t = "1"/>
             <children>
                 <componentref id = "truck_wheels"/>
                 <componentref id = "truck_structure"/>
@@ -2221,7 +2224,7 @@
              <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="truck_side1"/>
+            <texture id="truck_side1" length_s ="1" length_t = "1"/>
             <children>
                 <componentref id = "truck_wheels"/>
                 <componentref id = "truck_structure"/>
@@ -2238,7 +2241,7 @@
              <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="truck_side2"/>
+            <texture id="truck_side2" length_s ="1" length_t = "1"/>
             <children>
                 <componentref id = "truck_wheels"/>
                 <componentref id = "truck_structure"/>
@@ -2255,7 +2258,7 @@
              <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="truck_side2"/>
+            <texture id="truck_side2" length_s ="1" length_t = "1"/>
             <children>
                 <componentref id = "truck_wheels"/>
                 <componentref id = "truck_structure"/>
@@ -2272,7 +2275,7 @@
              <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="truck_side3_1"/>
+            <texture id="truck_side3_1" length_s ="1" length_t = "1"/>
             <children>
                 <componentref id = "truck_wheels"/>
                 <componentref id = "truck_structure"/>
@@ -2290,7 +2293,7 @@
              <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="truck_side3_2"/>
+            <texture id="truck_side3_2" length_s ="1" length_t = "1"/>
             <children>
                 <componentref id = "truck_wheels"/>
                 <componentref id = "truck_structure"/>
@@ -2307,7 +2310,7 @@
              <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="truck_side1"/>
+            <texture id="truck_side1" length_s ="1" length_t = "1"/>
             <children>
                 <componentref id = "truck_wheels"/>
                 <componentref id = "truck_structure"/>
@@ -2324,7 +2327,7 @@
              <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="truck_side1"/>
+            <texture id="truck_side1" length_s ="1" length_t = "1"/>
             <children>
                 <componentref id = "truck_wheels"/>
                 <componentref id = "truck_structure"/>

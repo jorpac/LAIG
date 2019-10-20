@@ -830,7 +830,14 @@ class MySceneGraph {
                 }else if(textureInd=="none"){
                     texture="none";
                 }else{
-                    texture = new CGFtexture(this.scene,this.textures[textureInd])
+                    var length_s = this.reader.getFloat(grandChildren[textureIndex], 'length_s');
+                    var length_t = this.reader.getFloat(grandChildren[textureIndex], 'length_t');
+                    
+                    //this.nodes[componentID].textureID.push(textureInd);
+                    // this.textures[textureInd].push(length_s);
+                    // this.textures[textureInd].push(length_t);
+                    texture = new CGFtexture(this.scene,this.textures[textureInd], length_s, length_t);
+
                     //texture.bind();
                 }
             }
@@ -1074,9 +1081,9 @@ class MySceneGraph {
         var activeMaterial = new CGFappearance(this.scene);
         var actMat;
         var counter=0;
-
+        var coord= [];
         if(this.primitives[id] != null){
-
+            this.primitives[id].updateTexCoords(coord);
             this.primitives[id].display();
 
         }else{
@@ -1095,6 +1102,11 @@ class MySceneGraph {
             }else if(this.components[this.components.indexOf(id)+4]=="none"){
             }else{ 
                 texture = this.components[this.components.indexOf(id)+4];
+                
+                coord.push(texture[1]);
+                coord.push(texture[2]);
+
+
             }
 
             if(this.materialIncrement==true){
