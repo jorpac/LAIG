@@ -6,13 +6,17 @@
             <from x="30" y="15" z="30" />
             <to x="0" y="-2" z="0" />
         </perspective>
-        <perspective id="camera1" near="0.1" far="500" angle="45">
-            <from x="10" y="15" z="0" />
-            <to x="0" y="2" z="0" />
+        <perspective id="car_camera" near="0.1" far="500" angle="0.5">
+            <from x="29.5" y="1" z="12" />
+            <to x="27" y="0.5" z="15" />
         </perspective>
-         <perspective id="perspective1" near="0.1" far="500" angle="45">
-            <from x="15" y="15" z="-3" />
-            <to x="0" y="-2" z="0" />
+         <perspective id="michelin_camera" near="0.1" far="500" angle="0.4">
+            <from x="-10" y="1.5" z="-20" />
+            <to x="-10" y="1" z="5" />
+        </perspective>
+        <perspective id="miradouro_camera" near="0.1" far="500" angle="0.3">
+            <from x="0" y="11.5" z="0" />
+            <to x="29.5" y="1" z="12" />
         </perspective>
          <ortho id="orthoCamera1" near="0.1" far="500" left="-30" right="30" top="30" bottom="-30">
             <from x="30" y="15" z="30" />
@@ -28,7 +32,7 @@
     </views>
 
     <globals>
-        <ambient r="0.2" g="0.2" b="0.2" a="1.0" />
+        <ambient r="0.1" g="0.1" b="0.1" a="1.0" />
         <background r="0.0" g="0.0" b="0.0" a="1.0" />
     </globals>
 
@@ -42,35 +46,35 @@
 
         <omni id="omni1" enabled="1">
             <location x="9.8" y="11.9" z="10" w="1.0" />
-            <ambient r="0" g="0" b="0" a="1.0" />
-            <diffuse r="1.0" g="1.0" b="1.0" a="1.0" />
+            <ambient r="0.5" g="0.5" b="0.5" a="1.0" />
+            <diffuse r="0.6" g="0.6" b="0.6" a="1.0" />
             <specular r="1.0" g="1.0" b="1.0" a="1.0" />
         </omni>
         <omni id="omni2" enabled="1">
             <location x="9.8" y="11.9" z="10" w="1.0" />
-            <ambient r="0" g="0" b="0" a="1.0" />
-            <diffuse r="1.0" g="1.0" b="1.0" a="1.0" />
+            <ambient r="0.5" g="0.5" b="0.5" a="1.0" />
+            <diffuse r="0.3" g="0.3" b="0.3" a="1.0" />
             <specular r="1.0" g="1.0" b="1.0" a="1.0" />
         </omni>
         
         <omni id="omni3" enabled="1">
             <location x="9.8" y="11.9" z="10" w="1.0" />
             <ambient r="0" g="0" b="0" a="1.0" />
-            <diffuse r="1.0" g="1.0" b="1.0" a="1.0" />
+            <diffuse r="0.7" g="0.7" b="0.7" a="1.0" />
             <specular r="1.0" g="1.0" b="1.0" a="1.0" />
         </omni>
         
         <omni id="omni4" enabled="1">
             <location x="9.8" y="11.9" z="10" w="1.0" />
             <ambient r="0" g="0" b="0" a="1.0" />
-            <diffuse r="1.0" g="1.0" b="1.0" a="1.0" />
+            <diffuse r="0.2" g="0.2" b="0.2" a="1.0" />
             <specular r="1.0" g="1.0" b="1.0" a="1.0" />
         </omni>
         
         <omni id="omni5" enabled="1">
             <location x="9.8" y="11.9" z="10" w="1.0" />
             <ambient r="0" g="0" b="0" a="1.0" />
-            <diffuse r="1.0" g="1.0" b="1.0" a="1.0" />
+            <diffuse r="0.5" g="0.5" b="0.5" a="1.0" />
             <specular r="1.0" g="1.0" b="1.0" a="1.0" />
         </omni>
 
