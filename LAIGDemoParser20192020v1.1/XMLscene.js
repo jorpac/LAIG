@@ -34,7 +34,7 @@ class XMLscene extends CGFscene {
 
         this.axis = new CGFaxis(this);
         this.setUpdatePeriod(100);
-        this.scaleFactor = 1.0;
+        this.scaleFactor = 0.1;
         this.displayAxis = false;
         this.selectedView;
 
@@ -47,8 +47,7 @@ class XMLscene extends CGFscene {
     initCameras() {
         //var views = this.graph.getViews();        
         //views[this.graph.defaultView];
-        this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(-10, 1.5, -20), vec3.fromValues(-10, 1, 5));
-        //this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(15, 15, 15), vec3.fromValues(0, 0, 0));
+        this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(15, 15, 15), vec3.fromValues(0, 0, 0));
     }
     /**
      * Initializes the scene lights with the values read from the XML file.
@@ -169,6 +168,7 @@ class XMLscene extends CGFscene {
     update(t){
         this.checkKeys();
         this.display();
+        console.log(t/100 % 1000);
     }
 
     /**
