@@ -168,7 +168,19 @@ class XMLscene extends CGFscene {
     update(t){
         this.checkKeys();
         this.display();
-        console.log(t/100 % 1000);
+        
+        this.time = this.time || 0;
+        this.delta = (t - this.time)/1000 || 0;
+
+        this.anim = this.graph.animations;
+
+        for(var key in this.ani) {
+            this.ani[key].update(this.delta)
+            
+        };
+
+        this.time = t;
+        // console.log(t/100 % 1000);
     }
 
     /**

@@ -630,61 +630,55 @@ class MySceneGraph {
             if (this.animations[animationID] != null)
                 return "ID must be unique for each animation (conflict: ID = " + animationID + ")";
 
+            this.animations[animationID] = new MyKeyFrameAnimation(this.scene);
             grandChildren = children[i].children;
+           // keyFrames = grandChildren;
             // Specifications for the current transformation.
 
             for (var k = 0; k < grandChildren.length; k++) {
-                var keyframe = this.reader.getFloat(grandChildren[k], 'instant');
-                if (keyframe == null)
+                var keyframeinst = this.reader.getFloat(grandChildren[k], 'instant');
+                if (keyframeinst == null)
                     return "no KeyFrame defined for animation";
-                
-                grandgrandChildren = grandChildren[k].children;
-                this.keyTransformations[0] = keyframe;
+                var keyframe = [];
+                keyframe.push(keyframeinst);
+                this.keyTransformations = grandChildren[k].children;
 
-                var transfMatrix = mat4.create();
-
-                for (var j = 0; j < grandgrandChildren.length; j++) {
-                    switch (grandgrandChildren[j].nodeName) {
+                for (var j = 0; j < this.keyTransformations.length; j++) {
+                    var transf = [];
+                    switch (this.keyTransformations[j].nodeName) {
                         case 'translate':
-                            var coordinates = this.parseCoordinates3D(grandgrandChildren[j], "translate transformation for ID " + keyframe);
-                            if (!Array.isArray(coordinates))
-                                return coordinates;
-
-                            transfMatrix = mat4.translate(transfMatrix, transfMatrix, coordinates);
+                            transf.push(this.reader.getFloat(this.keyTransformations[j], 'x'));
+                            transf.push(this.reader.getFloat(this.keyTransformations[j], 'y'));
+                            transf.push(this.reader.getFloat(this.keyTransformations[j], 'z'));
                             break;
                         case 'scale':
-                            var coordinates = this.parseCoordinates3D(grandgrandChildren[j], "scale transformation for ID " + keyframe);
-                            if (!Array.isArray(coordinates))
-                                return coordinates;
-
-                            transfMatrix = mat4.scale(transfMatrix, transfMatrix, coordinates);
+                            transf.push(this.reader.getFloat(this.keyTransformations[j], 'x'));
+                            transf.push(this.reader.getFloat(this.keyTransformations[j], 'y'));
+                            transf.push(this.reader.getFloat(this.keyTransformations[j], 'z'));
                             break;
                         case 'rotate':
                             // angle
-                            var ang = this.reader.getFloat(grandgrandChildren[j], 'angle_x');
+                            var ang = this.reader.getFloat(this.keyTransformations[j], 'angle_x');
                             if(ang == null)
                                 return "Rotation must be defined for 3 axis";
-                            var vec = [1, 0, 0];
-                            ang*=DEGREE_TO_RAD;
-                            transfMatrix = mat4.rotate(transfMatrix, transfMatrix, ang, vec);
-                            ang = this.reader.getFloat(grandgrandChildren[j], 'angle_y');
+                            transf.push(ang);
+
+                            ang = this.reader.getFloat(this.keyTransformations[j], 'angle_y');
                             if(ang == null)
                                 return "Rotation must be defined for 3 axis";
-                            vec = [0, 1, 0];
-                            ang*=DEGREE_TO_RAD;
-                            transfMatrix = mat4.rotate(transfMatrix, transfMatrix, ang, vec);
-                            ang = this.reader.getFloat(grandgrandChildren[j], 'angle_z');
+                            transf.push(ang);
+
+                            ang = this.reader.getFloat(this.keyTransformations[j], 'angle_z');
                             if(ang == null)
                                 return "Rotation must be defined for 3 axis";
-                            vec = [0, 0, 1];
-                            ang*=DEGREE_TO_RAD;
-                            transfMatrix = mat4.rotate(transfMatrix, transfMatrix, ang, vec);
+                            transf.push(ang);
                             break;
                     }
+                    keyframe.push(transf);
                 }
-                this.keyTransformations[k+1] = transfMatrix;
-        }
-        this.animations[animationID] = this.keyTransformations;
+                this.animations[animationID].keyFrames.push(keyframe);
+
+            }
         
         }
 
