@@ -926,9 +926,9 @@ class MySceneGraph {
                     animationInd = this.reader.getString(grandChildren[animationIndex], 'id');
                     if(this.animations[animationInd] == null)
                         continue;
-                    /*else{
-                        animation = new MyAnimation(this.scene, this.animations[animationInd]);
-                    } */
+                    else{
+                        var animation = new MyAnimation(this.scene, this.animations[animationInd]);
+                    } 
             
                 }
             }
@@ -1050,7 +1050,7 @@ class MySceneGraph {
                 }
             }
 
-            this.components.push(componentID, transfMatrix, componentMaterials, firstMaterial, texture, grandgrandChildren);
+            this.components.push(componentID, transfMatrix, componentMaterials, firstMaterial, texture, grandgrandChildren, animation);
         }
     }
     
@@ -1189,8 +1189,9 @@ class MySceneGraph {
         
         // this.primitives['triangle'].display();
         var texture;
+        var animation;
         var materials=[];
-        var transformationMatrix;
+        var transformationMatrix = mat4.create();
         var children;
         var activeMaterial = new CGFappearance(this.scene);
         var actMat;
@@ -1201,6 +1202,13 @@ class MySceneGraph {
             this.primitives[id].display();
 
         }else{
+
+            animation = this.components[this.components.indexOf(id)+6];
+            this.scene.multMatrix(transformationMatrix);
+            
+            if(animation != undefined){
+                animation.apply();
+            }  
 
             transformationMatrix = this.components[this.components.indexOf(id)+1];
             children = this.components[this.components.indexOf(id)+5];
@@ -1240,6 +1248,7 @@ class MySceneGraph {
                 c++;
             }
 
+            
             activeMaterial.setTexture(texture);
 
             activeMaterial.apply();
@@ -1247,6 +1256,7 @@ class MySceneGraph {
             for(var i=0; i<children.length; i++){
                 this.scene.pushMatrix();
                 this.scene.multMatrix(transformationMatrix);
+               
                 this.displayScene(this.reader.getString(children[i], 'id'), this.scene.transfMatrix, materials, texture);
                 this.scene.popMatrix();
             }

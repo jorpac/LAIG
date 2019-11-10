@@ -23,15 +23,16 @@ class MyKeyFrameAnimation extends MyAnimation{
     constructor(scene){
         super(scene);
         this.keyFrames = [];
-        this.tMatrix = {x:0, y:0, z:0};
-        this.rMatrix = {x:0, y:0, z:0};
+        this.tMatrix = {x:0.0, y:0.0, z:0.0};
+        this.rMatrix = {x:0.0, y:0.0, z:0.0};
         this.sMatrix = {x:1.0, y:1.0, z:1.0};
         this.time = 0;
         this.stage = 0;
     }
     update(t){
         this.time+=t;
-        if(this.time < this.keyFrames.length()){
+        if(this.stage < this.keyFrames.length){
+            console.log(this.stage);
             var stopTime = this.keyFrames[this.stage][0];
             
             let stageTime, trX, trY, trZ, rotX, rotY, rotZ, scX, scY, scZ;
@@ -88,9 +89,9 @@ class MyKeyFrameAnimation extends MyAnimation{
                 this.rMatrix.y+=(rotY/stageTime)*t;
                 this.rMatrix.z+=(rotZ/stageTime)*t;
                 
-                this.sMatrix.x*=(scX/stageTime)*t;
-                this.sMatrix.y*=(scY/stageTime)*t;
-                this.sMatrix.z*=(scZ/stageTime)*t;
+                // this.sMatrix.x*=(scX/stageTime)*t;
+                // this.sMatrix.y*=(scY/stageTime)*t;
+                // this.sMatrix.z*=(scZ/stageTime)*t;
             }
 
             if(this.time > stopTime) this.stage++;
