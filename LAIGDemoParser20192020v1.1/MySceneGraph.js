@@ -24,7 +24,7 @@ class MySceneGraph {
         // Establish bidirectional references between scene and graph.
         this.scene = scene;
         scene.graph = this;
-        this.materialIncrement=false;
+        this.materialIncrement = false;
 
         this.nodes = [];
 
@@ -246,58 +246,63 @@ class MySceneGraph {
      * @param {view block element} viewsNode
      */
     parseView(viewsNode) {
-        
+
         var children = viewsNode.children;
-        this.listCameras=[];
+        this.listCameras = [];
         this.defaultView = this.reader.getString(viewsNode, "default");
 
-        for(var i=0; i<children.length; i++){
-            if(children[i].nodeName != "perspective" && children[i].nodeName != "ortho"){
+        for (var i = 0; i < children.length; i++) {
+            if (children[i].nodeName != "perspective" && children[i].nodeName != "ortho") {
                 this.onXMLError("unknown tag <" + children[i].nodeName + ">");
                 continue;
             }
-            if(children[i].tagName=="perspective"){
+            if (children[i].tagName == "perspective") {
                 var grandchildren = children[i].children;
 
-                var from = [this.reader.getFloat(grandchildren[0], "x"), 
-                            this.reader.getFloat(grandchildren[0], "y"),
-                            this.reader.getFloat(grandchildren[0], "z")];
+                var from = [this.reader.getFloat(grandchildren[0], "x"),
+                    this.reader.getFloat(grandchildren[0], "y"),
+                    this.reader.getFloat(grandchildren[0], "z")
+                ];
 
-                var to = [this.reader.getFloat(grandchildren[1], "x"), 
-                            this.reader.getFloat(grandchildren[1], "y"),
-                            this.reader.getFloat(grandchildren[1], "z")];                
+                var to = [this.reader.getFloat(grandchildren[1], "x"),
+                    this.reader.getFloat(grandchildren[1], "y"),
+                    this.reader.getFloat(grandchildren[1], "z")
+                ];
 
-                            
-                this.listCameras[this.reader.getString(children[i], "id")]=new CGFcamera(this.reader.getFloat(children[i], "angle"), 
-                                                this.reader.getFloat(children[i], "near"), 
-                                                this.reader.getFloat(children[i], "far"), 
-                                                from, to);
+
+                this.listCameras[this.reader.getString(children[i], "id")] = new CGFcamera(this.reader.getFloat(children[i], "angle"),
+                    this.reader.getFloat(children[i], "near"),
+                    this.reader.getFloat(children[i], "far"),
+                    from, to);
             }
 
-             if(children[i].tagName=="ortho"){
+            if (children[i].tagName == "ortho") {
                 var grandchildren = children[i].children;
 
-                var from = [this.reader.getFloat(grandchildren[0], "x"), 
-                            this.reader.getFloat(grandchildren[0], "y"),
-                            this.reader.getFloat(grandchildren[0], "z")];
+                var from = [this.reader.getFloat(grandchildren[0], "x"),
+                    this.reader.getFloat(grandchildren[0], "y"),
+                    this.reader.getFloat(grandchildren[0], "z")
+                ];
 
-                var to = [this.reader.getFloat(grandchildren[1], "x"), 
-                            this.reader.getFloat(grandchildren[1], "y"),
-                            this.reader.getFloat(grandchildren[1], "z")];                
-                
-                var up = [this.reader.getFloat(grandchildren[2], "x"), 
-                            this.reader.getFloat(grandchildren[2], "y"),
-                            this.reader.getFloat(grandchildren[2], "z")];                
-                            
-                this.listCameras[this.reader.getString(children[i], "id")]=new CGFcameraOrtho(                                                 
-                                                this.reader.getFloat(children[i], "left"), 
-                                                this.reader.getFloat(children[i], "right"), 
-                                                this.reader.getFloat(children[i], "bottom"),  
-                                                this.reader.getFloat(children[i], "top"), 
-                                                this.reader.getFloat(children[i], "near"), 
-                                                this.reader.getFloat(children[i], "far"),
+                var to = [this.reader.getFloat(grandchildren[1], "x"),
+                    this.reader.getFloat(grandchildren[1], "y"),
+                    this.reader.getFloat(grandchildren[1], "z")
+                ];
 
-                                                from, to, up);
+                var up = [this.reader.getFloat(grandchildren[2], "x"),
+                    this.reader.getFloat(grandchildren[2], "y"),
+                    this.reader.getFloat(grandchildren[2], "z")
+                ];
+
+                this.listCameras[this.reader.getString(children[i], "id")] = new CGFcameraOrtho(
+                    this.reader.getFloat(children[i], "left"),
+                    this.reader.getFloat(children[i], "right"),
+                    this.reader.getFloat(children[i], "bottom"),
+                    this.reader.getFloat(children[i], "top"),
+                    this.reader.getFloat(children[i], "near"),
+                    this.reader.getFloat(children[i], "far"),
+
+                    from, to, up);
             }
         }
 
@@ -516,8 +521,8 @@ class MySceneGraph {
             //Continue here
             grandChildren = children[i].children;
 
-            this.materials[materialID] = grandChildren; 
-            
+            this.materials[materialID] = grandChildren;
+
         }
 
         //this.log("Parsed materials");
@@ -600,7 +605,7 @@ class MySceneGraph {
         return null;
     }
 
-      /**
+    /**
      * Parses the <transformations> block.
      * @param {animations block element} animationsNode
      */
@@ -632,7 +637,7 @@ class MySceneGraph {
 
             this.animations[animationID] = new MyKeyFrameAnimation(this.scene);
             grandChildren = children[i].children;
-           // keyFrames = grandChildren;
+            // keyFrames = grandChildren;
             // Specifications for the current transformation.
 
             for (var k = 0; k < grandChildren.length; k++) {
@@ -642,44 +647,63 @@ class MySceneGraph {
                 var keyframe = [];
                 keyframe.push(keyframeinst);
                 this.keyTransformations = grandChildren[k].children;
+                let transf = [];
+                let sca = [];
+                let rot = [];
+                transf.push(this.reader.getFloat(this.keyTransformations[0], 'x'));
+                transf.push(this.reader.getFloat(this.keyTransformations[0], 'y'));
+                transf.push(this.reader.getFloat(this.keyTransformations[0], 'z'));
+                keyframe.push(transf);
+                
+                rot.push(this.reader.getFloat(this.keyTransformations[1], 'angle_x'));
+                rot.push(this.reader.getFloat(this.keyTransformations[1], 'angle_y'));
+                rot.push(this.reader.getFloat(this.keyTransformations[1], 'angle_z'));
+                keyframe.push(rot);
+                
+                sca.push(this.reader.getFloat(this.keyTransformations[2], 'x'));
+                sca.push(this.reader.getFloat(this.keyTransformations[2], 'y'));
+                sca.push(this.reader.getFloat(this.keyTransformations[2], 'z'));
+                keyframe.push(sca);
 
-                for (var j = 0; j < this.keyTransformations.length; j++) {
-                    var transf = [];
-                    switch (this.keyTransformations[j].nodeName) {
-                        case 'translate':
-                            transf.push(this.reader.getFloat(this.keyTransformations[j], 'x'));
-                            transf.push(this.reader.getFloat(this.keyTransformations[j], 'y'));
-                            transf.push(this.reader.getFloat(this.keyTransformations[j], 'z'));
-                            break;
-                        case 'scale':
-                            transf.push(this.reader.getFloat(this.keyTransformations[j], 'x'));
-                            transf.push(this.reader.getFloat(this.keyTransformations[j], 'y'));
-                            transf.push(this.reader.getFloat(this.keyTransformations[j], 'z'));
-                            break;
-                        case 'rotate':
-                            // angle
-                            var ang = this.reader.getFloat(this.keyTransformations[j], 'angle_x');
-                            if(ang == null)
-                                return "Rotation must be defined for 3 axis";
-                            transf.push(ang);
+                // console.log(keyframe);
 
-                            ang = this.reader.getFloat(this.keyTransformations[j], 'angle_y');
-                            if(ang == null)
-                                return "Rotation must be defined for 3 axis";
-                            transf.push(ang);
+                /*  for (var j = 0; j < this.keyTransformations.length; j++) {
+                     var transf = [];
+                     switch (this.keyTransformations[j].nodeName) {
+                         case 'translate':
+                             transf.push(this.reader.getFloat(this.keyTransformations[j], 'x'));
+                             transf.push(this.reader.getFloat(this.keyTransformations[j], 'y'));
+                             transf.push(this.reader.getFloat(this.keyTransformations[j], 'z'));
+                             break;
+                         case 'scale':
+                             transf.push(this.reader.getFloat(this.keyTransformations[j], 'x'));
+                             transf.push(this.reader.getFloat(this.keyTransformations[j], 'y'));
+                             transf.push(this.reader.getFloat(this.keyTransformations[j], 'z'));
+                             break;
+                         case 'rotate':
+                             // angle
+                             var ang = this.reader.getFloat(this.keyTransformations[j], 'angle_x');
+                             if(ang == null)
+                                 return "Rotation must be defined for 3 axis";
+                             transf.push(ang);
 
-                            ang = this.reader.getFloat(this.keyTransformations[j], 'angle_z');
-                            if(ang == null)
-                                return "Rotation must be defined for 3 axis";
-                            transf.push(ang);
-                            break;
-                    }
-                    keyframe.push(transf);
-                }
+                             ang = this.reader.getFloat(this.keyTransformations[j], 'angle_y');
+                             if(ang == null)
+                                 return "Rotation must be defined for 3 axis";
+                             transf.push(ang);
+
+                             ang = this.reader.getFloat(this.keyTransformations[j], 'angle_z');
+                             if(ang == null)
+                                 return "Rotation must be defined for 3 axis";
+                             transf.push(ang);
+                             break;
+                     }
+                     keyframe.push(transf);
+                 }*/
                 this.animations[animationID].keyFrames.push(keyframe);
 
             }
-        
+
         }
 
         this.log("Parsed animations");
@@ -845,7 +869,7 @@ class MySceneGraph {
                 var outradius = this.reader.getFloat(grandChildren[0], 'outer');
                 if (!(outradius != null && !isNaN(outradius)))
                     return "unable to parse base of the primitive coordinates for ID = " + primitiveId;
-                
+
                 //inradius
                 var inradius = this.reader.getFloat(grandChildren[0], 'inner');
                 if (!(inradius != null && !isNaN(inradius)))
@@ -910,7 +934,7 @@ class MySceneGraph {
                 return "ID must be unique for each component (conflict: ID = " + componentID + ")";
 
             grandChildren = children[i].children;
-            
+
             nodeNames = [];
             for (var j = 0; j < grandChildren.length; j++) {
                 nodeNames.push(grandChildren[j].nodeName);
@@ -921,71 +945,73 @@ class MySceneGraph {
             var textureIndex = nodeNames.indexOf("texture");
             var childrenIndex = nodeNames.indexOf("children");
             var animationIndex = nodeNames.indexOf("animationref");
-            if(animationIndex > 0){
-                if(this.reader.getString(grandChildren[animationIndex], 'id')!= null) {
+            var animation = "a";
+            //console.log(animationIndex);
+            if (animationIndex > 0) {
+                if (this.reader.getString(grandChildren[animationIndex], 'id') != null) {
                     animationInd = this.reader.getString(grandChildren[animationIndex], 'id');
-                    if(this.animations[animationInd] == null)
-                        continue;
-                    else{
-                        var animation = new MyAnimation(this.scene, this.animations[animationInd]);
+                     if(this.animations[animationInd] == null)
+                         continue;
+                     else{
+                     animation = this.animations[animationInd];
                     } 
-            
+
                 }
             }
 
             textureInd = this.reader.getString(grandChildren[textureIndex], 'id');
-            if(this.textures[textureInd] == null && textureInd!="inherit" && textureInd!="none"){
+            if (this.textures[textureInd] == null && textureInd != "inherit" && textureInd != "none") {
                 return "no ID defined for textureID";
-            }else{
+            } else {
                 var texture;
-                if(textureInd=="inherit"){
-                    texture="inherit";
-                }else if(textureInd=="none"){
-                    texture="none";
-                }else{
+                if (textureInd == "inherit") {
+                    texture = "inherit";
+                } else if (textureInd == "none") {
+                    texture = "none";
+                } else {
                     var length_s = this.reader.getFloat(grandChildren[textureIndex], 'length_s');
                     var length_t = this.reader.getFloat(grandChildren[textureIndex], 'length_t');
-                    
+
                     //this.nodes[componentID].textureID.push(textureInd);
                     // this.textures[textureInd].push(length_s);
                     // this.textures[textureInd].push(length_t);
-                    texture = new CGFtexture(this.scene,this.textures[textureInd], length_s, length_t);
+                    texture = new CGFtexture(this.scene, this.textures[textureInd], length_s, length_t);
 
                     //texture.bind();
                 }
             }
 
-            var componentMaterials =[];
+            var componentMaterials = [];
             grandgrandChildren = grandChildren[materialsIndex].children;
-            for(j = 0; j<grandgrandChildren.length; j++){
-               matID = this.reader.getString(grandgrandChildren[j], 'id');
-                if(matID == null && matID!="inherit"){
+            for (j = 0; j < grandgrandChildren.length; j++) {
+                matID = this.reader.getString(grandgrandChildren[j], 'id');
+                if (matID == null && matID != "inherit") {
                     return "no ID defined for material ID";
-                }else{
+                } else {
                     var material;
-                    if(matID=="inherit"){
-                     material="inherit";
-                    }else{
-                        material= new CGFappearance(this.scene);
+                    if (matID == "inherit") {
+                        material = "inherit";
+                    } else {
+                        material = new CGFappearance(this.scene);
 
                         var materialsChildren = this.materials[matID];
                         material.setEmission(this.reader.getFloat(materialsChildren[0], "r"), this.reader.getFloat(materialsChildren[0], "g"),
-                                            this.reader.getFloat(materialsChildren[0], "b"), this.reader.getFloat(materialsChildren[0], "a"));
+                            this.reader.getFloat(materialsChildren[0], "b"), this.reader.getFloat(materialsChildren[0], "a"));
                         material.setAmbient(this.reader.getFloat(materialsChildren[1], "r"), this.reader.getFloat(materialsChildren[1], "g"),
-                                            this.reader.getFloat(materialsChildren[1], "b"), this.reader.getFloat(materialsChildren[1], "a"));
+                            this.reader.getFloat(materialsChildren[1], "b"), this.reader.getFloat(materialsChildren[1], "a"));
                         material.setDiffuse(this.reader.getFloat(materialsChildren[2], "r"), this.reader.getFloat(materialsChildren[2], "g"),
-                                            this.reader.getFloat(materialsChildren[2], "b"), this.reader.getFloat(materialsChildren[2], "a"));
+                            this.reader.getFloat(materialsChildren[2], "b"), this.reader.getFloat(materialsChildren[2], "a"));
                         material.setSpecular(this.reader.getFloat(materialsChildren[3], "r"), this.reader.getFloat(materialsChildren[3], "g"),
-                                            this.reader.getFloat(materialsChildren[3], "b"), this.reader.getFloat(materialsChildren[3], "a"));
-                    
-                        componentMaterials[matID]= material;
+                            this.reader.getFloat(materialsChildren[3], "b"), this.reader.getFloat(materialsChildren[3], "a"));
+
+                        componentMaterials[matID] = material;
                     }
                 }
             }
 
-            var firstMaterial=0;
+            var firstMaterial = 0;
 
-            
+
             grandgrandChildren = grandChildren[transformationIndex].children;
             for (var k = 0; k < grandgrandChildren.length; k++) {
                 if (grandgrandChildren[k].nodeName == 'transformationref') {
@@ -995,8 +1021,7 @@ class MySceneGraph {
 
                     transfMatrix = transformationID;
 
-                }
-                else {
+                } else {
                     switch (grandgrandChildren[k].nodeName) {
                         case 'translate':
                             var coordinates = this.parseCoordinates3D(grandgrandChildren[k], "translate transformation for ID " + transformationID);
@@ -1040,11 +1065,9 @@ class MySceneGraph {
                     if (primitiveInd == null)
                         return "no ID defined for primitiveID";
                     //this.primitives[primitiveInd]
-                }
-                else if (grandgrandChildren[k].nodeName == 'componentref') {
+                } else if (grandgrandChildren[k].nodeName == 'componentref') {
                     //this.parseComponents(grandgrandChildren[k]);
-                }
-                else {
+                } else {
                     this.onXMLMinorError("unknown tag <" + children[k].nodeName + ">");
                     continue;
                 }
@@ -1053,7 +1076,7 @@ class MySceneGraph {
             this.components.push(componentID, transfMatrix, componentMaterials, firstMaterial, texture, grandgrandChildren, animation);
         }
     }
-    
+
 
 
     /**
@@ -1167,100 +1190,122 @@ class MySceneGraph {
         console.log("   " + message);
     }
 
-    checkMaterialsSize(materials, material){
-        var c=0;
-        for(var m in materials){
+    checkMaterialsSize(materials, material) {
+        var c = 0;
+        for (var m in materials) {
             c++;
         }
-        return material<c-1;
+        return material < c - 1;
     }
 
-    getViews(){
+    getViews() {
         return this.listCameras;
     }
 
     /**
      * Displays the scene, processing each node, starting in the root node.
      */
-    displayScene(id, transf, mats, text) {
+    displayScene(id, transf, mats, text, ani) {
         //To do: Create display loop for transversing the scene graph
 
         //To test the parsing/creation of the primitives, call the display function directly
-        
+
         // this.primitives['triangle'].display();
         var texture;
-        var animation;
-        var materials=[];
+        var ani;
+        var materials = [];
         var transformationMatrix = mat4.create();
+        var aniMatrix = mat4.create();
         var children;
         var activeMaterial = new CGFappearance(this.scene);
         var actMat;
-        var counter=0;
-        var coord= [];
-        if(this.primitives[id] != null){
+        var counter = 0;
+        var coord = [];
+        if (this.primitives[id] != null) {
             this.primitives[id].updateTexCoords(coord);
             this.primitives[id].display();
 
-        }else{
+        } else {
 
-            animation = this.components[this.components.indexOf(id)+6];
-            this.scene.multMatrix(transformationMatrix);
-            
-            if(animation != undefined){
-                animation.apply();
-            }  
+            ani = this.components[this.components.indexOf(id)+6];
+         //   console.log(ani);
 
-            transformationMatrix = this.components[this.components.indexOf(id)+1];
-            children = this.components[this.components.indexOf(id)+5];
 
-            if(this.components[this.components.indexOf(id)+2]=="inherit"){
-                materials=mats;
-            }else{    
-                materials=this.components[this.components.indexOf(id)+2];
+
+            transformationMatrix = this.components[this.components.indexOf(id) + 1];
+            children = this.components[this.components.indexOf(id) + 5];
+
+            if (this.components[this.components.indexOf(id) + 2] == "inherit") {
+                materials = mats;
+            } else {
+                materials = this.components[this.components.indexOf(id) + 2];
             }
 
-            if(this.components[this.components.indexOf(id)+4]=="inherit"){
-                texture=text;
-            }else if(this.components[this.components.indexOf(id)+4]=="none"){
-            }else{ 
-                texture = this.components[this.components.indexOf(id)+4];
-                
+            if (this.components[this.components.indexOf(id) + 4] == "inherit") {
+                texture = text;
+            } else if (this.components[this.components.indexOf(id) + 4] == "none") {} else {
+                texture = this.components[this.components.indexOf(id) + 4];
+
                 coord.push(texture[1]);
                 coord.push(texture[2]);
 
 
             }
 
-            if(this.materialIncrement==true){
-                if(this.checkMaterialsSize(materials, this.components[this.components.indexOf(id)+3])){
-                    this.components[this.components.indexOf(id)+3]++;
-                }else{
-                    this.components[this.components.indexOf(id)+3]=0;
-                } 
+            if (this.materialIncrement == true) {
+                if (this.checkMaterialsSize(materials, this.components[this.components.indexOf(id) + 3])) {
+                    this.components[this.components.indexOf(id) + 3]++;
+                } else {
+                    this.components[this.components.indexOf(id) + 3] = 0;
+                }
             }
 
-            var c=0;
-            for(var mat in materials){
-                if(c==this.components[this.components.indexOf(id)+3]){
+            var c = 0;
+            for (var mat in materials) {
+                if (c == this.components[this.components.indexOf(id) + 3]) {
                     activeMaterial = materials[mat];
                     break;
                 }
                 c++;
             }
-
             
+            // this.scene.pushMatrix();
+            // aniMatrix = mat4.create();
+            // if (ani != undefined){
+            //     ani.apply(aniMatrix);
+            //     //this.scene.multMatrix(aniMatrix);
+            //     this.scene.multMatrix(transformationMatrix);
+
+            //     ani = undefined;
+            
+            // }
+            // else
+            //     this.scene.multMatrix(transformationMatrix);
+            // this.scene.popMatrix();
+
             activeMaterial.setTexture(texture);
 
             activeMaterial.apply();
-
-            for(var i=0; i<children.length; i++){
+            for (var i = 0; i < children.length; i++) {
                 this.scene.pushMatrix();
-                this.scene.multMatrix(transformationMatrix);
-               
-                this.displayScene(this.reader.getString(children[i], 'id'), this.scene.transfMatrix, materials, texture);
+
+              // aniMatrix = mat4.create();
+                if (ani != "a"){
+                    aniMatrix = ani.apply();
+                    mat4.multiply(aniMatrix, transformationMatrix, aniMatrix);
+                    this.scene.multMatrix(aniMatrix);
+                    
+                   // this.scene.multMatrix(aniMatrix);
+    
+                    //ani = undefined;
+                
+                }
+                else
+                    this.scene.multMatrix(transformationMatrix);
+                this.displayScene(this.reader.getString(children[i], 'id'), this.scene.transfMatrix, materials, texture, ani);
                 this.scene.popMatrix();
             }
-
+            
         }
 
     }

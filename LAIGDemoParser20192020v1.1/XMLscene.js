@@ -166,33 +166,21 @@ class XMLscene extends CGFscene {
     }
 
     update(t){
-        this.checkKeys();
-        this.display();
+        //this.checkKeys();
+        //this.display();
         
-        // this.time = this.time || 0;
-        // this.delta = (t - this.time)/1000 || 0;
+        this.time = this.time || 0;
+        this.delta = (t - this.time)/1000 || 0;
 
-        // this.anim = this.graph.animations;
+        this.ani = this.graph.animations;
 
-        // for(var key in this.ani) {
-        //     this.ani[key].update(this.delta);
+         for(var key in this.ani) {
+             this.ani[key].update(this.delta);
             
-        // };
+         };
 
-        // this.time = t;
-              //time management
-              this.lastTime = this.lastTime || 0.0;
-              this.deltaTime = t - this.lastTime || 0.0;
-              this.deltaTime = this.deltaTime / 1000; //"deltaTime" is now in seconds
-              this.currentTime = (this.currentTime + this.deltaTime) || 0.0; //"currentTime" keeps track of time in seconds
+         this.time = t;
               
-      
-              this.ani = this.graph.animations;
-              for (var key in this.ani) {
-                  
-                  this.ani[key].update(this.deltaTime);
-              }
-              this.lastTime = t;
         // console.log(t/100 % 1000);
     }
 
