@@ -22,7 +22,7 @@ class XMLscene extends CGFscene {
         super.init(application);
 
         this.sceneInited = false;
-
+      //  this.initCameras();
 
         this.enableTextures(true);
 
@@ -36,7 +36,8 @@ class XMLscene extends CGFscene {
         this.scaleFactor = 1.0;
         this.displayAxis = false;
         this.selectedView;
-
+        
+        this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(15, 15, 15), vec3.fromValues(0, 0, 0));
 
     }
 
@@ -111,8 +112,8 @@ class XMLscene extends CGFscene {
 
         this.addLights();
 
+        
         this.sceneInited = true;
-
         this.initCameras();
 
 
