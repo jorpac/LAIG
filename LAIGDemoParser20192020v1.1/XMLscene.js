@@ -22,8 +22,7 @@ class XMLscene extends CGFscene {
         super.init(application);
 
         this.sceneInited = false;
-
-        this.initCameras();
+      //  this.initCameras();
 
         this.enableTextures(true);
 
@@ -34,10 +33,11 @@ class XMLscene extends CGFscene {
 
         this.axis = new CGFaxis(this);
         this.setUpdatePeriod(100);
-        this.scaleFactor = 0.1;
+        this.scaleFactor = 1.0;
         this.displayAxis = false;
         this.selectedView;
-
+        
+        this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(15, 15, 15), vec3.fromValues(0, 0, 0));
 
     }
 
@@ -45,9 +45,11 @@ class XMLscene extends CGFscene {
      * Initializes the scene cameras.
      */
     initCameras() {
-        //var views = this.graph.getViews();        
-        //views[this.graph.defaultView];
-        this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(15, 15, 15), vec3.fromValues(0, 0, 0));
+       
+        this.camera =  this.graph.listCameras.defaultCamera;  
+        this.interface.setActiveCamera(this.camera);
+        
+        //this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(15, 15, 15), vec3.fromValues(0, 0, 0));
     }
     /**
      * Initializes the scene lights with the values read from the XML file.
@@ -110,7 +112,11 @@ class XMLscene extends CGFscene {
 
         this.addLights();
 
+        
         this.sceneInited = true;
+        this.initCameras();
+
+
     }
 
     updateViews(){
@@ -166,89 +172,83 @@ class XMLscene extends CGFscene {
     }
 
     update(t){
-        this.checkKeys();
-        this.display();
+        //this.checkKeys();
+        //this.display();
         
-        // this.time = this.time || 0;
-        // this.delta = (t - this.time)/1000 || 0;
+        this.time = this.time || 0;
+        this.delta = (t - this.time)/1000 || 0;
 
-        // this.anim = this.graph.animations;
+        this.ani = this.graph.animations;
 
-        // for(var key in this.ani) {
-        //     this.ani[key].update(this.delta);
+         for(var key in this.ani) {
+             this.ani[key].update(this.delta);
             
-        // };
+         };
 
-        // this.time = t;
-              //time management
-              this.lastTime = this.lastTime || 0.0;
-              this.deltaTime = t - this.lastTime || 0.0;
-              this.deltaTime = this.deltaTime / 1000; //"deltaTime" is now in seconds
-              this.currentTime = (this.currentTime + this.deltaTime) || 0.0; //"currentTime" keeps track of time in seconds
+         this.time = t;
               
-      
-              this.ani = this.graph.animations;
-              for (var key in this.ani) {
-                  
-                  this.ani[key].update(this.deltaTime);
-              }
-              this.lastTime = t;
         // console.log(t/100 % 1000);
     }
 
     /**
      * Displays the scene.
      */
-    display() {
+
+    display(){
+        this.render();
+    
+    }
+    render() {
         // ---- BEGIN Background, camera and axis setup
-
-        // Clear image and depth buffer everytime we update the scene
-        this.gl.viewport(0, 0, this.gl.canvas.width, this.gl.canvas.height);
-        this.gl.clear(this.gl.COLOR_BUFFER_BIT | this.gl.DEPTH_BUFFER_BIT);
-
-        // Initialize Model-View matrix as identity (no transformation
-        this.updateProjectionMatrix();
-        this.loadIdentity();
-
-        // Apply transformations corresponding to the camera position relative to the origin
-        this.applyViewMatrix();
-
-        this.pushMatrix();
-        if(this.displayAxis)
-            this.axis.display();
-
-        if(this.graph.materialIncrement==false){
-            for (var i = 0; i < this.lights.length; i++) {
-                this.lights[i].setVisible(true);
-                if(this.lights[i]){
-                    //this.lights[i].enable();
-                    this.lights[i].update();
-                }  
-            }
-        }
-
         if (this.sceneInited) {
-            // Draw axis
-            this.setDefaultAppearance();
-            var sca = [this.scaleFactor, 0.0, 0.0, 0.0,
-                0.0, this.scaleFactor, 0.0, 0.0,
-                0.0, 0.0, this.scaleFactor, 0.0,
-                0.0, 0.0, 0.0, 1.0];
 
-            //for(var i=0; i<this.scene.listCameras.length/2;i+=2){
+            // Clear image and depth buffer everytime we update the scene
+            this.gl.viewport(0, 0, this.gl.canvas.width, this.gl.canvas.height);
+            this.gl.clear(this.gl.COLOR_BUFFER_BIT | this.gl.DEPTH_BUFFER_BIT);
 
-            //} 
+            // Initialize Model-View matrix as identity (no transformation
+            this.updateProjectionMatrix();
+            this.loadIdentity();
 
-            this.multMatrix(sca);
-            // Displays the scene (MySceneGraph function).
-            //this.loadIdentity();
-            //this.pushMatrix();
-            this.graph.displayScene(this.graph.rootName, this.transfMatrix);
-            this.graph.materialIncrement=false;
-            //this.popMatrix();        
+            // Apply transformations corresponding to the camera position relative to the origin
+            this.applyViewMatrix();
+
+            this.pushMatrix();
+            if(this.displayAxis)
+                this.axis.display();
+
+            if(this.graph.materialIncrement==false){
+                for (var i = 0; i < this.lights.length; i++) {
+                    this.lights[i].setVisible(true);
+                    if(this.lights[i]){
+                        //this.lights[i].enable();
+                        this.lights[i].update();
+                    }  
+                }
+            }
+
+                // Draw axis
+                this.setDefaultAppearance();
+                var sca = [this.scaleFactor, 0.0, 0.0, 0.0,
+                    0.0, this.scaleFactor, 0.0, 0.0,
+                    0.0, 0.0, this.scaleFactor, 0.0,
+                    0.0, 0.0, 0.0, 1.0];
+
+                //for(var i=0; i<this.scene.listCameras.length/2;i+=2){
+
+                //} 
+
+                this.multMatrix(sca);
+                // Displays the scene (MySceneGraph function).
+                //this.loadIdentity();
+                //this.pushMatrix();
+                this.graph.displayScene(this.graph.rootName, this.transfMatrix);
+                this.graph.materialIncrement=false;
+                //this.popMatrix();        
+            
+
+            this.popMatrix();
+            // ---- END Background, camera and axis setup
         }
-
-        this.popMatrix();
-        // ---- END Background, camera and axis setup
     }
 }

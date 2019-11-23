@@ -1,3 +1,5 @@
+var DEGREE_TO_RAD = Math.PI / 180;
+
 class MyAnimation{
     constructor(scene){
         this.scene = scene;
@@ -12,13 +14,6 @@ class MyAnimation{
 }
 
 
-class MyKeyFrame extends MyAnimation{
-    constructor(scene, keyFrameTime, keyFrameTransf){
-        this.keyFrameTime = keyFrameTime;
-        this.keyFrameTransf = keyFrameTransf;
-        super(scene);
-    }
-}
 class MyKeyFrameAnimation extends MyAnimation{
     constructor(scene){
         super(scene);
@@ -28,6 +23,7 @@ class MyKeyFrameAnimation extends MyAnimation{
         this.sMatrix = {x:1.0, y:1.0, z:1.0};
         this.time = 0;
         this.stage = 0;
+        
     }
     update(t){
         this.time+=t;
@@ -46,7 +42,8 @@ class MyKeyFrameAnimation extends MyAnimation{
                 trX = this.keyFrames[this.stage][1][0] - this.keyFrames[this.stage -1][1][0];
                 trY = this.keyFrames[this.stage][1][1] - this.keyFrames[this.stage -1][1][1];
                 trZ = this.keyFrames[this.stage][1][2] - this.keyFrames[this.stage -1][1][2];
-               
+               // console.log(trX, trY, trZ);
+                
                 //Rotation
 
                 rotX = this.keyFrames[this.stage][2][0] - this.keyFrames[this.stage -1][2][0];
@@ -74,20 +71,20 @@ class MyKeyFrameAnimation extends MyAnimation{
                  rotY = this.keyFrames[this.stage][2][1];
                  rotZ = this.keyFrames[this.stage][2][2];
                  
-                 scX = this.keyFrames[this.stage][3][0];
-                 scY = this.keyFrames[this.stage][3][1];
-                 scZ = this.keyFrames[this.stage][3][2];
+                //  scX = this.keyFrames[this.stage][3][0];
+                //  scY = this.keyFrames[this.stage][3][1];
+                //  scZ = this.keyFrames[this.stage][3][2];
                  
             }
 
             if(this.time <= stopTime){
-                this.tMatrix.x+=(trX/stageTime)*t;
-                this.tMatrix.y+=(trY/stageTime)*t;
-                this.tMatrix.z+=(trZ/stageTime)*t;
-                
-                this.rMatrix.x+=(rotX/stageTime)*t;
-                this.rMatrix.y+=(rotY/stageTime)*t;
-                this.rMatrix.z+=(rotZ/stageTime)*t;
+                this.tMatrix.x += (trX / stageTime) * t;
+                this.tMatrix.y += (trY / stageTime) * t;
+                this.tMatrix.z += (trZ / stageTime) * t;
+                this.rMatrix.x += (rotX / stageTime) * t;
+                this.rMatrix.y += (rotY / stageTime) * t;
+                this.rMatrix.z += (rotZ / stageTime) * t;
+               // console.log(this);
                 
                 // this.sMatrix.x*=(scX/stageTime)*t;
                 // this.sMatrix.y*=(scY/stageTime)*t;
@@ -99,11 +96,12 @@ class MyKeyFrameAnimation extends MyAnimation{
     }
 
     apply(){
-        this.scene.translate(this.tMatrix.x, this.tMatrix.y, this.tMatrix.z);
-        this.scene.rotate(this.rMatrix.z, 0, 0, 1);
-        this.scene.rotate(this.rMatrix.y, 0, 0, 1);
-        this.scene.rotate(this.rMatrix.x, 1, 0, 0);
-        this.scene.scale(this.sMatrix.x, this.sMatrix.y, this.sMatrix.z);
-    
+        let aniMatrix = mat4.create();
+        aniMatrix = mat4.translate(aniMatrix, aniMatrix, [this.tMatrix.x, this.tMatrix.y, this.tMatrix.z]);
+        aniMatrix = mat4.rotate(aniMatrix, aniMatrix, -DEGREE_TO_RAD * this.rMatrix.z,[0, 0, 1]);
+        aniMatrix = mat4.rotate(aniMatrix, aniMatrix, -DEGREE_TO_RAD * this.rMatrix.y, [0, 1, 0]);
+        aniMatrix = mat4.rotate(aniMatrix, aniMatrix, -DEGREE_TO_RAD * this.rMatrix.x, [1, 0, 0]);
+        aniMatrix = mat4.scale(aniMatrix, aniMatrix, [this.sMatrix.x, this.sMatrix.y, this.sMatrix.z]);
+        return aniMatrix;
     }
 }
