@@ -240,6 +240,21 @@
                 <scale x="1" y="1" z="1" />
             </keyframe>
 
+
+            <keyframe instant="27">
+                <translate x="-70" y="0" z="-13" />
+                <rotate angle_x="0" angle_y="260" angle_z="0" />
+                <scale x="1" y="1" z="1" />
+            </keyframe>
+
+
+
+            <keyframe instant="30">
+                <translate x="-50" y="0" z="-18" />
+                <rotate angle_x="0" angle_y="270" angle_z="0" />
+                <scale x="1" y="1" z="1" />
+            </keyframe>
+
         </animation>
 
 
