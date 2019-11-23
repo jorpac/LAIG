@@ -229,7 +229,13 @@
             </keyframe>
 
             <keyframe instant="21">
-                <translate x="-85" y="0" z="17" />
+                <translate x="-87" y="0" z="16" />
+                <rotate angle_x="0" angle_y="190" angle_z="0" />
+                <scale x="1" y="1" z="1" />
+            </keyframe>
+
+            <keyframe instant="23">
+                <translate x="-85" y="0" z="5" />
                 <rotate angle_x="0" angle_y="210" angle_z="0" />
                 <scale x="1" y="1" z="1" />
             </keyframe>
