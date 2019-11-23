@@ -338,6 +338,15 @@
         <primitive id = "torus">
             <torus outer="1" inner="0.5" slices="30" loops="30"/>
         </primitive>
+        <primitive id="planeNURBS">
+            <plane nDivisionsU="20" nDivisionsV="20" degree1="1" degree2="1"/>
+        </primitive>
+        <primitive id="patchNURBS">
+            <patch nDivisionsU="20" nDivisionsV="20" degree1="1" degree2="3"/>
+        </primitive>
+        <primitive id="cylinderNURBS">
+            <cylinder2 slices="20" stacks="20"/>
+        </primitive>
     </primitives>
 
     <components>
@@ -351,6 +360,7 @@
             </materials>
             <texture id="none"/>
             <children>
+                <componentref id="patch_Nurbs"/>
                 <componentref id="forest"/>
                 <componentref id="house"/>
                 <componentref id="house_1"/>
@@ -363,6 +373,18 @@
             </children>
         </component>
 
+        <component id="patch_Nurbs">
+            <transformation>
+                <translate x="0" y="15" z="0" />
+            </transformation>
+            <materials>
+                <material id="demoMaterial" />
+            </materials>
+            <texture id="floorText" length_s="1" length_t="1"/>
+            <children>  
+                <primitiveref id="cylinderNURBS"/>
+            </children>
+        </component>
         <component id="stadiummm">
             <transformation>
                     <scale x="1.4" y="1" z="1" />
