@@ -28,6 +28,7 @@ class MyInterface extends CGFinterface {
         this.gui.add(this.scene, 'displayAxis').name('Display Axis');
         // var camera = this.gui.addFolder('View');
         // camera.add(this.scene, 'perspective').name('Orto View');
+        this.gui.add(this.scene, 'selectedView').name('Camera');
         this.initKeys();
 
         return true;

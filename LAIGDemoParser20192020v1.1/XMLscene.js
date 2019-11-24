@@ -35,9 +35,11 @@ class XMLscene extends CGFscene {
         this.setUpdatePeriod(1);
         this.scaleFactor = 1.0;
         this.displayAxis = false;
-        this.selectedView;
+        this.selectedView = 0;
         
         this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(15, 15, 15), vec3.fromValues(0, 0, 0));
+        this.camObject = new MySecurityCamera(this);
+        this.camTaxture = new CGFtextureRTT(this, this.gl.canvas.height, this.gl.canvas.width);
 
     }
 
@@ -149,6 +151,10 @@ class XMLscene extends CGFscene {
         this.camera=camera;
     }
 
+        updateCam(camera){
+            this.camera = this.graph.listCameras.defaultCamera;
+            this.interface.setActiveCamera(this.camera);
+        }
     /*onSelectedViewChanged(){
         this.interface.setActiveCamera(this.graph.listCameras[this.selectedView]);
         this.camera =this.graph.listCameras[this.selectedView];
@@ -195,10 +201,19 @@ class XMLscene extends CGFscene {
      */
 
     display(){
-        this.render();
-    
+        this.render(this.selectedCamera);
+        
+        this.camTaxture.attachToFrameBuffer();
+        this.render(this.selectedCamera);
+        this.camTaxture.detachFromFrameBuffer();
+        this.gl.disable(this.gl.DEPTH_TEST);
+        this.camObject.display();
+        this.gl.enable(this.gl.DEPTH_TEST);
+
+        this.setActiveShader(this.defaultShader);
+        
     }
-    render() {
+    render(camera) {
         // ---- BEGIN Background, camera and axis setup
         if (this.sceneInited) {
 
@@ -213,10 +228,12 @@ class XMLscene extends CGFscene {
             // Apply transformations corresponding to the camera position relative to the origin
             this.applyViewMatrix();
 
+
             this.pushMatrix();
             if(this.displayAxis)
                 this.axis.display();
 
+            //this.updateCam(camera);
             if(this.graph.materialIncrement==false){
                 for (var i = 0; i < this.lights.length; i++) {
                     this.lights[i].setVisible(true);
