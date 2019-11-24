@@ -479,7 +479,7 @@
                 <rotate angle_x="0" angle_y="110" angle_z="0" />
                 <scale x="1" y="1" z="1" />
             </keyframe>
-             <keyframe instant="13">
+             <keyframe instant="13">    
                 <translate x="-31" y="0" z="27" />
                 <rotate angle_x="0" angle_y="150" angle_z="0" />
                 <scale x="1" y="1" z="1" />
@@ -487,7 +487,7 @@
 
 
              <keyframe instant="14">
-                <translate x="-35.5" y="0" z="23" />
+                <translate x="-35.5" y="0" z="24" />
                 <rotate angle_x="0" angle_y="180" angle_z="0" />
                 <scale x="1" y="1" z="1" />
             </keyframe>
