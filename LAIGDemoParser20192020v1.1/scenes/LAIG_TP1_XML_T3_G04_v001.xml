@@ -401,15 +401,7 @@
                 <rotate angle_x="0" angle_y="20" angle_z="0" />
                 <scale x="1" y="1" z="1" />
             </keyframe>
-            
-<!--             
-            <keyframe instant="2.5">
-                <translate x="-1.5" y="0" z="6.5" />
-                <rotate angle_x="0" angle_y="10" angle_z="0" />
-                <scale x="1" y="1" z="1" />
-            </keyframe>
-         -->
-        
+              
             <keyframe instant="3">
                 <translate x="-4" y="0" z="13" />
                 <rotate angle_x="0" angle_y="40" angle_z="0" />
@@ -438,8 +430,69 @@
                 <rotate angle_x="0" angle_y="110" angle_z="0" />
                 <scale x="1" y="1" z="1" />
             </keyframe>
+             <keyframe instant="13">
+                <translate x="-41" y="0" z="17" />
+                <rotate angle_x="0" angle_y="150" angle_z="0" />
+                <scale x="1" y="1" z="1" />
+            </keyframe>
 
-</animation>     
+
+             <keyframe instant="14">
+                <translate x="-46" y="0" z="13" />
+                <rotate angle_x="0" angle_y="180" angle_z="0" />
+                <scale x="1" y="1" z="1" />
+            </keyframe>
+        </animation>     
+
+  <animation id="car6">
+            <keyframe instant="2">
+                <translate x="0" y="0" z="8" />
+                <rotate angle_x="0" angle_y="20" angle_z="0" />
+                <scale x="1" y="1" z="1" />
+            </keyframe>
+              
+            <keyframe instant="3">
+                <translate x="0" y="0" z="13" />
+                <rotate angle_x="0" angle_y="40" angle_z="0" />
+                <scale x="1" y="1" z="1" />
+            </keyframe>    
+            
+            <keyframe instant="5">
+                <translate x="-5" y="0" z="22" />
+                <rotate angle_x="0" angle_y="60" angle_z="0" />
+                <scale x="1" y="1" z="1" />
+            </keyframe>
+            
+            <keyframe instant="6">
+                <translate x="-10" y="0" z="27" />
+                <rotate angle_x="0" angle_y="70" angle_z="0" />
+                <scale x="1" y="1" z="1" />
+            </keyframe>
+
+            <keyframe instant="8">
+                <translate x="-20" y="0" z="32" />
+                <rotate angle_x="0" angle_y="90" angle_z="0" />
+                <scale x="1" y="1" z="1" />
+            </keyframe>
+            <keyframe instant="12">
+                <translate x="-26" y="0" z="32" />
+                <rotate angle_x="0" angle_y="110" angle_z="0" />
+                <scale x="1" y="1" z="1" />
+            </keyframe>
+             <keyframe instant="13">
+                <translate x="-31" y="0" z="27" />
+                <rotate angle_x="0" angle_y="150" angle_z="0" />
+                <scale x="1" y="1" z="1" />
+            </keyframe>
+
+
+             <keyframe instant="14">
+                <translate x="-35.5" y="0" z="23" />
+                <rotate angle_x="0" angle_y="180" angle_z="0" />
+                <scale x="1" y="1" z="1" />
+            </keyframe>
+        </animation>     
+
 
         <animation id="arm">
             <keyframe instant="5">
@@ -2098,6 +2151,7 @@
              <materials>
                 <material id="demoMaterial" />
             </materials>
+            <animationref id="car6" />
             <texture id="demoTexture" length_s ="1" length_t = "1"/>
             <children>
                 <componentref id = "wheel_1" />
