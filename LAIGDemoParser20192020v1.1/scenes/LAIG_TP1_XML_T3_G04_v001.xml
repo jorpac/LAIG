@@ -1987,10 +1987,10 @@
                 <translate x="28" y="0" z = "20"/>
                 <rotate axis="y" angle="-50"/>
             </transformation>
+            <animationref id="car2" />
              <materials>
                 <material id="demoMaterial" />
             </materials>
-            <animationref id="car2" />
             
             <texture id="demoTexture" length_s ="1" length_t = "1"/>
             <children>
@@ -2020,10 +2020,10 @@
                 <translate x="32" y="0" z = "20"/>
                 <rotate axis="y" angle="-50"/>
             </transformation>
+            <animationref id="car2" />
              <materials>
                 <material id="demoMaterial" />
             </materials>
-            <animationref id="car2" />
            
             <texture id="demoTexture" length_s ="1" length_t = "1"/>
             <children>
@@ -2053,10 +2053,10 @@
                 <translate x="35" y="0" z = "15"/>
                 <rotate axis="y" angle="-40"/>
             </transformation>
+            <animationref id="car3" />
              <materials>
                 <material id="demoMaterial" />
             </materials>
-            <animationref id="car3" />
             <texture id="demoTexture" length_s ="1" length_t = "1"/>
             <children>
                 <componentref id = "wheel_1" />
@@ -2085,10 +2085,11 @@
                 <translate x="40" y="0" z = "10"/>
                 <rotate axis="y" angle="-30"/>
             </transformation>
+            <animationref id="car4" />
+
              <materials>
                 <material id="demoMaterial" />
             </materials>
-            <animationref id="car4" />
             <texture id="demoTexture" length_s ="1" length_t = "1"/>
             <children>
                 <componentref id = "wheel_1" />
@@ -2116,10 +2117,11 @@
               <transformation>
                 <translate x="42" y="0" z = "0"/>
             </transformation>
+            <animationref id="car5" />
+
              <materials>
                 <material id="demoMaterial" />
             </materials>
-            <animationref id="car5" />
             <texture id="demoTexture" length_s ="1" length_t = "1"/>
             <children>
                 <componentref id = "wheel_1" />
