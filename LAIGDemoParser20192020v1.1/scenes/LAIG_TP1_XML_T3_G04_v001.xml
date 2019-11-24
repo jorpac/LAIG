@@ -255,8 +255,101 @@
                 <scale x="1" y="1" z="1" />
             </keyframe>
 
+            
+            <keyframe instant="34">
+                <translate x="-40" y="0" z="-13" />
+                <rotate angle_x="0" angle_y="330" angle_z="0" />
+                <scale x="1" y="1" z="1" />
+            </keyframe>
+
+            <keyframe instant="36">
+                <translate x="-38" y="0" z="-9" />
+                <rotate angle_x="0" angle_y="350" angle_z="0" />
+                <scale x="1" y="1" z="1" />
+            </keyframe>
+
         </animation>
 
+
+        <animation id="car2">
+            <keyframe instant="2">
+                <translate x="-2" y="0" z="8" />
+                <rotate angle_x="0" angle_y="20" angle_z="0" />
+                <scale x="1" y="1" z="1" />
+            </keyframe>
+
+            <keyframe instant="4">
+                <translate x="-6" y="0" z="15" />
+                <rotate angle_x="0" angle_y="25" angle_z="0" />
+                <scale x="1" y="1" z="1" />
+            </keyframe>
+
+             <keyframe instant="9">
+                <translate x="-22" y="0" z="32" />
+                <rotate angle_x="0" angle_y="50" angle_z="0" />
+                <scale x="1" y="1" z="1" />
+            </keyframe>
+
+             <keyframe instant="12">
+                <translate x="-27" y="0" z="34" />
+                <rotate angle_x="0" angle_y="70" angle_z="0" />
+                <scale x="1" y="1" z="1" />
+            </keyframe>
+             <keyframe instant="16">
+                <translate x="-35" y="0" z="35" />
+                <rotate angle_x="0" angle_y="110" angle_z="0" />
+                <scale x="1" y="1" z="1" />
+            </keyframe>
+
+             <keyframe instant="18">
+                <translate x="-40" y="0" z="35" />
+                <rotate angle_x="0" angle_y="130" angle_z="0" />
+                <scale x="1" y="1" z="1" />
+            </keyframe>
+        </animation>
+
+        <animation id="car3">
+            <keyframe instant="2">
+                <translate x="-2" y="0" z="8" />
+                <rotate angle_x="0" angle_y="20" angle_z="0" />
+                <scale x="1" y="1" z="1" />
+            </keyframe>
+
+            <keyframe instant="4">
+                <translate x="-6" y="0" z="15" />
+                <rotate angle_x="0" angle_y="25" angle_z="0" />
+                <scale x="1" y="1" z="1" />
+            </keyframe>
+
+             <keyframe instant="9">
+                <translate x="-22" y="0" z="32" />
+                <rotate angle_x="0" angle_y="50" angle_z="0" />
+                <scale x="1" y="1" z="1" />
+            </keyframe>
+
+             <keyframe instant="12">
+                <translate x="-27" y="0" z="34" />
+                <rotate angle_x="0" angle_y="70" angle_z="0" />
+                <scale x="1" y="1" z="1" />
+            </keyframe>
+             <keyframe instant="16">
+                <translate x="-35" y="0" z="35" />
+                <rotate angle_x="0" angle_y="110" angle_z="0" />
+                <scale x="1" y="1" z="1" />
+            </keyframe>
+
+             <keyframe instant="18">
+                <translate x="-40" y="0" z="35" />
+                <rotate angle_x="0" angle_y="130" angle_z="0" />
+                <scale x="1" y="1" z="1" />
+            </keyframe>
+           <keyframe instant="20">
+                <translate x="-43" y="0" z="32" />
+                <rotate angle_x="0" angle_y="140" angle_z="0" />
+                <scale x="1" y="1" z="1" />
+            </keyframe>
+        
+        </animation>
 
         
             
@@ -303,6 +396,8 @@
                 <rotate angle_x="0" angle_y="0" angle_z="0" />
                 <scale x="1" y="1" z="1" />
             </keyframe>
+
+            
               
         </animation>
     </animations>
@@ -1749,12 +1844,14 @@
         </component>
           <component id = "car2">
               <transformation>
-                <translate x="30" y="0" z = "20"/>
+                <translate x="28" y="0" z = "20"/>
                 <rotate axis="y" angle="-50"/>
             </transformation>
              <materials>
                 <material id="demoMaterial" />
             </materials>
+            <animationref id="car2" />
+            
             <texture id="demoTexture" length_s ="1" length_t = "1"/>
             <children>
                 <componentref id = "wheel_1" />
@@ -1786,6 +1883,8 @@
              <materials>
                 <material id="demoMaterial" />
             </materials>
+            <animationref id="car2" />
+           
             <texture id="demoTexture" length_s ="1" length_t = "1"/>
             <children>
                 <componentref id = "wheel_1" />
@@ -1817,6 +1916,7 @@
              <materials>
                 <material id="demoMaterial" />
             </materials>
+            <animationref id="car3" />
             <texture id="demoTexture" length_s ="1" length_t = "1"/>
             <children>
                 <componentref id = "wheel_1" />
@@ -1848,6 +1948,7 @@
              <materials>
                 <material id="demoMaterial" />
             </materials>
+            <animationref id="car3" />
             <texture id="demoTexture" length_s ="1" length_t = "1"/>
             <children>
                 <componentref id = "wheel_1" />
