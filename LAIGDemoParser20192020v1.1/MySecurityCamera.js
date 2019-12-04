@@ -11,7 +11,7 @@ class MySecurityCamera extends CGFobject {
     display(){
         this.scene.setActiveShader(this.shader);
         this.scene.pushMatrix();
-        this.scene.camTaxture.bind(0);
+        // this.scene.camTaxture.bind(0);
         
         this.cam.display();
 
