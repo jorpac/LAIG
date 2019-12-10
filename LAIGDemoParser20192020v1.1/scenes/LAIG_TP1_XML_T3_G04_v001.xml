@@ -597,6 +597,20 @@
         <primitive id="cylinderNURBS">
             <cylinder2 base = "5" top="5" height="5" slices="200" stacks="200"/>
         </primitive>
+        
+        <primitive id="board_tile_oct">
+            <cylinder base ="1" top="1" height="0" slices="8" stacks="8"/>
+        </primitive>
+        <primitive id="board_piece_oct">
+            <cylinder base ="1" top="1" height="1" slices="8" stacks="8"/>
+        </primitive>
+         <primitive id="board_tile_sqr">
+            <rectangle  x1="-0.5" y1="-1" x2="0.5" y2="1" />
+        </primitive>
+        <primitive id="board_piece_sqr">
+            <rectangle  x1="-0.5" y1="-1" x2="0.5" y2="1" />
+        </primitive>
+
     </primitives>
 
     <components>
@@ -620,22 +634,29 @@
                 <componentref id = "stand"/>
                 <componentref id = "stadiummm"/>
                 <componentref id = "workshop"/>
+                <componentref id = "board"/>
             </children>
         </component>
 
-        <!-- <component id="patch_Nurbs">
+
+
+        <component id="board">
             <transformation>
                 <translate x="0" y="15" z="0" />
-                <rotate axis="z" angle="180"/>
             </transformation>
             <materials>
                 <material id="demoMaterial" />
             </materials>
             <texture id="floorText" length_s="1" length_t="1"/>
             <children>  
-                <primitiveref id="planeNURBS"/>
+                <primitiveref id="board_tile_oct"/>
+                <primitiveref id="board_tile_sqr"/>
+                <primitiveref id="board_piece_oct"/>
+                <primitiveref id="board_piece_sqr"/>
             </children>
-        </component> -->
+        </component>
+
+
         <component id="stadiummm">
             <transformation>
                     <scale x="1.4" y="1" z="1" />
