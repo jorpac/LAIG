@@ -153,20 +153,20 @@
     </transformations>
 
     <animations>
-        <animation id="car">
+        <!-- <animation id="car">
             <keyframe instant="2">
                 <translate x="-2" y="0" z="8" />
                 <rotate angle_x="0" angle_y="20" angle_z="0" />
                 <scale x="1" y="1" z="1" />
             </keyframe>
             
-<!--             
+            
             <keyframe instant="2.5">
                 <translate x="-1.5" y="0" z="6.5" />
                 <rotate angle_x="0" angle_y="10" angle_z="0" />
                 <scale x="1" y="1" z="1" />
             </keyframe>
-         -->
+        
         
             <keyframe instant="3">
                 <translate x="-4" y="0" z="13" />
@@ -484,14 +484,14 @@
                 <rotate angle_x="0" angle_y="150" angle_z="0" />
                 <scale x="1" y="1" z="1" />
             </keyframe>
+ -->
 
-
-             <keyframe instant="14">
+             <!-- <keyframe instant="14">
                 <translate x="-35.5" y="0" z="24" />
                 <rotate angle_x="0" angle_y="180" angle_z="0" />
                 <scale x="1" y="1" z="1" />
             </keyframe>
-        </animation>     
+        </animation>      -->
 
 
         <animation id="arm">
@@ -1140,7 +1140,7 @@
             <transformation>
                 <translate x="0" y="2" z="0"/>
                 <rotate axis="x" angle="-180"/>
-                <scale x="1.25" y="1" z="1.25" />
+                <scale x="4" y="1" z="4" />
             </transformation>
              <materials>
                 <material id="demoMaterial" />
@@ -1152,10 +1152,10 @@
         </component>
         <component id = "balcony_front">
             <transformation>
-                <translate x="1.25" y="2.15" z="0"/>
+                <translate x="4" y="2.15" z="0"/>
                 <rotate axis="x" angle="-90"/>
                 <rotate axis="y" angle="90"/>
-                <scale x="0.3" y="1.25" z="1" />
+                <scale x="0.3" y="4" z="1" />
             </transformation>
              <materials>
                 <material id="demoMaterial" />
@@ -1167,10 +1167,10 @@
         </component>
          <component id = "balcony_back">
             <transformation>
-                <translate x="-1.25" y="2.15" z="0"/>
+                <translate x="-4" y="2.15" z="0"/>
                 <rotate axis="x" angle="-90"/>
                 <rotate axis="y" angle="90"/>
-                <scale x="0.3" y="1.25" z="1" />
+                <scale x="0.3" y="4" z="1" />
             </transformation>
              <materials>
                 <material id="demoMaterial" />
@@ -1183,9 +1183,9 @@
 
         <component id = "balcony_side_l">
             <transformation>
-                <translate x="0" y="2.15" z="1.25"/>
+                <translate x="0" y="2.15" z="4"/>
                 <rotate axis="z" angle="-90"/>
-                <scale x="0.3" y="1.25" z="0.2"/>
+                <scale x="0.3" y="4" z="0.2"/>
             </transformation>
              <materials>
                 <material id="demoMaterial" />
@@ -1197,9 +1197,9 @@
         </component>
                 <component id = "balcony_side_r">
             <transformation>
-                <translate x="0" y="2.15" z="-1.25"/>
+                <translate x="0" y="2.15" z="-4"/>
                 <rotate axis="z" angle="-90"/>
-                <scale x="0.3" y="1.25" z="0.2"/>
+                <scale x="0.3" y="4" z="0.2"/>
             </transformation>
              <materials>
                 <material id="demoMaterial" />
@@ -1975,7 +1975,7 @@
                 <translate x="43" y="0" z = "5"/>
                 <rotate axis="y" angle="-15"/>
             </transformation>
-            <animationref id="car" />
+            <!-- <animationref id="car" /> -->
              <materials>
                 <material id="demoMaterial" />
             </materials>
@@ -2008,7 +2008,7 @@
                 <translate x="28" y="0" z = "20"/>
                 <rotate axis="y" angle="-50"/>
             </transformation>
-            <animationref id="car2" />
+            <!-- <animationref id="car2" /> -->
              <materials>
                 <material id="demoMaterial" />
             </materials>
@@ -2041,7 +2041,7 @@
                 <translate x="32" y="0" z = "20"/>
                 <rotate axis="y" angle="-50"/>
             </transformation>
-            <animationref id="car2" />
+            <!-- <animationref id="car2" /> -->
              <materials>
                 <material id="demoMaterial" />
             </materials>
@@ -2074,7 +2074,7 @@
                 <translate x="35" y="0" z = "15"/>
                 <rotate axis="y" angle="-40"/>
             </transformation>
-            <animationref id="car3" />
+            <!-- <animationref id="car3" /> -->
              <materials>
                 <material id="demoMaterial" />
             </materials>
@@ -2106,7 +2106,7 @@
                 <translate x="40" y="0" z = "10"/>
                 <rotate axis="y" angle="-30"/>
             </transformation>
-            <animationref id="car4" />
+            <!-- <animationref id="car4" /> -->
 
              <materials>
                 <material id="demoMaterial" />
@@ -2138,7 +2138,7 @@
               <transformation>
                 <translate x="42" y="0" z = "0"/>
             </transformation>
-            <animationref id="car5" />
+            <!-- <animationref id="car5" /> -->
 
              <materials>
                 <material id="demoMaterial" />
@@ -2174,7 +2174,7 @@
              <materials>
                 <material id="demoMaterial" />
             </materials>
-            <animationref id="car6" />
+            <!-- <animationref id="car6" /> -->
             <texture id="demoTexture" length_s ="1" length_t = "1"/>
             <children>
                 <componentref id = "wheel_1" />
