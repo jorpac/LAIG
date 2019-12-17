@@ -2,7 +2,7 @@ class MyGameOrchestrator{
     constructor(scene) {
         this.scene = scene;
         this.theme = this.scene.graph;
-        this.gameBoard = new MyGameBoard(scene);
+        this.gameBoard = new MyGameBoard(this);
         //this.gameboard = new MyGameboard();
     }
 
@@ -12,5 +12,9 @@ class MyGameOrchestrator{
         this.gameBoard.display();
         this.scene.graph.materialIncrement=false;
     
+    }
+
+    getScene(){
+        return this.scene;
     }
 }
