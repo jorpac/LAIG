@@ -16,13 +16,13 @@ class MyTile{
         this.orchestrator.getScene().material = new CGFappearance(this.orchestrator.getScene());
         this.orchestrator.getScene().material.setTexture(this.texture);
         this.orchestrator.getScene().material.apply();
-        if(i>8){
-            if(i>16){
-                if(i>24){
-                    if(i>32){
-                        if(i>40){
-                            if(i>48){
-                                if(i>56){
+        if(i>=8){
+            if(i>=16){
+                if(i>=24){
+                    if(i>=32){
+                        if(i>=40){
+                            if(i>=48){
+                                if(i>=56){
                                     this.orchestrator.getScene().translate((i%8),9.01,7);
                                 }
                                 else
@@ -47,7 +47,7 @@ class MyTile{
         else this.orchestrator.getScene().translate(i%8,9.01,0);
         this.orchestrator.getScene().rotate(-Math.PI/2, 1, 0, 0);
         this.orchestrator.getScene().rotate(-Math.PI/8, 0, 0, 1);
-        this.orchestrator.getScene().registerForPick(i, this.tile);
+        this.orchestrator.getScene().registerForPick(i+1, this.tile);
         this.tile.display();
     }
 }
