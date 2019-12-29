@@ -13,7 +13,7 @@ class MyGameBoard{
             this.piece[i] = new MyPiece(this.orchestrator, i);
             this.truePieces[i]= false;  
             this.cubes[i] = new MyUnitCubeQuad(this.orchestrator.getScene());
-            this.trueCubes[i] = true;
+            this.trueCubes[i] = 1;
         }
     }
     
@@ -36,15 +36,17 @@ class MyGameBoard{
                 this.orchestrator.getScene().popMatrix();
                 this.orchestrator.getScene().pushMatrix();
                 this.piece[i].display(i);
-                if(i>=8? this.truePieces[i-9]? true:false:false){
-                    this.trueCubes = false;
+                if(i>=8? (i%8!=1)? this.truePieces[i-9]?true:false:false:false){
+                    if(this.trueCubes[i]==1 || this.trueCubes[i]==0){
+                    this.trueCubes[i] = 0;
                     this.orchestrator.getScene().rotate(-Math.PI/8, 0, 0, 1);                    
                     this.orchestrator.getScene().scale(0.4, 0.4, 0.2);
                     this.orchestrator.getScene().translate(-1.75, 0, 0.5);
                     this.cubes[i].display();
+                    }
                 }
-                if(i>=8? this.truePieces[i-7]?this.trueCubes?true:false:false:false){
-                    this.trueCubes = true;
+                if((i%8!=0) && (i>8? this.truePieces[i-7]?this.trueCubes[i+1]?true:false:false:false)){
+                    this.trueCubes[i+1] = 2;
                     this.orchestrator.getScene().rotate(-Math.PI/2-Math.PI/8, 0, 0, 1);                    
                     this.orchestrator.getScene().scale(0.4, 0.4, 0.2);
                     this.orchestrator.getScene().translate(-1.75, 0, 0.5);

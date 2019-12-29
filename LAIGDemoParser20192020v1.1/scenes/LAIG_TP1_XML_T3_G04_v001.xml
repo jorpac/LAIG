@@ -1,7 +1,12 @@
 <lxs>
     <scene root="root" axis_length="5"/>
 
-    <views default="defaultCamera">
+    <views default="GameBoard">
+       
+        <perspective id="GameBoard" near="0.1" far="500" angle="90">
+            <from x="0.1" y="13" z="0" />
+            <to x="0" y="0" z="0" />
+        </perspective>
         <perspective id="defaultCamera" near="0.1" far="500" angle="45">
             <from x="30" y="15" z="30" />
             <to x="0" y="-2" z="0" />
@@ -29,6 +34,7 @@
             <to x="0" y="-2" z="0" />
             <up x="0" y="1" z="0" />
         </ortho>
+
     </views>
 
     <globals>
@@ -634,12 +640,12 @@
                 <componentref id = "stand"/>
                 <componentref id = "stadiummm"/>
                 <componentref id = "workshop"/>
-                <componentref id = "board"/>
+                <!-- <componentref id = "board"/> -->
             </children>
         </component>
 
 
-
+<!-- 
         <component id="board">
             <transformation>
                 <translate x="0" y="15" z="0" />
@@ -654,7 +660,7 @@
                 <primitiveref id="board_piece_oct"/>
                 <primitiveref id="board_piece_sqr"/>
             </children>
-        </component>
+        </component> -->
 
 
         <component id="stadiummm">

@@ -23,28 +23,28 @@ class MyTile{
                         if(i>=40){
                             if(i>=48){
                                 if(i>=56){
-                                    this.orchestrator.getScene().translate((i%8),9.01,7);
+                                    this.orchestrator.getScene().translate((i%8)+0.5,9.01,7.5);
                                 }
                                 else
-                                    this.orchestrator.getScene().translate((i%8),9.01,6);
+                                    this.orchestrator.getScene().translate((i%8)+0.5,9.01,6.5);
                             }
                             else
-                            this.orchestrator.getScene().translate((i%8),9.01,5);
+                            this.orchestrator.getScene().translate((i%8)+0.5,9.01,5.5);
                         }
                         else
-                        this.orchestrator.getScene().translate((i%8),9.01,4);
+                        this.orchestrator.getScene().translate((i%8)+0.5,9.01,4.5);
                     }
                     else
-                    this.orchestrator.getScene().translate(i%8,9.01,3);
+                    this.orchestrator.getScene().translate(i%8+0.5,9.01,3.5);
                 } 
                 else
-                this.orchestrator.getScene().translate(i%8,9.01,2);
+                this.orchestrator.getScene().translate(i%8+0.5,9.01,2.5);
             }
             else{
-                this.orchestrator.getScene().translate(i%8,9.01,1);
+                this.orchestrator.getScene().translate(i%8+0.5,9.01,1.5);
             }
         }
-        else this.orchestrator.getScene().translate(i%8,9.01,0);
+        else this.orchestrator.getScene().translate(i%8+0.5,9.01,0.5);
         this.orchestrator.getScene().rotate(-Math.PI/2, 1, 0, 0);
         this.orchestrator.getScene().rotate(-Math.PI/8, 0, 0, 1);
         this.orchestrator.getScene().registerForPick(i+1, this.tile);
