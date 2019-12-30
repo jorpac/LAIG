@@ -43,6 +43,9 @@ class MyGameBoard{
                     this.orchestrator.getScene().scale(0.4, 0.4, 0.2);
                     this.orchestrator.getScene().translate(-1.75, 0, 0.5);
                     this.cubes[i].display();
+                    this.orchestrator.getScene().translate(1.75, 0, -0.5);
+                    this.orchestrator.getScene().scale(2.5, 2.5, 5);
+                    this.orchestrator.getScene().rotate(Math.PI/8, 0, 0, 1); 
                     }
                 }
                 if((i%8!=7) && i>8 && this.truePieces[i-7] && this.trueCubes[i+1]){
@@ -51,6 +54,9 @@ class MyGameBoard{
                     this.orchestrator.getScene().scale(0.4, 0.4, 0.2);
                     this.orchestrator.getScene().translate(-1.75, 0, 0.5);
                     this.cubes[i].display();
+                    this.orchestrator.getScene().translate(1.75, 0, -0.5);
+                    this.orchestrator.getScene().scale(2.5, 2.5, 5);
+                    this.orchestrator.getScene().rotate(-(-Math.PI/2-Math.PI/8), 0, 0, 1); 
                 }
             }
             
