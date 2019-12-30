@@ -36,7 +36,7 @@ class MyGameBoard{
                 this.orchestrator.getScene().popMatrix();
                 this.orchestrator.getScene().pushMatrix();
                 this.piece[i].display(i);
-                if(i>=8? (i%8!=1)? this.truePieces[i-9]?true:false:false:false){
+                if((i%8) && (i>9 && this.truePieces[i-9])){
                     if(this.trueCubes[i]==1 || this.trueCubes[i]==0){
                     this.trueCubes[i] = 0;
                     this.orchestrator.getScene().rotate(-Math.PI/8, 0, 0, 1);                    
@@ -45,7 +45,7 @@ class MyGameBoard{
                     this.cubes[i].display();
                     }
                 }
-                if((i%8!=0) && (i>8? this.truePieces[i-7]?this.trueCubes[i+1]?true:false:false:false)){
+                if((i%8!=7) && i>8 && this.truePieces[i-7] && this.trueCubes[i+1]){
                     this.trueCubes[i+1] = 2;
                     this.orchestrator.getScene().rotate(-Math.PI/2-Math.PI/8, 0, 0, 1);                    
                     this.orchestrator.getScene().scale(0.4, 0.4, 0.2);
