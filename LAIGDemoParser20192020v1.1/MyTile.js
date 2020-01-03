@@ -5,6 +5,11 @@ class MyTile{
         // this.scene = scene;
         this.tile = new MyCylinder3(this.orchestrator.getScene(), i, 0.5, 0.5, 0, 8, 1);
         this.texture = new CGFtexture(this.orchestrator.getScene(), "scenes/images/white.jpg");
+        this.material = new CGFappearance(this.orchestrator.getScene());
+        this.material.setAmbient(0.1, 1.0, 1.0, 1.0);
+        this.material.setDiffuse(0.1, 1.0, 1.0, 1.0);
+        this.material.setSpecular(0.1, 1.0, 1.0, 1.0);
+        this.material.setShininess(1.0);
     }
 
     
@@ -13,8 +18,7 @@ class MyTile{
         this.orchestrator.getScene().pushMatrix();
         this.orchestrator.getScene().translate(-4,0,-4);
 
-        this.material = new CGFappearance(this.orchestrator.getScene());
-        this.material.setTexture(this.texture);
+        
         this.material.apply();
         if(i>=8){
             if(i>=16){

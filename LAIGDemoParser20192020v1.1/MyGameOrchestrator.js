@@ -3,6 +3,8 @@ class MyGameOrchestrator{
         this.scene = scene;
         this.theme = this.scene.graph;
         this.gameBoard = new MyGameBoard(this);
+        this.sideBoard = new MySideBoard(this);
+        this.gameMoves = [];
         //this.gameboard = new MyGameboard();
     }
 
@@ -14,7 +16,8 @@ class MyGameOrchestrator{
 					if (obj) {
 						var customId = this.scene.pickResults[i][1];
                         console.log("Picked object: " + obj + ", with pick id " + customId);
-                        this.gameBoard.picked(customId);						
+                        this.gameBoard.picked(customId);
+                        this.gameMoves.push(customId-1);						
 					}
 				}
 				this.scene.pickResults.splice(0, this.scene.pickResults.length);
@@ -24,6 +27,7 @@ class MyGameOrchestrator{
     display(){
         this.scene.graph.displayScene(this.scene.graph.rootName, this.scene.transfMatrix);
         
+        this.sideBoard.display();
         this.gameBoard.display();
         this.scene.graph.materialIncrement=false;
     
@@ -31,5 +35,10 @@ class MyGameOrchestrator{
 
     getScene(){
         return this.scene;
+    }
+
+    undo(){
+        this.gameBoard.undo(this.gameMoves.pop());
+        
     }
 }
