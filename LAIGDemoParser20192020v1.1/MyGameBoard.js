@@ -6,11 +6,12 @@ class MyGameBoard{
         this.truePieces = [];
         this.cubes = [];
         this.trueCubes = [];
+        this.turn = 0;
         // this.tile1 =  new MyTile(this.orchestrator, 0);
         for (let i = 0; i < 64; i++) {
             
             this.tiles[i] = new MyTile(this.orchestrator, i);
-            this.piece[i] = new MyPiece(this.orchestrator, i);
+            //this.piece[i] = new MyPiece(this.orchestrator, i);
             this.truePieces[i]= false;  
             this.cubes[i] = new MyUnitCubeQuad(this.orchestrator.getScene());
             this.trueCubes[i] = 1;
@@ -30,12 +31,17 @@ class MyGameBoard{
             
         } 
         
-        for (let i = 0; i < this.piece.length; i++) {
+        for (let i = 0; i < this.tiles.length; i++) {
             if(this.truePieces[i]){
                 this.orchestrator.getScene().clearPickRegistration();
                 this.orchestrator.getScene().popMatrix();
                 this.orchestrator.getScene().pushMatrix();
+                this.piece[i] = new MyPiece(this.orchestrator, i, this.turn);
                 this.piece[i].display(i);
+                if(this.turn)
+                    this.turn = 0;
+                else   
+                    this.turn = 1;
                 if((i%8) && (i>9 && this.truePieces[i-9])){
                     if(this.trueCubes[i]==1 || this.trueCubes[i]==0){
                     this.trueCubes[i] = 0;

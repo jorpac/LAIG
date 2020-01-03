@@ -13,9 +13,9 @@ class MyTile{
         this.orchestrator.getScene().pushMatrix();
         this.orchestrator.getScene().translate(-4,0,-4);
 
-        this.orchestrator.getScene().material = new CGFappearance(this.orchestrator.getScene());
-        this.orchestrator.getScene().material.setTexture(this.texture);
-        this.orchestrator.getScene().material.apply();
+        this.material = new CGFappearance(this.orchestrator.getScene());
+        this.material.setTexture(this.texture);
+        this.material.apply();
         if(i>=8){
             if(i>=16){
                 if(i>=24){

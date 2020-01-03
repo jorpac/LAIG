@@ -631,15 +631,15 @@
             <texture id="none"/>
             <children>
                 <!-- <componentref id="patch_Nurbs"/> -->
-                <componentref id="forest"/>
+                <!-- <componentref id="forest"/> -->
                 <componentref id="house"/>
                 <componentref id="house_1"/>
-                <!-- <componentref id = "back_floor" /> -->
+                <!-- <componentref id = "back_floor" />
                 <componentref id="sculp"/>
                 <componentref id = "farol"/>
                 <componentref id = "stand"/>
                 <componentref id = "stadiummm"/>
-                <componentref id = "workshop"/>
+                <componentref id = "workshop"/> -->
                 <!-- <componentref id = "board"/> -->
             </children>
         </component>

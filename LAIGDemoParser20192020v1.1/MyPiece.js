@@ -1,11 +1,25 @@
 class MyPiece{
-    constructor(orchestrator, i){
+    constructor(orchestrator, i, turn){
         this.orchestrator = orchestrator;
-        
+        this.turn1 = turn;
         // this.scene = scene;
         this.piece = new MyCylinder3(this.orchestrator.getScene(), i, 0.5, 0.5, 0.2, 8, 1);
-        this.textureb = new CGFtexture(this.orchestrator.getScene(), "scenes/images/asphalt.jpg");
-        this.texturew = new CGFtexture(this.orchestrator.getScene(), "scenes/images/white.jpg");
+
+        this.material = new CGFappearance(this.orchestrator.getScene());
+        
+        if(turn){
+            this.material.setAmbient(0.1, 0.1, 0.1, 1.0);
+            this.material.setDiffuse(0.1, 0.1, 0.1, 1.0);
+            this.material.setSpecular(0.1, 0.1, 0.1, 1.0);
+            this.material.setShininess(10.0);
+        }
+        else{
+            this.material.setAmbient(0.9, 0.9, 0.9, 1.0);
+            this.material.setDiffuse(0.9, 0.9, 0.8, 1.0);
+            this.material.setSpecular(0.9, 0.9, 0.8, 1.0);
+            this.material.setShininess(10.0);
+        }
+
     }
 
     
@@ -13,10 +27,9 @@ class MyPiece{
         // this.orchestrator.getScene().pushMatrix();
        
         this.orchestrator.getScene().translate(-4,0,-4);
-
-        this.orchestrator.getScene().material = new CGFappearance(this.orchestrator.getScene());
-        this.orchestrator.getScene().material.setTexture(this.textureb);
-        this.orchestrator.getScene().material.apply();
+       
+        this.material.apply();
+       
         if(i>=8){
             if(i>=16){
                 if(i>=24){
