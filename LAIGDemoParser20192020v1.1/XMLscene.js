@@ -36,6 +36,9 @@ class XMLscene extends CGFscene {
         this.scaleFactor = 1.0;
         this.displayAxis = false;
         this.selectedView = 0;
+
+        this.cameraAnimation;
+        this.cameraRotate=false;
         
         this.camera = new CGFcamera(0.5, 0.1, 500, vec3.fromValues(0.1, 12, 0), vec3.fromValues(0, 0, 0));
         this.gameOrchestrator = new MyGameOrchestrator(this);
@@ -180,13 +183,15 @@ class XMLscene extends CGFscene {
         
         this.time = this.time || 0;
         this.delta = (t - this.time)/1000 || 0;
-
         this.ani = this.graph.animations;
 
          for(var key in this.ani) {
              this.ani[key].update(this.delta);
-            
          };
+
+         if(this.cameraRotate){
+            this.cameraAnimation.update(this.delta);
+         }
 
          this.time = t;
               
