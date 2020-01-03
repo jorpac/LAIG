@@ -7,7 +7,7 @@ class MyPiece{
 
         this.material = new CGFappearance(this.orchestrator.getScene());
         
-        if(turn){
+        if(this.turn1){
             this.material.setAmbient(0.1, 0.1, 0.1, 1.0);
             this.material.setDiffuse(0.1, 0.1, 0.1, 1.0);
             this.material.setSpecular(0.1, 0.1, 0.1, 1.0);
@@ -64,5 +64,8 @@ class MyPiece{
         this.piece.display();
         // this.orchestrator.getScene().popMatrix();
 
+    }
+    getTurn(){
+        return this.turn1;
     }
 }

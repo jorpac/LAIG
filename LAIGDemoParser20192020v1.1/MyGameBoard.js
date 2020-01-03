@@ -20,7 +20,11 @@ class MyGameBoard{
     
     picked(id){
         this.truePieces[id-1] = true;  
-    
+        this.piece[id-1] = new MyPiece(this.orchestrator, id-1, this.turn);
+        if(this.turn)
+            this.turn = 0;
+        else   
+            this.turn = 1;
     }
     display(){
         this.orchestrator.getScene().logPicking();
@@ -36,13 +40,9 @@ class MyGameBoard{
                 this.orchestrator.getScene().clearPickRegistration();
                 this.orchestrator.getScene().popMatrix();
                 this.orchestrator.getScene().pushMatrix();
-                this.piece[i] = new MyPiece(this.orchestrator, i, this.turn);
+                
                 this.piece[i].display(i);
-                if(this.turn)
-                    this.turn = 0;
-                else   
-                    this.turn = 1;
-                if((i%8) && (i>9 && this.truePieces[i-9])){
+                if((i%8) && (i>9 && this.truePieces[i-9] && (this.piece[i].getTurn() == this.piece[i-9].getTurn()))){
                     if(this.trueCubes[i]==1 || this.trueCubes[i]==0){
                     this.trueCubes[i] = 0;
                     this.orchestrator.getScene().rotate(-Math.PI/8, 0, 0, 1);                    
@@ -54,7 +54,7 @@ class MyGameBoard{
                     this.orchestrator.getScene().rotate(Math.PI/8, 0, 0, 1); 
                     }
                 }
-                if((i%8!=7) && i>8 && this.truePieces[i-7] && this.trueCubes[i+1]){
+                if((i%8!=7) && i>8 && this.truePieces[i-7] && (this.piece[i].getTurn() == this.piece[i-7].getTurn()) && this.trueCubes[i+1]){
                     this.trueCubes[i+1] = 2;
                     this.orchestrator.getScene().rotate(-Math.PI/2-Math.PI/8, 0, 0, 1);                    
                     this.orchestrator.getScene().scale(0.4, 0.4, 0.2);
