@@ -8,9 +8,12 @@ class XMLscene extends CGFscene {
      * @constructor
      * @param {MyInterface} myinterface 
      */
-    constructor(myinterface) {
+    constructor(myinterface, n_gr) {
         super();
 
+        this.graphs = [];
+        this.n_gr = n_gr;
+        this.graphs_loaded = 0;
         this.interface = myinterface;
     }
 
@@ -36,12 +39,15 @@ class XMLscene extends CGFscene {
         this.scaleFactor = 1.0;
         this.displayAxis = false;
         this.selectedView = 0;
-
+        this.graphs = [];
+        
+        this.activeGraph = 0;
         this.cameraAnimation;
         this.cameraRotate=false;
         
         this.camera = new CGFcamera(0.5, 0.1, 500, vec3.fromValues(0.1, 12, 0), vec3.fromValues(0, 0, 0));
         this.gameOrchestrator = new MyGameOrchestrator(this);
+        this.scene_ambient = {'NASCAR': 1, 'Minecraft': 0};
     }
 
     /**
@@ -49,7 +55,7 @@ class XMLscene extends CGFscene {
      */
     initCameras() {
        
-        this.camera =  this.graph.listCameras.GameBoard;  
+        this.camera =  this.graphs[this.activeGraph].listCameras.GameBoard;  
         // this.interface.setActiveCamera(this.camera);
         //this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(15, 15, 15), vec3.fromValues(0, 0, 0));
     }
@@ -61,12 +67,12 @@ class XMLscene extends CGFscene {
         // Lights index.
 
         // Reads the lights from the scene graph.
-        for (var key in this.graph.lights) {
+        for (var key in this.graphs[this.activeGraph].lights) {
             if (i >= 8)
                 break;              // Only eight lights allowed by WebGL.
 
-            if (this.graph.lights.hasOwnProperty(key)) {
-                var light = this.graph.lights[key];
+            if (this.graphs[this.activeGraph].lights.hasOwnProperty(key)) {
+                var light = this.graphs[this.activeGraph].lights[key];
 
                 this.lights[i].setPosition(light[2][0], light[2][1], light[2][2], light[2][3]);
                 this.lights[i].setAmbient(light[3][0], light[3][1], light[3][2], light[3][3]);
@@ -92,6 +98,9 @@ class XMLscene extends CGFscene {
         }
     }
 
+    addGraph(graph){
+        this.graphs.push(graph);
+    }
     setDefaultAppearance() {
         this.setAmbient(0.2, 0.4, 0.8, 1.0);
         this.setDiffuse(0.2, 0.4, 0.8, 1.0);
@@ -102,11 +111,11 @@ class XMLscene extends CGFscene {
      * As loading is asynchronous, this may be called already after the application has started the run loop
      */
     onGraphLoaded() {
-        this.axis = new CGFaxis(this, this.graph.referenceLength);
+        this.axis = new CGFaxis(this, this.graphs[this.activeGraph].referenceLength);
 
-        this.gl.clearColor(this.graph.background[0], this.graph.background[1], this.graph.background[2], this.graph.background[3]);
+        this.gl.clearColor(this.graphs[this.activeGraph].background[0], this.graphs[this.activeGraph].background[1], this.graphs[this.activeGraph].background[2], this.graphs[this.activeGraph].background[3]);
 
-        this.setGlobalAmbientLight(this.graph.ambient[0], this.graph.ambient[1], this.graph.ambient[2], this.graph.ambient[3]);
+        this.setGlobalAmbientLight(this.graphs[this.activeGraph].ambient[0], this.graphs[this.activeGraph].ambient[1], this.graphs[this.activeGraph].ambient[2], this.graphs[this.activeGraph].ambient[3]);
 
         this.initLights();
 
@@ -123,7 +132,7 @@ class XMLscene extends CGFscene {
 
     updateViews(){
         this.views =[];
-        for(var v in this.graph.listCameras){
+        for(var v in this.graphs[this.activeGraph].listCameras){
             this.views.push(v);
         }
         this.interface.addViews(this.views);
@@ -246,7 +255,7 @@ class XMLscene extends CGFscene {
                 this.axis.display();
 
            // this.updateCam(camera);
-            if(this.graph.materialIncrement==false){
+            if(this.graphs[this.activeGraph].materialIncrement==false){
                 for (var i = 0; i < this.lights.length; i++) {
                     this.lights[i].setVisible(true);
                     if(this.lights[i]){
@@ -271,7 +280,11 @@ class XMLscene extends CGFscene {
                 // Displays the scene (MySceneGraph function).
                 //this.loadIdentity();
                 //this.pushMatrix();
+                this.graphs[this.activeGraph].displayScene(this.graphs[this.activeGraph].rootName, this.transfMatrix);
+
                 this.gameOrchestrator.display();
+                this.graphs[this.activeGraph].materialIncrement=false;
+
                 //this.popMatrix();        
             
 

@@ -25,10 +25,12 @@ class MyInterface extends CGFinterface {
 
         this.lightsFolder = this.gui.addFolder('Light Sources');        
 
-        this.gui.add(this.scene, 'displayAxis').name('Display Axis');
+        let scene_foler =  this.gui.addFolder('Scene');
+        scene_foler.add(this.scene, 'activeGraph', this.scene.scene_ambient).name("Select Ambient");
+        //this.gui.add(this.scene, 'displayAxis').name('Display Axis');
         // var camera = this.gui.addFolder('View');
         // camera.add(this.scene, 'perspective').name('Orto View');
-        this.gui.add(this.scene, 'selectedView').name('Camera');
+        // this.gui.add(this.scene, 'selectedView').name('Camera');
 
         this.gui.add(this.scene, 'undo').name('Undo');
         this.gui.add(this.scene, 'clear').name('New Game');

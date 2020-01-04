@@ -25,11 +25,9 @@ class MyGameOrchestrator{
 		}
 	}
     display(){
-        this.scene.graph.displayScene(this.scene.graph.rootName, this.scene.transfMatrix);
         
         this.sideBoard.display();
         this.gameBoard.display();
-        this.scene.graph.materialIncrement=false;
     
     }
 
