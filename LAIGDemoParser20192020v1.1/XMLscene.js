@@ -50,8 +50,7 @@ class XMLscene extends CGFscene {
     initCameras() {
        
         this.camera =  this.graph.listCameras.GameBoard;  
-        this.interface.setActiveCamera(this.camera);
-        
+        // this.interface.setActiveCamera(this.camera);
         //this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(15, 15, 15), vec3.fromValues(0, 0, 0));
     }
     /**
@@ -157,6 +156,10 @@ class XMLscene extends CGFscene {
     }
     undo(){
         this.gameOrchestrator.undo();
+    }
+    clear(){
+        delete this.gameOrchestrator;
+        this.gameOrchestrator = new MyGameOrchestrator(this);
     }
     /*onSelectedViewChanged(){
         this.interface.setActiveCamera(this.graph.listCameras[this.selectedView]);

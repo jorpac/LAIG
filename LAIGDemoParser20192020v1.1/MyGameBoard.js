@@ -7,9 +7,9 @@ class MyGameBoard{
         this.cubes = [];
         this.trueCubes = [];
         this.turn = 0;
-        this.cameraKeyframesPlayer1 = [ [0.2, 18*(Math.PI/180)], [0.4, 32*(Math.PI/180)], [0.6, 50*(Math.PI/180)], [0.8, 68*(Math.PI/180)], [1.0, 90*(Math.PI/180)] ];
+        this.cameraKeyframesPlayer1 = [ [1.0, 90*(Math.PI/180)] ];
 
-        this.cameraKeyframesPlayer2 = [ [0.2, -18*(Math.PI/180)], [0.4, -32*(Math.PI/180)], [0.6, -50*(Math.PI/180)], [0.8, -68*(Math.PI/180)], [1.0, -90*(Math.PI/180)] ];
+        this.cameraKeyframesPlayer2 = [ [1.0, -90*(Math.PI/180)] ];
 
         // this.tile1 =  new MyTile(this.orchestrator, 0);
         for (let i = 0; i < 64; i++) {
@@ -23,14 +23,15 @@ class MyGameBoard{
     }
     
     picked(id){
+        this.orchestrator.getScene().setPickEnabled(false);
         this.orchestrator.getScene().cameraRotate=false;
         this.truePieces[id-1] = true;  
         this.piece[id-1] = new MyPiece(this.orchestrator, id-1, this.turn);
+        setTimeout(() => { this.turn = Math.abs(this.turn - 1); this.orchestrator.getScene().setPickEnabled(true); }, 1000); 
         if(this.turn){
-            this.turn = 0;
+            
             this.orchestrator.getScene().cameraAnimation = new MyKeyFrameCameraAnimation(this.orchestrator.getScene(), this.cameraKeyframesPlayer1);
         }else{   
-            this.turn = 1;
             this.orchestrator.getScene().cameraAnimation = new MyKeyFrameCameraAnimation(this.orchestrator.getScene(), this.cameraKeyframesPlayer2);
         }
 
