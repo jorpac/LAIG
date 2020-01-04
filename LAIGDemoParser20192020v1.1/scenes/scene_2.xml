@@ -104,6 +104,7 @@
 
         <textures>
             <texture id="topTexture" file="scenes/images/mineTop.png" />
+            <texture id="bottom_tex" file="scenes/images/mineBottom.png" />
             <texture id="sideTexture" file="scenes/images/mineSide.png" />
             <texture id="skytop_tex" file="scenes/images/sky_top.png" />
             <texture id="skybottom_tex" file="scenes/images/sky_bottom.png" />
@@ -307,6 +308,7 @@
                     <componentref id="otherside" />
                     <componentref id="topfront" />
                     <componentref id="topback" />
+                    <componentref id="bottom" />
                 </children>
             </component>
 
@@ -325,6 +327,7 @@
                     <componentref id="otherside" />
                     <componentref id="topfront" />
                     <componentref id="topback" />
+                    <componentref id="bottom" />
                 </children>
             </component>
 
@@ -343,6 +346,7 @@
                     <componentref id="otherside" />
                     <componentref id="topfront" />
                     <componentref id="topback" />
+                    <componentref id="bottom" />
                 </children>
             </component>
             <component id="right_under_board_block">
@@ -360,6 +364,7 @@
                     <componentref id="otherside" />
                     <componentref id="topfront" />
                     <componentref id="topback" />
+                    <componentref id="bottom" />
                 </children>
             </component>
 
@@ -377,6 +382,7 @@
                     <componentref id="side" />
                     <componentref id="otherside" />
                     <componentref id="topfront" />
+                    <componentref id="bottom" />
                     <componentref id="topback" />
                 </children>
             </component>
@@ -414,6 +420,8 @@
                     <componentref id="otherside" />
                     <componentref id="topfront" />
                     <componentref id="topback" />
+                    <componentref id="bottom" />
+
                 </children>
             </component>
 
@@ -432,6 +440,8 @@
                     <componentref id="otherside" />
                     <componentref id="topfront" />
                     <componentref id="topback" />
+                    <componentref id="bottom" />
+
                 </children>
             </component>
 
@@ -450,6 +460,7 @@
                     <componentref id="otherside" />
                     <componentref id="topfront" />
                     <componentref id="topback" />
+                    <componentref id="bottom" />
                 </children>
             </component>
 
@@ -528,16 +539,16 @@
                 </children>
             </component>
 
-            <component id="midbottom">
-                 <transformation>
-                    <translate x="0" y="0" z="-1" />
-                    <scale x="20" y="1" z="15" />
+             <component id="bottom">
+                <transformation>
+                    <translate x="0" y="-1" z="-1" />
+                    <scale x="10" y="1" z="5" />
                     <rotate axis="x" angle="90"/>
                 </transformation>
                 <materials>
                     <material id="demoMaterial" />
                 </materials>
-                <texture id="topTexture" length_s="1.0" length_t="1.0"/>
+                <texture id="bottom_tex" length_s="1.0" length_t="1.0"/>
                 <children>
                     <primitiveref id="demoRectangle" />
                 </children>
