@@ -36,9 +36,9 @@ class MyGameBoard{
         let i = id -1 ;
 
          /*---------------- [i-9] ----------------------------------------*/
-         if(((i%8) && (i>9 && this.truePieces[i-9] && (this.piece[i].getTurn() == this.piece[i-9].getTurn())))){
+         if(((i%8) && (i>8 && this.truePieces[i-9] && (this.piece[i].getTurn() == this.piece[i-9].getTurn())))){
           
-          if(i%8>4 || (i>4 && i<8)){
+          if(i%8>4){
                 if((i-9)>7.0){
                     if(this.trueCubes[Math.round((id-8)-((id-8)/8.0))-1] == 0){
                         this.cubes[Math.round((id-8)-((id-8)/8.0))-1] = new MyUnitCubeQuad(this.orchestrator.getScene(), this.turn);
@@ -54,24 +54,24 @@ class MyGameBoard{
                         this.trueCubes[Math.round((id-8)-((id-8)/8.0))-1] == 2;
                     }
                 }else{
-                    if(this.trueCubes[id-9] == 0){
-                        this.cubes[id-9] = new MyUnitCubeQuad(this.orchestrator.getScene(), this.turn);
-                        this.trueCubes[id-9] = 1;
+                    if(this.trueCubes[id-10] == 0){
+                        this.cubes[id-10] = new MyUnitCubeQuad(this.orchestrator.getScene(), this.turn);
+                        this.trueCubes[id-10] = 1;
 
                     }
-                    else if(this.trueCubes[id-9] == 1){
-                        this.cubes[id-9].changeTurn(this.turn);
+                    else if(this.trueCubes[id-10] == 1){
+                        this.cubes[id-10].changeTurn(this.turn);
                         if(this.turned==0){
                             this.turn = Math.abs(this.turn - 1);
                             this.turned=1;
                         }
-                        this.trueCubes[id-9] == 2;
+                        this.trueCubes[id-10] == 2;
                     }
                 }
             
          }
 
-         if(i%8<=4 || (i<5 )){
+         if(i%8<=4){
             if((i-9)>7.0){
                     if(this.trueCubes[Math.floor((id-8)-((id-8)/8.0))-1] == 0){
                         this.cubes[Math.floor((id-8)-((id-8)/8.0))-1] = new MyUnitCubeQuad(this.orchestrator.getScene(), this.turn);
@@ -87,18 +87,18 @@ class MyGameBoard{
                         this.trueCubes[Math.floor((id-8)-((id-8)/8.0))-1] == 2;
                     }
                 }else{
-                    if(this.trueCubes[id-9] == 0){
-                        this.cubes[id-9] = new MyUnitCubeQuad(this.orchestrator.getScene(), this.turn);
-                        this.trueCubes[id-9] = 1;
+                    if(this.trueCubes[id-10] == 0){
+                        this.cubes[id-10] = new MyUnitCubeQuad(this.orchestrator.getScene(), this.turn);
+                        this.trueCubes[id-10] = 1;
 
                     }
-                    else if(this.trueCubes[id-9] == 1){
-                        this.cubes[id-9].changeTurn(this.turn);
+                    else if(this.trueCubes[id-10] == 1){
+                        this.cubes[id-10].changeTurn(this.turn);
                         if(this.turned==0){
                             this.turn = Math.abs(this.turn - 1);
                             this.turned=1;
                         }
-                        this.trueCubes[id-9] == 2;
+                        this.trueCubes[id-10] == 2;
                     }
                 }
             }
@@ -107,7 +107,7 @@ class MyGameBoard{
         /*---------------- [i-7] ----------------------------------------*/
         if((i%8!=7.0) && i>7.0 && this.truePieces[i-7.0] && (this.piece[i].getTurn() == this.piece[i-7.0].getTurn())){
 
-            if(i%8>4 || (i>4 && i<8)){
+            if(i%8>4){
 
                 if((i-7.0)>7.0){
                     if(this.trueCubes[Math.round((id-8)-((id-8)/8.0))] == 0){
@@ -124,24 +124,24 @@ class MyGameBoard{
                         this.trueCubes[Math.round((id-8)-((id-8)/8.0))] == 2;
                     }
                 }else{
-                    if(this.trueCubes[id-8] == 0){
-                        this.cubes[id-8] = new MyUnitCubeQuad(this.orchestrator.getScene(), this.turn);
-                        this.trueCubes[id-8] = 1;
+                    if(this.trueCubes[id-9] == 0){
+                        this.cubes[id-9] = new MyUnitCubeQuad(this.orchestrator.getScene(), this.turn);
+                        this.trueCubes[id-9] = 1;
 
                     }
-                    else if(this.trueCubes[id-8] == 1){
-                        this.cubes[id-8].changeTurn(this.turn);
+                    else if(this.trueCubes[id-9] == 1){
+                        this.cubes[id-9].changeTurn(this.turn);
                         if(this.turned==0){
                             this.turn = Math.abs(this.turn - 1);
                             this.turned=1;
                         }
-                        this.trueCubes[id-8] == 2;
+                        this.trueCubes[id-9] == 2;
                     }
                 }
 
             } 
 
-            if(i%8<=4 || (i<5)){
+            if(i%8<=4){
                 if((i-7.0)>7.0){
                     if(this.trueCubes[Math.floor((id-8)-((id-8)/8.0))] == 0){
                         this.cubes[Math.floor((id-8)-((id-8)/8.0))] = new MyUnitCubeQuad(this.orchestrator.getScene(), this.turn);
@@ -157,25 +157,21 @@ class MyGameBoard{
                         this.trueCubes[Math.floor((id-8)-((id-8)/8.0))] == 2;
                     }
                 }else{
-                    if(this.trueCubes[id-8] == 0){
-                        this.cubes[id-8] = new MyUnitCubeQuad(this.orchestrator.getScene(), this.turn);
-                        this.trueCubes[id-8] = 1;
+                    if(this.trueCubes[id-9] == 0){
+                        this.cubes[id-9] = new MyUnitCubeQuad(this.orchestrator.getScene(), this.turn);
+                        this.trueCubes[id-9] = 1;
 
                     }
-                    else if(this.trueCubes[id-8] == 1){
-                        this.cubes[id-8].changeTurn(this.turn);
+                    else if(this.trueCubes[id-9] == 1){
+                        this.cubes[id-9].changeTurn(this.turn);
                         if(this.turned==0){
                             this.turn = Math.abs(this.turn - 1);
                             this.turned=1;
                         }
-                        this.trueCubes[id-8] == 2;
+                        this.trueCubes[id-9] == 2;
                     }
                 }
 
-            }
-            else if(this.trueCubes[id-7] == 1){
-                this.cubes[id-7].changeTurn(this.turn);
-                this.trueCubes[id-7] == 2;
             }
         }
 
@@ -183,7 +179,7 @@ class MyGameBoard{
         /*---------------- [i+9] ----------------------------------------*/
         if((this.truePieces[i+9] && (this.piece[i].getTurn() == this.piece[i+9].getTurn())) ){
 
-            if(i%8>4 || (i>4 && i<8)){
+            if(i%8>4){
 
                 if(this.trueCubes[Math.round(id-(id/8.0))] == 0){
                 this.cubes[Math.round(id-(id/8.0))] = new MyUnitCubeQuad(this.orchestrator.getScene(), this.turn);
@@ -200,7 +196,7 @@ class MyGameBoard{
             }
             }
 
-            if(i%8<=4 || (i<5)){
+            if(i%8<=4){
 
                 if(this.trueCubes[Math.floor(id-(id/8.0))] == 0){
                 this.cubes[Math.floor(id-(id/8.0))] = new MyUnitCubeQuad(this.orchestrator.getScene(), this.turn);
@@ -225,7 +221,7 @@ class MyGameBoard{
         /*---------------- [i+7] ----------------------------------------*/
         if((this.truePieces[i+7.0] && (this.piece[i].getTurn() == this.piece[i+7.0].getTurn()))){
 
-            if(i%8>4 || (i>4 && i<8)){
+            if(i%8>4){
 
                 if(this.trueCubes[Math.round(id-(id/8.0)-1)] == 0){
                     this.cubes[Math.round(id-(id/8.0)-1)] = new MyUnitCubeQuad(this.orchestrator.getScene(), this.turn);
@@ -242,7 +238,7 @@ class MyGameBoard{
                 }
             }
 
-            if(i%8<=4 || (i<5)){
+            if(i%8<=4){
 
                 if(this.trueCubes[Math.floor(id-(id/8.0)-1)] == 0){
                     this.cubes[Math.floor(id-(id/8.0)-1)] = new MyUnitCubeQuad(this.orchestrator.getScene(), this.turn);
