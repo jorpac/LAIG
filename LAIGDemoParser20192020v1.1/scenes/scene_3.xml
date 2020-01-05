@@ -1,0 +1,362 @@
+<lxs>
+        <scene root="root" axis_length="5"/>
+
+        <views default="GameBoard">
+        
+            <perspective id="GameBoard" near="0.1" far="500" angle="90">
+                <from x="0.1" y="13" z="0" />
+                <to x="0" y="0" z="0" />
+            </perspective>
+            
+            <perspective id="defaultCamera" near="0.1" far="500" angle="45">
+                <from x="30" y="15" z="30" />
+                <to x="0" y="-2" z="0" />
+            </perspective>
+
+             <perspective id="cornerCamera" near="0.1" far="500" angle="45">
+                <from x="50" y="80" z="40" />
+                <to x="0" y="-2" z="0" />
+            </perspective>
+            
+            <ortho id="orthoCamera1" near="0.1" far="500" left="-30" right="30" top="30" bottom="-30">
+                <from x="30" y="15" z="30" />
+                <to x="0" y="-2" z="0" />
+                <up x="0" y="1" z="0" />
+            </ortho>
+
+            <ortho id="orthoCamera2" near="0.1" far="500" left="-20" right="20" top="20" bottom="-20">
+                <from x="0" y="15" z="15" />
+                <to x="0" y="-2" z="0" />
+                <up x="0" y="1" z="0" />
+            </ortho>
+
+        </views>
+        <globals>
+            <ambient r="0.1" g="0.1" b="0.1" a="1.0" />
+            <background r="0.0" g="0.0" b="0.0" a="1.0" />
+        </globals>
+
+    
+        <lights>
+            <omni id="demoLight" enabled="1">
+                <location x="9.8" y="11.9" z="10" w="1.0" />
+                <ambient r="0" g="0" b="0" a="1.0" />
+                <diffuse r="1.0" g="1.0" b="1.0" a="1.0" />
+                <specular r="1.0" g="1.0" b="1.0" a="1.0" />
+            </omni>
+
+            <omni id="omni1" enabled="1">
+                <location x="9.8" y="11.9" z="10" w="1.0" />
+                <ambient r="0.5" g="0.5" b="0.5" a="1.0" />
+                <diffuse r="0.6" g="0.6" b="0.6" a="1.0" />
+                <specular r="1.0" g="1.0" b="1.0" a="1.0" />
+            </omni>
+            <omni id="omni2" enabled="1">
+                <location x="9.8" y="11.9" z="10" w="1.0" />
+                <ambient r="0.5" g="0.5" b="0.5" a="1.0" />
+                <diffuse r="0.3" g="0.3" b="0.3" a="1.0" />
+                <specular r="1.0" g="1.0" b="1.0" a="1.0" />
+            </omni>
+            
+            <omni id="omni3" enabled="1">
+                <location x="9.8" y="11.9" z="10" w="1.0" />
+                <ambient r="0" g="0" b="0" a="1.0" />
+                <diffuse r="0.7" g="0.7" b="0.7" a="1.0" />
+                <specular r="1.0" g="1.0" b="1.0" a="1.0" />
+            </omni>
+            
+            <omni id="omni4" enabled="1">
+                <location x="9.8" y="11.9" z="10" w="1.0" />
+                <ambient r="0" g="0" b="0" a="1.0" />
+                <diffuse r="0.2" g="0.2" b="0.2" a="1.0" />
+                <specular r="1.0" g="1.0" b="1.0" a="1.0" />
+            </omni>
+            
+            <omni id="omni5" enabled="1">
+                <location x="9.8" y="11.9" z="10" w="1.0" />
+                <ambient r="0" g="0" b="0" a="1.0" />
+                <diffuse r="0.5" g="0.5" b="0.5" a="1.0" />
+                <specular r="1.0" g="1.0" b="1.0" a="1.0" />
+            </omni>
+
+            <spot id="spotlight" enabled="1" angle="90" exponent="1">
+
+                <!-- atencao, "target" e' diferente de "direction" -->
+                <location x="0" y="20" z="0" w="1" />
+                <target x="10" y="0" z="0" />
+                <ambient r="1.0" g="1.0" b="1.0" a="1" />
+                <diffuse r="1.0" g="1.0" b="1.0" a="0" />
+                <specular r="1.0" g="1.0" b="1.0" a="1" />
+                <attenuation constant="0" linear="0" quadratic="0" />
+            </spot>
+            
+            <spot id="spotlight2" enabled="1" angle="-45" exponent="1">
+
+                <!-- atencao, "target" e' diferente de "direction" -->
+                <location x="10" y="5" z="5" w="1" />
+                <target x="0" y="10" z="0" />
+                <ambient r="1.0" g="1.0" b="1.0" a="1" />
+                <diffuse r="0" g="0" b="0" a="0" />
+                <specular r="0" g="0" b="0" a="1" />
+                <attenuation constant="2" linear="0" quadratic="0" />
+            </spot>
+        </lights>
+
+        <textures>
+            <texture id="topTexture" file="scenes/images/mineTop.png" />
+            <texture id="bottom_tex" file="scenes/images/mineBottom.png" />
+            <texture id="sideTexture" file="scenes/images/mineSide.png" />
+            <texture id="skytop_tex" file="scenes/images/templeCeiling.jpg" />
+            <texture id="skybottom_tex" file="scenes/images/templeFloor.jpg" />
+            <texture id="skyright_tex" file="scenes/images/templeWall.jpg" />
+            <texture id="skyback_tex" file="scenes/images/templeWall.jpg" />
+            <texture id="skyleft_tex" file="scenes/images/templeWall.jpg" />
+            <texture id="skyfront_tex" file="scenes/images/templeWall.jpg" />
+            <texture id="tableTop_tex" file="scenes/images/table.jpg" />
+        </textures>
+
+        <materials>
+        <material id="demoMaterial" shininess="1">
+                <emission r="0.0" g="0.0" b="0.0" a="1.0" />
+                <ambient r="0.3" g="0.3" b="0.3" a="1.0" />
+                <diffuse r="0.5" g="0.5" b="0.5" a="1.0" />
+                <specular r="0.5" g="0.5" b="0.5" a="1.0" />
+            </material>
+        </materials>
+
+        <transformations>
+            <transformation id="demoTransform">
+                <scale x="5" y="1" z="5" />
+                <rotate axis="x" angle="-45" />
+                <rotate axis="z" angle="-45" />
+            </transformation>
+        </transformations>
+
+        <primitives>
+            <primitive id="demoRectangle">
+                <rectangle x1="-0.5" y1="-1" x2="0.5" y2="1" />
+            </primitive>
+        </primitives>
+
+        <animations>
+        </animations>
+
+        <components>
+            <component id="root">
+                <transformation>
+                    <translate x="0" y="0" z="1" />
+                    <scale x="1" y="1" z="1" />
+                </transformation>
+                <materials>
+                    <material id="demoMaterial" />
+                </materials>
+                <texture id="topTexture" length_s="1.0" length_t="1.0"/>
+                <children>
+                    <componentref id="table" />
+                    <componentref id="skybox" />
+                </children>
+            </component>
+
+
+
+
+<!-- BEGINNING OF SKYBOX -->
+         <component id="skybox">
+                <transformation>
+                    <translate x="-10" y="8" z="-1" />
+                    <scale x="10" y="5" z="10" />
+                    <!-- <rotate axis="x" angle="90"/> -->
+                </transformation>
+                <materials>
+                    <material id="demoMaterial" />
+                </materials>
+                <texture id="skytop_tex" length_s="1.0" length_t="1.0"/>
+                <children>
+                    <componentref id="sky_top" />
+                    <componentref id="sky_side" />
+                    <componentref id="sky_otherside" />
+                    <componentref id="sky_topfront" />
+                    <componentref id="sky_topback" />
+                    <componentref id="sky_bottom" />
+                   
+                </children>
+            </component>
+
+            <component id="sky_top">
+                <transformation>
+                    <translate x="0" y="9" z="-1" />
+                    <scale x="10" y="1" z="5" />
+                    <rotate axis="x" angle="90"/>
+                </transformation>
+                <materials>
+                    <material id="demoMaterial" />
+                </materials>
+                <texture id="skytop_tex" length_s="1.0" length_t="1.0"/>
+                <children>
+                    <primitiveref id="demoRectangle" />
+                </children>
+            </component>
+
+            <component id="sky_bottom">
+                <transformation>
+                    <translate x="0" y="-1" z="-1" />
+                    <scale x="10" y="1" z="5" />
+                    <rotate axis="x" angle="90"/>
+                </transformation>
+                <materials>
+                    <material id="demoMaterial" />
+                </materials>
+                <texture id="skybottom_tex" length_s="1.0" length_t="1.0"/>
+                <children>
+                    <primitiveref id="demoRectangle" />
+                </children>
+            </component>
+
+            <component id="sky_side">
+                <transformation>
+                    <translate x="0" y="4" z="4" />
+                    <scale x="10" y="5" z="5" />
+                </transformation>
+                <materials>
+                    <material id="demoMaterial" />
+                </materials>
+                <texture id="skyleft_tex" length_s="1.0" length_t="1.0"/>
+                <children>
+                    <primitiveref id="demoRectangle" />
+                </children>
+            </component>
+            <component id="sky_otherside">
+                <transformation>
+                    <translate x="0" y="4" z="-6" />
+                    <scale x="10" y="5" z="5" />
+                </transformation>
+                <materials>
+                    <material id="demoMaterial" />
+                </materials>
+                <texture id="skyright_tex" length_s="1.0" length_t="1.0"/>
+                <children>
+                    <primitiveref id="demoRectangle" />
+                </children>
+            </component>
+
+            <component id="sky_topfront">
+                <transformation>
+                    <translate x="-5" y="4" z="-1" />
+                    <scale x="10" y="5" z="10" />
+                    <rotate axis="y" angle="90"/>
+                </transformation>
+                <materials>
+                    <material id="demoMaterial" />
+                </materials>
+                <texture id="skyfront_tex" length_s="1.0" length_t="1.0"/>
+                <children>
+                    <primitiveref id="demoRectangle" />
+                </children>
+            </component>
+
+            <component id="sky_topback">
+                <transformation>
+                    <translate x="5" y="4" z="-1" />
+                    <scale x="10" y="5" z="10" />
+                    <rotate axis="y" angle="90"/>
+                </transformation>
+                <materials>
+                    <material id="demoMaterial" />
+                </materials>
+                <texture id="skyback_tex" length_s="1.0" length_t="1.0"/>
+                <children>
+                    <primitiveref id="demoRectangle" />
+                </children>
+            </component>
+
+<!-- END OF SKYBOX -->
+
+<!-- Table -->
+            <component id="table">
+                <transformation>
+                </transformation>
+                <materials>
+                    <material id="demoMaterial" />
+                </materials>
+                <texture id="tableTop_tex" length_s="1.0" length_t="1.0"/>
+                <children>
+                    <componentref id="tableTop" />
+                    <componentref id="tableBot" />
+                    <componentref id="tableLeft" />                
+                    <componentref id="tableRight" />
+                    <componentref id="tableFront" />    
+                </children>
+            </component>
+
+            <component id="tableTop">
+                <transformation>
+                    <translate x="0" y="9" z="-1" />
+                    <scale x="10" y="1" z="5" />
+                    <rotate axis="x" angle="90"/>
+                </transformation>
+                <materials>
+                    <material id="demoMaterial" />
+                </materials>
+                <texture id="tableTop_tex" length_s="1.0" length_t="1.0"/>
+                <children>
+                    <primitiveref id="demoRectangle" />
+                </children>
+            </component>
+            <component id="tableBot">
+                <transformation>
+                    <translate x="0" y="8" z="-1" />
+                    <scale x="10" y="1" z="5" />
+                    <rotate axis="x" angle="90"/>
+                </transformation>
+                <materials>
+                    <material id="demoMaterial" />
+                </materials>
+                <texture id="tableTop_tex" length_s="1.0" length_t="1.0"/>
+                <children>
+                    <primitiveref id="demoRectangle" />
+                </children>
+            </component>
+            <component id="tableLeft">
+                <transformation>
+                    <translate x="0" y="8.5" z="4" />
+                    <scale x="10" y="0.5" z="0" />
+                </transformation>
+                <materials>
+                    <material id="demoMaterial" />
+                </materials>
+                <texture id="tableTop_tex" length_s="1.0" length_t="1.0"/>
+                <children>
+                    <primitiveref id="demoRectangle" />
+                </children>
+            </component>
+            <component id="tableRight">
+                <transformation>
+                    <translate x="0" y="8.5" z="-6" />
+                    <scale x="10" y="0.5" z="0" />
+                </transformation>
+                <materials>
+                    <material id="demoMaterial" />
+                </materials>
+                <texture id="tableTop_tex" length_s="1.0" length_t="1.0"/>
+                <children>
+                    <primitiveref id="demoRectangle" />
+                </children>
+            </component>
+            <component id="tableFront">
+                <transformation>
+                    <translate x="0" y="0.5" z="4" />
+                    <scale x="10" y="5" z="0" />
+                    <rotate axis="y" angle="90"/>
+                </transformation>
+                <materials>
+                    <material id="demoMaterial" />
+                </materials>
+                <texture id="tableTop_tex" length_s="1.0" length_t="1.0"/>
+                <children>
+                    <primitiveref id="demoRectangle" />
+                </children>
+            </component>
+
+
+        </components>
+    </lxs>
