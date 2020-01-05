@@ -1,5 +1,5 @@
 class MyGameBoard{
-    constructor(orchestrator){
+    constructor(orchestrator, mode){
         this.orchestrator = orchestrator;
         this.tiles = [];
         this.piece = [];
@@ -8,6 +8,7 @@ class MyGameBoard{
         this.trueCubes = [];
         this.turn = 0;
         this.turned=0;
+        this.mode = mode;
         this.animator = new MyAnimator(this.orchestrator.getScene());
         this.cameraKeyframesPlayer1 = [ [1.0, 90*(Math.PI/180)] ];
 
@@ -51,7 +52,7 @@ class MyGameBoard{
                             this.turn = Math.abs(this.turn - 1);
                             this.turned=1;
                         }
-                        this.trueCubes[Math.round((id-8)-((id-8)/8.0))-1] == 2;
+                        this.trueCubes[Math.round((id-8)-((id-8)/8.0))-1] = 2;
                     }
                 }else{
                     if(this.trueCubes[id-9] == 0){
@@ -65,7 +66,7 @@ class MyGameBoard{
                             this.turn = Math.abs(this.turn - 1);
                             this.turned=1;
                         }
-                        this.trueCubes[id-9] == 2;
+                        this.trueCubes[id-9] = 2;
                     }
                 }
             
@@ -84,7 +85,7 @@ class MyGameBoard{
                             this.turn = Math.abs(this.turn - 1);
                             this.turned=1;
                         }
-                        this.trueCubes[Math.floor((id-8)-((id-8)/8.0))-1] == 2;
+                        this.trueCubes[Math.floor((id-8)-((id-8)/8.0))-1] = 2;
                     }
                 }else{
                     if(this.trueCubes[id-9] == 0){
@@ -98,7 +99,7 @@ class MyGameBoard{
                             this.turn = Math.abs(this.turn - 1);
                             this.turned=1;
                         }
-                        this.trueCubes[id-9] == 2;
+                        this.trueCubes[id-9] = 2;
                     }
                 }
             }
@@ -121,7 +122,7 @@ class MyGameBoard{
                             this.turn = Math.abs(this.turn - 1);
                             this.turned=1;
                         }
-                        this.trueCubes[Math.round((id-8)-((id-8)/8.0))] == 2;
+                        this.trueCubes[Math.round((id-8)-((id-8)/8.0))] = 2;
                     }
                 }else{
                     if(this.trueCubes[id-8] == 0){
@@ -135,7 +136,7 @@ class MyGameBoard{
                             this.turn = Math.abs(this.turn - 1);
                             this.turned=1;
                         }
-                        this.trueCubes[id-8] == 2;
+                        this.trueCubes[id-8] = 2;
                     }
                 }
 
@@ -154,7 +155,7 @@ class MyGameBoard{
                             this.turn = Math.abs(this.turn - 1);
                             this.turned=1;
                         }
-                        this.trueCubes[Math.floor((id-8)-((id-8)/8.0))] == 2;
+                        this.trueCubes[Math.floor((id-8)-((id-8)/8.0))] = 2;
                     }
                 }else{
                     if(this.trueCubes[id-8] == 0){
@@ -168,14 +169,14 @@ class MyGameBoard{
                             this.turn = Math.abs(this.turn - 1);
                             this.turned=1;
                         }
-                        this.trueCubes[id-8] == 2;
+                        this.trueCubes[id-8] = 2;
                     }
                 }
 
             }
             else if(this.trueCubes[id-7] == 1){
                 this.cubes[id-7].changeTurn(this.turn);
-                this.trueCubes[id-7] == 2;
+                this.trueCubes[id-7] = 2;
             }
         }
 
@@ -196,7 +197,7 @@ class MyGameBoard{
                             this.turn = Math.abs(this.turn - 1);
                             this.turned=1;
                         }
-                this.trueCubes[Math.round(id-(id/8.0))] == 2;
+                this.trueCubes[Math.round(id-(id/8.0))] = 2;
             }
             }
 
@@ -213,7 +214,7 @@ class MyGameBoard{
                             this.turn = Math.abs(this.turn - 1);
                             this.turned=1;
                         }
-                this.trueCubes[Math.floor(id-(id/8.0))] == 2;
+                this.trueCubes[Math.floor(id-(id/8.0))] = 2;
             }
             }
 
@@ -238,7 +239,7 @@ class MyGameBoard{
                             this.turn = Math.abs(this.turn - 1);
                             this.turned=1;
                         }
-                    this.trueCubes[Math.round(id-(id/8.0)-1)] == 2;
+                    this.trueCubes[Math.round(id-(id/8.0)-1)] = 2;
                 }
             }
 
@@ -255,13 +256,20 @@ class MyGameBoard{
                             this.turn = Math.abs(this.turn - 1);
                             this.turned=1;
                         }
-                    this.trueCubes[Math.floor(id-(id/8.0)-1)] == 2;
+                    this.trueCubes[Math.floor(id-(id/8.0)-1)] = 2;
                 }
             }
         }
 
 
-        setTimeout(() => { this.turn = Math.abs(this.turn - 1); this.orchestrator.getScene().setPickEnabled(true); }, 1000); 
+        setTimeout(() => { this.turn = Math.abs(this.turn - 1); this.orchestrator.getScene().setPickEnabled(true); if(this.mode && this.turn){
+            let i1 = Math.floor(Math.random()*64);
+            while(this.piece[i1-1]!=undefined){
+                i1 = Math.floor(Math.random()*64);
+            }
+            console.log(i1);
+            this.orchestrator.gameMoves.push(i1-1); 
+            this.picked(i1);} }, 1000); 
         this.turned=0;
         if(this.turn){
             
@@ -316,45 +324,6 @@ class MyGameBoard{
             }
         }
 
-            //     if((i%8) && (i>9 && this.truePieces[i-9] && (this.piece[i].getTurn() == this.piece[i-9].getTurn()))){
-            //         // if (this.trueCubes[i] == 1) {
-            //         //     this.cubes[i].changeTurn(this.turn);
-            //         //     this.trueCubes[i] = 4;
-            //         // }
-            //         // else
-            //         //     this.trueCubes[i+1] = 1;
-
-            //         // if(this.trueCubes[i]==2 || this.trueCubes[i]==4){
-            //         //     this.trueCubes[i] = 0;
-            //             this.orchestrator.getScene().rotate(-Math.PI/8, 0, 0, 1);                    
-            //             this.orchestrator.getScene().scale(0.45, 0.45, 0.2);
-            //             this.orchestrator.getScene().translate(-1.55, 0, 0.5);
-            //             this.cubes[i].display();
-            //             this.orchestrator.getScene().translate(1.55, 0, -0.5);
-            //             this.orchestrator.getScene().scale(2.5, 2.5, 5);
-            //             this.orchestrator.getScene().rotate(Math.PI/8, 0, 0, 1); 
-            //         //}
-            //     }
-            //     if((i%8!=7.0) && i>7.0 && this.truePieces[i-7.0] && (this.piece[i].getTurn() == this.piece[i-7.0].getTurn())){
-            //         // if (this.trueCubes[i+1] == 0) {
-            //         //     this.cubes[i+1].changeTurn(this.turn);
-            //         //     this.trueCubes[i+1] = 3;
-            //         // }
-            //         // else
-            //         //     this.trueCubes[i+1] = 1;
-
-            //         // if(this.trueCubes[i+1] == 3 || this.trueCubes[i+1] == 1){
-            //         this.orchestrator.getScene().rotate(-Math.PI/2-Math.PI/8, 0, 0, 1);                    
-            //         this.orchestrator.getScene().scale(0.45, 0.45, 0.2);
-            //         this.orchestrator.getScene().translate(-1.55, 0, 0.5);
-            //         this.cubes[i].display();
-            //         this.orchestrator.getScene().translate(1.55, 0, -0.5);
-            //         this.orchestrator.getScene().scale(2.5, 2.5, 5);
-            //         this.orchestrator.getScene().rotate(-(-Math.PI/2-Math.PI/8), 0, 0, 1); 
-            //     //}
-            // }
-
-       // this.tile1.display();
     }
 }
 

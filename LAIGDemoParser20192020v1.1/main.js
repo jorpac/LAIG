@@ -33,11 +33,13 @@ main=function()
 	
     var filename=getUrlVars()['file'] || "scene_2.xml";
     var filename2=getUrlVars()['file'] || "scene_1.xml";
+    var filename3=getUrlVars()['file'] || "scene_3.xml";
 
 	// create and load graph, and associate it to scene. 
 	// Check console for loading errors
 	var myGraph = new MySceneGraph(filename, myScene);
 	var myGraph2 = new MySceneGraph(filename2, myScene);
+	var myGraph3 = new MySceneGraph(filename3, myScene);
 	
 	// start
     app.run();

@@ -27,7 +27,7 @@ class MyAnimator extends MyAnimation{
             
         }
     }
-    apply(){
+    display(){
 
     }
 }

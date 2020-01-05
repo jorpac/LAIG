@@ -27,6 +27,9 @@ class MyInterface extends CGFinterface {
 
         let scene_foler =  this.gui.addFolder('Scene');
         scene_foler.add(this.scene, 'activeGraph', this.scene.scene_ambient).name("Select Ambient");
+
+        let mode_foler =  this.gui.addFolder('Game Mode');
+        mode_foler.add(this.scene, 'gaame_mode', this.scene.game_mode).name("Select Mode");
         //this.gui.add(this.scene, 'displayAxis').name('Display Axis');
         // var camera = this.gui.addFolder('View');
         // camera.add(this.scene, 'perspective').name('Orto View');
@@ -34,6 +37,7 @@ class MyInterface extends CGFinterface {
 
         this.gui.add(this.scene, 'undo').name('Undo');
         this.gui.add(this.scene, 'clear').name('New Game');
+        this.gui.add(this.scene, 'end').name('Stop Game');
         this.gui.add(this.scene, 'video').name('Play Game Video');
         this.initKeys();
 

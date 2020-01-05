@@ -42,12 +42,15 @@ class XMLscene extends CGFscene {
         this.graphs = [];
         
         this.activeGraph = 0;
+        this.gaame_mode = 0;
         this.cameraAnimation;
         this.cameraRotate=false;
+        this.start = performance.now();
         
         this.camera = new CGFcamera(0.5, 0.1, 500, vec3.fromValues(0.1, 12, 0), vec3.fromValues(0, 0, 0));
-        this.gameOrchestrator = new MyGameOrchestrator(this);
-        this.scene_ambient = {'NASCAR': 1, 'Minecraft': 0};
+        this.gameOrchestrator = new MyGameOrchestrator(this, this.gaame_mode);
+        this.scene_ambient = {'NASCAR': 2,'Temple': 1, 'Minecraft': 0};
+        this.game_mode = {'BvP': 1, 'PvP': 0};
     }
 
     /**
@@ -170,8 +173,21 @@ class XMLscene extends CGFscene {
         this.gameOrchestrator.playVideo();
     }
     clear(){
+        delete this.gameOrchestrator.gameBoard;
         delete this.gameOrchestrator;
-        this.gameOrchestrator = new MyGameOrchestrator(this);
+        this.start = performance.now();
+        if(this.gaame_mode)
+            this.gameOrchestrator = new MyGameOrchestrator(this, 1);
+        else{
+            console.log("MODE"+this.gaame_mode);
+            this.gameOrchestrator = new MyGameOrchestrator(this, 0);
+
+        }
+    }
+    end(){
+        let end = performance.now();
+        let time = end-this.start;
+        alert("This game lasted "+Math.round(time/10)/100 + " seconds");
     }
     /*onSelectedViewChanged(){
         this.interface.setActiveCamera(this.graph.listCameras[this.selectedView]);
@@ -212,7 +228,7 @@ class XMLscene extends CGFscene {
          }
 
          this.time = t;
-         this.gameOrchestrator.update(this.delta);
+         this.gameOrchestrator.update(t);
               
         // console.log(t/100 % 1000);
     }

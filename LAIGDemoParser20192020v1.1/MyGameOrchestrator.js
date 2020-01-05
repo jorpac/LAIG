@@ -1,8 +1,9 @@
 class MyGameOrchestrator{
-    constructor(scene) {
+    constructor(scene, mode) {
         this.scene = scene;
         this.theme = this.scene.graph;
-        this.gameBoard = new MyGameBoard(this);
+        this.mode = mode;
+        this.gameBoard = new MyGameBoard(this, mode);
         this.sideBoard = new MySideBoard(this);
         this.gameMoves = [];
         //this.gameboard = new MyGameboard();

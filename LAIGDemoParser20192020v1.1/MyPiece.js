@@ -33,7 +33,7 @@ class MyPiece{
         let sc = [0.1, 0.1, 0.1];
         key_fr_1.push(sc);
 
-        let key_fr_2 = [2, [0, 0.5, 0], [0, 0, 0], [1, 1, 1]];
+        let key_fr_2 = [10, [0, 15, 0], [0, 0, 0], [1, 1, 1]];
 
         this.animation.keyFrames.push(key_fr_1);
         this.animation.keyFrames.push(key_fr_2);
