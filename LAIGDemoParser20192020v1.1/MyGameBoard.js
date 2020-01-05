@@ -66,7 +66,7 @@ class MyGameBoard{
                             this.turn = Math.abs(this.turn - 1);
                             this.turned=1;
                         }
-                        this.trueCubes[id-10] == 2;
+                        this.trueCubes[id-10] = 2;
                     }
                 }
             
@@ -99,7 +99,7 @@ class MyGameBoard{
                             this.turn = Math.abs(this.turn - 1);
                             this.turned=1;
                         }
-                        this.trueCubes[id-10] == 2;
+                        this.trueCubes[id-10] = 2;
                     }
                 }
             }
@@ -136,7 +136,7 @@ class MyGameBoard{
                             this.turn = Math.abs(this.turn - 1);
                             this.turned=1;
                         }
-                        this.trueCubes[id-9] == 2;
+                        this.trueCubes[id-9] = 2;
                     }
                 }
 
@@ -169,7 +169,7 @@ class MyGameBoard{
                             this.turn = Math.abs(this.turn - 1);
                             this.turned=1;
                         }
-                        this.trueCubes[id-9] == 2;
+                        this.trueCubes[id-9] = 2;
                     }
                 }
 
