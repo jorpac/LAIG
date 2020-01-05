@@ -17,8 +17,8 @@ class MyGameBoard{
             this.tiles[i] = new MyTile(this.orchestrator, i);
             //this.piece[i] = new MyPiece(this.orchestrator, i);
             this.truePieces[i]= false;  
-            this.cubes[i] = new MyUnitCubeQuad(this.orchestrator.getScene());
-            this.trueCubes[i] = 1;
+           
+            this.trueCubes[i] = 0;
         }
     }
     
@@ -27,6 +27,18 @@ class MyGameBoard{
         this.orchestrator.getScene().cameraRotate=false;
         this.truePieces[id-1] = true;  
         this.piece[id-1] = new MyPiece(this.orchestrator, id-1, this.turn);
+        let i = id -1 ;
+        if(((i%8) && (i>9 && this.truePieces[i-9] && (this.piece[i].getTurn() == this.piece[i-9].getTurn()))) || ((i%8!=7) && i>7 && this.truePieces[i-7] && (this.piece[i].getTurn() == this.piece[i-7].getTurn())) || (this.truePieces[i+9] && (this.piece[i].getTurn() == this.piece[i+9].getTurn())) || (this.truePieces[i+7] && (this.piece[i].getTurn() == this.piece[i+7].getTurn()))){
+            if(this.trueCubes[id-1] == 0){
+                this.cubes[id-1] = new MyUnitCubeQuad(this.orchestrator.getScene(), this.turn);
+                this.trueCubes[id-1] = 1;
+
+            }
+            else if(this.trueCubes[id-1] == 1){
+                this.cubes[id-1].changeTurn(this.turn);
+                this.trueCubes[id-1] == 2;
+            }
+        }
         setTimeout(() => { this.turn = Math.abs(this.turn - 1); this.orchestrator.getScene().setPickEnabled(true); }, 1000); 
         if(this.turn){
             
@@ -40,6 +52,7 @@ class MyGameBoard{
     display(){
         this.orchestrator.getScene().logPicking();
         this.orchestrator.getScene().clearPickRegistration();
+       
         for (let i = 0; i < this.tiles.length; i++) {
             
             this.tiles[i].display(i);
@@ -50,28 +63,52 @@ class MyGameBoard{
                 this.orchestrator.getScene().pushMatrix();
                 
                 this.piece[i].display(i);
-                if((i%8) && (i>9 && this.truePieces[i-9] && (this.piece[i].getTurn() == this.piece[i-9].getTurn()))){
-                    if(this.trueCubes[i]==1 || this.trueCubes[i]==0){
-                    this.trueCubes[i] = 0;
-                    this.orchestrator.getScene().rotate(-Math.PI/8, 0, 0, 1);                    
-                    this.orchestrator.getScene().scale(0.45, 0.45, 0.2);
-                    this.orchestrator.getScene().translate(-1.55, 0, 0.5);
-                    this.cubes[i].display();
-                    this.orchestrator.getScene().translate(1.55, 0, -0.5);
-                    this.orchestrator.getScene().scale(2.5, 2.5, 5);
-                    this.orchestrator.getScene().rotate(Math.PI/8, 0, 0, 1); 
-                    }
-                }
-                if((i%8!=7) && i>8 && this.truePieces[i-7] && (this.piece[i].getTurn() == this.piece[i-7].getTurn()) && this.trueCubes[i+1]){
-                    this.trueCubes[i+1] = 2;
+                if(this.cubes[i]!=undefined){
                     this.orchestrator.getScene().rotate(-Math.PI/2-Math.PI/8, 0, 0, 1);                    
                     this.orchestrator.getScene().scale(0.45, 0.45, 0.2);
-                    this.orchestrator.getScene().translate(-1.55, 0, 0.5);
+                    this.orchestrator.getScene().translate(1.55, 0, 0.5);
                     this.cubes[i].display();
-                    this.orchestrator.getScene().translate(1.55, 0, -0.5);
+                    this.orchestrator.getScene().translate(-1.55, 0, -0.5);
                     this.orchestrator.getScene().scale(2.5, 2.5, 5);
                     this.orchestrator.getScene().rotate(-(-Math.PI/2-Math.PI/8), 0, 0, 1); 
                 }
+            //     if((i%8) && (i>9 && this.truePieces[i-9] && (this.piece[i].getTurn() == this.piece[i-9].getTurn()))){
+            //         // if (this.trueCubes[i] == 1) {
+            //         //     this.cubes[i].changeTurn(this.turn);
+            //         //     this.trueCubes[i] = 4;
+            //         // }
+            //         // else
+            //         //     this.trueCubes[i+1] = 1;
+
+            //         // if(this.trueCubes[i]==2 || this.trueCubes[i]==4){
+            //         //     this.trueCubes[i] = 0;
+            //             this.orchestrator.getScene().rotate(-Math.PI/8, 0, 0, 1);                    
+            //             this.orchestrator.getScene().scale(0.45, 0.45, 0.2);
+            //             this.orchestrator.getScene().translate(-1.55, 0, 0.5);
+            //             this.cubes[i].display();
+            //             this.orchestrator.getScene().translate(1.55, 0, -0.5);
+            //             this.orchestrator.getScene().scale(2.5, 2.5, 5);
+            //             this.orchestrator.getScene().rotate(Math.PI/8, 0, 0, 1); 
+            //         //}
+            //     }
+            //     if((i%8!=7) && i>7 && this.truePieces[i-7] && (this.piece[i].getTurn() == this.piece[i-7].getTurn())){
+            //         // if (this.trueCubes[i+1] == 0) {
+            //         //     this.cubes[i+1].changeTurn(this.turn);
+            //         //     this.trueCubes[i+1] = 3;
+            //         // }
+            //         // else
+            //         //     this.trueCubes[i+1] = 1;
+
+            //         // if(this.trueCubes[i+1] == 3 || this.trueCubes[i+1] == 1){
+            //         this.orchestrator.getScene().rotate(-Math.PI/2-Math.PI/8, 0, 0, 1);                    
+            //         this.orchestrator.getScene().scale(0.45, 0.45, 0.2);
+            //         this.orchestrator.getScene().translate(-1.55, 0, 0.5);
+            //         this.cubes[i].display();
+            //         this.orchestrator.getScene().translate(1.55, 0, -0.5);
+            //         this.orchestrator.getScene().scale(2.5, 2.5, 5);
+            //         this.orchestrator.getScene().rotate(-(-Math.PI/2-Math.PI/8), 0, 0, 1); 
+            //     //}
+            // }
             }
             
         } 
@@ -82,12 +119,19 @@ class MyGameBoard{
     }
 
     undo(id){
+        this.orchestrator.getScene().setPickEnabled(false);
 
         this.truePieces[id]=false;
         delete this.piece[id];
-        if(this.turn)
-            this.turn = 0;
-        else   
-            this.turn = 1;
+        setTimeout(() => { this.turn = Math.abs(this.turn - 1); this.orchestrator.getScene().setPickEnabled(true); }, 1000); 
+        
+        if(this.turn){
+            
+            this.orchestrator.getScene().cameraAnimation = new MyKeyFrameCameraAnimation(this.orchestrator.getScene(), this.cameraKeyframesPlayer1);
+        }else{   
+            this.orchestrator.getScene().cameraAnimation = new MyKeyFrameCameraAnimation(this.orchestrator.getScene(), this.cameraKeyframesPlayer2);
+        }
+
+        this.orchestrator.getScene().cameraRotate=true;
     }
 }

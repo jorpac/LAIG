@@ -68,13 +68,28 @@ class MyQuad extends CGFobject {
 * @param scene - Reference to MyScene object
 */
 class MyUnitCubeQuad extends CGFobject {
-    constructor(scene) {
+    constructor(scene, turn) {
         super(scene);
-        this.initBuffers();
+        // this.changed = 0;
+        this.initBuffers(turn);
     }
-    initBuffers() {
+    initBuffers(turn) {
 
         this.scene.quad = new MyQuad(this.scene);
+        this.quadmaterial = new CGFappearance(this.scene);
+        
+        if(turn){
+            this.quadmaterial.setAmbient(0.1, 0.1, 0.1, 1.0);
+            this.quadmaterial.setDiffuse(0.1, 0.1, 0.1, 1.0);
+            this.quadmaterial.setSpecular(0.1, 0.1, 0.1, 1.0);
+            this.quadmaterial.setShininess(10.0);
+        }
+        else{
+            this.quadmaterial.setAmbient(0.9, 0.9, 0.9, 1.0);
+            this.quadmaterial.setDiffuse(0.9, 0.9, 0.8, 1.0);
+            this.quadmaterial.setSpecular(0.9, 0.9, 0.8, 1.0);
+            this.quadmaterial.setShininess(10.0);
+        }
 
     }
 
@@ -83,6 +98,7 @@ class MyUnitCubeQuad extends CGFobject {
         // this.scene.quadmaterial.setTexture(this.scene.texture7);
         // this.scene.gl.TEXTURE_2D;
         // this.scene.quadmaterial.apply();
+        this.quadmaterial.apply();
       
 
         this.scene.pushMatrix();
@@ -137,6 +153,25 @@ class MyUnitCubeQuad extends CGFobject {
 
         this.scene.quad.display();
         this.scene.popMatrix();
+    }
+    changeTurn(turn){
+        // this.changed ++;
+        // if(this.changed == 1){
+        //     this.changed ++;
+        
+        if(turn){
+            this.quadmaterial.setAmbient(0.1, 0.1, 0.1, 1.0);
+            this.quadmaterial.setDiffuse(0.1, 0.1, 0.1, 1.0);
+            this.quadmaterial.setSpecular(0.1, 0.1, 0.1, 1.0);
+            this.quadmaterial.setShininess(10.0);
+        }
+        else{
+            this.quadmaterial.setAmbient(0.9, 0.9, 0.9, 1.0);
+            this.quadmaterial.setDiffuse(0.9, 0.9, 0.8, 1.0);
+            this.quadmaterial.setSpecular(0.9, 0.9, 0.8, 1.0);
+            this.quadmaterial.setShininess(10.0);
+        }
+    
     }
     
     // updateTexCoords(coords) {
