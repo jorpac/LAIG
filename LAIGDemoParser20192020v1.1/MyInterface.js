@@ -34,6 +34,7 @@ class MyInterface extends CGFinterface {
 
         this.gui.add(this.scene, 'undo').name('Undo');
         this.gui.add(this.scene, 'clear').name('New Game');
+        this.gui.add(this.scene, 'video').name('Play Game Video');
         this.initKeys();
 
         return true;

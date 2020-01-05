@@ -31,6 +31,9 @@ class MyGameOrchestrator{
     
     }
 
+    update(t){
+        this.gameBoard.update(t);
+    }
     getScene(){
         return this.scene;
     }

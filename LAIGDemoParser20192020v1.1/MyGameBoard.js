@@ -8,6 +8,7 @@ class MyGameBoard{
         this.trueCubes = [];
         this.turn = 0;
         this.turned=0;
+        this.animator = new MyAnimator(this.orchestrator.getScene());
         this.cameraKeyframesPlayer1 = [ [1.0, 90*(Math.PI/180)] ];
 
         this.cameraKeyframesPlayer2 = [ [1.0, -90*(Math.PI/180)] ];
@@ -28,8 +29,10 @@ class MyGameBoard{
     picked(id){
         this.orchestrator.getScene().setPickEnabled(false);
         this.orchestrator.getScene().cameraRotate=false;
-        this.truePieces[id-1] = true;  
-        this.piece[id-1] = new MyPiece(this.orchestrator, id-1, this.turn);
+        this.truePieces[id-1] = true;
+        let animation = new MyKeyFrameAnimation(this.orchestrator.getScene());
+        this.animator.pusha(animation);  
+        this.piece[id-1] = new MyPiece(this.orchestrator, id-1, this.turn, animation);
         let i = id -1 ;
 
          /*---------------- [i-9] ----------------------------------------*/
@@ -170,6 +173,10 @@ class MyGameBoard{
                 }
 
             }
+            else if(this.trueCubes[id-7] == 1){
+                this.cubes[id-7].changeTurn(this.turn);
+                this.trueCubes[id-7] == 2;
+            }
         }
 
 
@@ -264,6 +271,9 @@ class MyGameBoard{
         }
 
         this.orchestrator.getScene().cameraRotate=true;
+    }
+    update(t){
+        this.animator.update(t);
     }
     display(){
         this.orchestrator.getScene().logPicking();

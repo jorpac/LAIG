@@ -13,6 +13,25 @@ class MyAnimation{
     }
 }
 
+class MyAnimator extends MyAnimation{
+    constructor(scene){
+        super(scene);
+        this.animations = [];
+    }
+    pusha(animation){
+        this.animations.push(animation);
+    }
+    update(t){
+        for (let i = 0; i < this.animations.length; i++) {
+            this.animations[i].update(t);
+            
+        }
+    }
+    apply(){
+
+    }
+}
+
 
 class MyKeyFrameAnimation extends MyAnimation{
     constructor(scene){
