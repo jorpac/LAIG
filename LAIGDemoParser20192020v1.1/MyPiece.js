@@ -1,7 +1,8 @@
 class MyPiece{
-    constructor(orchestrator, i, turn){
+    constructor(orchestrator, i, turn, animation){
         this.orchestrator = orchestrator;
         this.turn1 = turn;
+        this.animation = animation;
         // this.scene = scene;
         this.piece = new MyCylinder3(this.orchestrator.getScene(), i, 0.5, 0.5, 0.2, 8, 1);
 
@@ -19,16 +20,31 @@ class MyPiece{
             this.material.setSpecular(0.9, 0.9, 0.8, 1.0);
             this.material.setShininess(10.0);
         }
-
+        this.setAnim();
     }
 
-    
+    setAnim(){
+        let key_fr_1 = [];
+        key_fr_1.push(1);
+        let tr = [0, 15, 0];
+        key_fr_1.push(tr);
+        let rot =  [0, 0, 0];
+        key_fr_1.push(rot);
+        let sc = [0.1, 0.1, 0.1];
+        key_fr_1.push(sc);
+
+        let key_fr_2 = [2, [0, 0.5, 0], [0, 0, 0], [1, 1, 1]];
+
+        this.animation.keyFrames.push(key_fr_1);
+        this.animation.keyFrames.push(key_fr_2);
+    }
     display(i){
         // this.orchestrator.getScene().pushMatrix();
        
         this.orchestrator.getScene().translate(-4,0,-4);
        
         this.material.apply();
+        this.animation.apply();
        
         if(i>=8){
             if(i>=16){

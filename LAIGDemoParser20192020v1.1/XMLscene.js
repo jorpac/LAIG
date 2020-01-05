@@ -166,6 +166,9 @@ class XMLscene extends CGFscene {
     undo(){
         this.gameOrchestrator.undo();
     }
+    video(){
+        this.gameOrchestrator.playVideo();
+    }
     clear(){
         delete this.gameOrchestrator;
         this.gameOrchestrator = new MyGameOrchestrator(this);
@@ -209,6 +212,7 @@ class XMLscene extends CGFscene {
          }
 
          this.time = t;
+         this.gameOrchestrator.update(this.delta);
               
         // console.log(t/100 % 1000);
     }
